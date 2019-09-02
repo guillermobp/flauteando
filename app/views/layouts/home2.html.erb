@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style type="text/css">
+      @import url('https://fonts.googleapis.com/css?family=Rubik+Mono+One&display=swap');
+      @import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+      body {
+        margin: 0;
+        background-color: black;
+      }
+      div.container {
+        width: 60%;
+      }
+      .main-nav {
+        width: 60%;
+        position: fixed;
+        z-index: 10;
+      }
+      .main-nav ul {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        list-style: none;
+        background-color: black;
+        color: white;
+      }
+      .main-nav a {
+        padding: 1.25rem 0.5rem;
+        font-size: 1.6rem;
+        font-weight: bold;
+        text-decoration: none;
+        display: flex;
+        color: #f8931f;
+        font-family: 'Rubik Mono One', sans-serif;
+      }
+      .main-nav li a {
+        padding: 1rem;
+      }
+      .main-nav a:focus,
+      .main-nav a:hover {
+        background: #f8931f;
+        color: black;
+      }
+      .main-nav a:focus svg,
+      .main-nav a:hover svg {
+        fill: green;
+      }
+      .main-nav a:focus span,
+      .main-nav a:hover span {
+        color: black;
+      }
+      .main-nav span {
+        display: block;
+        font-size: 1rem;
+        font-weight: normal;
+        color: #888;
+        margin: 0.25rem 0 0;
+      }
+      .main-nav .icon {
+        width: 40px;
+        height: 40px;
+        float: left;
+        margin-right: 1rem;
+        fill: #999;
+      }
+      .main-nav.outlines * {
+        outline: 1px solid rgba(255, 0, 0, 0.5);
+      }
+
+      div.main {
+        grid-column-start: 2;
+        display: flex;
+        flex-wrap: wrap;
+        top: 4rem;
+        position: absolute;
+        width: 60%;
+      }
+      /*div.info-container {
+        background-color: rgb(227, 205, 223);
+      }*/
+      div.main img {
+        object-fit: cover;
+        width: calc(100% / 3);
+        height: 400px;
+        filter: grayscale(1) brightness(.9) contrast(1.5);
+        cursor: pointer;
+      }
+      div.main img:hover {
+        filter: grayscale(1) brightness(.9) contrast(1.2);
+        transition: filter 500ms;
+      }
+      div.info {
+        position: fixed;
+        left: 60%;
+        width: 40%;
+        background-color: rgb(50, 210, 237);
+      }
+      div.info img {
+        width: 100%;
+      }
+      .hidden {
+        display: none;
+      }
+      div#info-overlay {
+        /*background-color: #f8931f;*/
+        background-color: black;
+        color: black;
+        position: fixed;
+        width: 40%;
+        height: 100vh;
+        font-family: 'Lato', sans-serif;
+        text-align: right;
+        transition: left 500ms;
+      }
+      div#info-overlay.out {
+        left: 100%;
+      }
+      div#info-overlay.in {
+        left: 60%;
+      }
+      div#info-overlay img {
+        object-fit: cover;
+        width: 100%;
+      }
+      #info-bio {
+        position: fixed;
+        bottom: 0;
+        background-color: rgba(1, 1, 1, 0.8);
+        color: whitesmoke;
+        padding-bottom: 2rem;
+      }
+      div#info-overlay h1 {
+        padding: 2rem 4rem;
+      }
+      #info-overlay p {
+        padding: 0 3rem;
+      }
+    </style>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="info">
+      <%= image_tag ('afiche.jpg'), usemap: '#flauta' %>
+    </div>
+    <div id="info-overlay" class="out">
+      <img src=""/>
+      <div id="info-bio">
+        <h1>Nombre Músico</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+          dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      </div>
+    </div>
+    <div class="container">
+      <nav role='navigation' class="main-nav" id="main-nav">
+        <ul id="main-nav-list">
+          <li>
+            <a href="#">Inicio
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              Músicos
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              Nosotros
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              Contacto
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div class="main">
+        <h1>Hola</h1>
+      </div>
+      <div class="main">
+        <%= image_tag ('p1.jpg') %>
+        <%= image_tag ('p2.jpg') %>
+        <%= image_tag ('p3.jpg') %>
+        <%= image_tag ('p4.jpg') %>
+        <%= image_tag ('p5.jpg') %>
+        <%= image_tag ('p6.jpg') %>
+        <%= image_tag ('p7.jpg') %>
+      </div>
+    </div>
+    <script>
+      const infoOverlay = document.getElementById('info-overlay');
+      for (const img of[...document.getElementsByTagName('img')]) {
+        img.addEventListener('click', e => {
+          console.log(e.target);
+          console.log(e.target.src);
+          infoOverlay.querySelector('img').src = e.target.src;
+          infoOverlay.classList.replace('out', 'in');
+        });
+      }
+    </script>
+  </body>
+</html>
