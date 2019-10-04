@@ -5,5 +5,6 @@ Rails.application.routes.draw do
   get 'home', to: 'home#index'
   get 'home2', to: 'home2#index'
   get 'home3', to: 'home3#index'
+  get 'index4', to: 'home#index4'
 
 end
