@@ -7,4 +7,9 @@ Rails.application.routes.draw do
   get 'home3', to: 'home3#index'
   get 'index4', to: 'home#index4'
 
+  get 'artistas', to: 'home#artistas'
+  get 'actividades', to: 'home#actividades'
+  get 'conciertos', to: 'home#conciertos'
+  get 'galeria', to: 'home#galeria'
+
 end

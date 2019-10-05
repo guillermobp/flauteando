@@ -2,8 +2,12 @@ class HomeController < ApplicationController
 
   def index; end
 
-  def index4
-    render layout: 'index4'
-  end
+  def artistas; end
+
+  def actividades; end
+
+  def conciertos; end
+
+  def galeria; end
 
 end

@@ -8,10 +8,38 @@ require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 
-
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
 // or the `imagePath` JavaScript helper below.
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+
+document.addEventListener("turbolinks:load", async () => {
+
+  const info = document.getElementById('info');
+  const infoOverlay = document.getElementById('info-overlay');
+
+  for (const link of [...document.querySelectorAll('a[data-command=peek]')]) {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      console.log({
+        e
+      });
+      infoOverlay.querySelector('img').src = e.target.dataset.image;
+      infoOverlay.classList.replace('hidden', 'shown');
+    });
+  }
+
+  for (const img of [...document.querySelectorAll('.main img')]) {
+    img.addEventListener('click', e => {
+      infoOverlay.querySelector('img').src = e.target.src;
+      infoOverlay.classList.replace('hidden', 'shown');
+    });
+  }
+
+  document.getElementById('close').addEventListener('click', e => {
+    infoOverlay.classList.replace('shown', 'hidden');
+  });
+
+});
