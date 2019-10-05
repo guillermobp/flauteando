@@ -207,23 +207,29 @@
       <div>
         <nav role='navigation' class="main-nav" id="main-nav">
           <ul id="main-nav-list">
-            <li><%= link_to 'Flauteando', nil, data: { command: 'peek', image: image_path('afiche.jpg') } %></li>
-            <li><%= link_to 'Artistas', nil, class: 'active' %></li>
-            <li><%= link_to 'Actividades' %></li>
-            <li><%= link_to 'Conciertos' %></li>
-            <li><%= link_to 'Galería' %></li>
+            <li><%= link_to 'Flauteando', '#flauteando', data: { command: 'peek', image: image_path('afiche.jpg') } %></li>
+            <li><%= link_to 'Artistas', '#artistas' %></li>
+            <li><%= link_to 'Actividades', '#actividades' %></li>
+            <li><%= link_to 'Conciertos', '#conciertos' %></li>
+            <li><%= link_to 'Galería', '#galeria' %></li>
           </ul>
         </nav>
 
         <div class="main">
 
-          <section>
+          <section id="flauteando">
+            <h1>Flauteando en el Río</h1>
+          </section>
+
+          <section id="artistas">
+            <h1>Artistas</h1>
             <div class="gallery">
               <% (0...6).each do |i| %>
                 <%= image_tag ('http://dummyimage.com/800x600/ccc/fff.png') %>
               <% end %>
             </div>
           </section>
+
 
           <section>
             <div class="gallery">
@@ -267,10 +273,6 @@
       }
       document.getElementById('close').addEventListener('click', e => {
         infoOverlay.classList.replace('shown', 'hidden');
-      });
-      document.querySelector('div.main').addEventListener('scroll', e => {
-      // window.addEventListener('scroll', e => {
-        console.log(document.querySelector('div.main').scrollY);
       });
     </script>
   </body>
