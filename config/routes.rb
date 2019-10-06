@@ -7,6 +7,12 @@ Rails.application.routes.draw do
   get 'home3', to: 'home3#index'
   get 'index4', to: 'home#index4'
 
+  get    '/login',   to: 'sessions#new'
+  post   '/login',   to: 'sessions#create'
+  delete '/logout',  to: 'sessions#destroy'
+
+  resources :password_resets, only: [:new, :create, :edit, :update]
+
   get 'artistas', to: 'home#artistas'
   get 'actividades', to: 'home#actividades'
   get 'conciertos', to: 'home#conciertos'

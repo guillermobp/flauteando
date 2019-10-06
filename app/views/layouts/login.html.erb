@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Edmchc</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'login', media: 'all', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body class="has-background-light">
+
+    <div>
+      <div class="container has-background-light">
+
+        <div class="box has-text-centered">
+          <h1 class="title">Bienvenido a la administración</h1>
+          <h2 class="subtitle">Inicie sesión para continuar</h2>
+
+          <% if flash[:notice] %>
+            <div class="notification is-success"><%= flash[:notice] %></div>
+          <% elsif flash.alert %>
+            <div class="notification is-danger"><%= flash[:alert] %></div>
+          <% end %>
+
+          <%= yield %>
+        </div>
+      </div>
+
+      <%= render 'layouts/admin/footer' %>
+    </div>
+  </body>
+</html>

@@ -5,3 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+unless User.exists?(id: 1)
+  User.create(name: 'Administrador', email: 'admin@flauteandoenelrio.cl', password: 'admin')
+end
