@@ -1,0 +1,2 @@
+class Encuentro < ApplicationRecord
+end
