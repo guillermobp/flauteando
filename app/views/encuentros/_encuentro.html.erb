@@ -1,0 +1,104 @@
+<%= form_with model: @encuentro do |form| %>
+
+<% if action_name == 'new' %>
+<div class="field is-horizontal">
+  <div class="field-label is-normal">
+    <%= form.label :version, class: 'label' %>
+  </div>
+
+  <div class="field-body">
+    <div class="field">
+      <div class="control">
+        <%= form.number_field :version, class: 'input is-one-fifth', min: 2017 %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr>
+<% end %>
+
+<div class="field is-horizontal">
+  <div class="field-label is-normal">
+    <%= form.label :epigrafe, class: 'label' %>
+  </div>
+
+  <div class="field-body">
+    <div class="field">
+      <div class="control">
+        <%= form.text_field :epigrafe, class: 'input' %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="field is-horizontal">
+  <div class="field-label is-normal">
+    <%= form.label :titulo, class: 'label' %>
+  </div>
+  <div class="field-body">
+    <div class="field">
+      <div class="control">
+        <%= form.text_field :titulo, class: 'input' %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="field is-horizontal">
+  <div class="field-label is-normal">
+    <%= form.label :bajada, class: 'label' %>
+  </div>
+  <div class="field-body">
+    <div class="field">
+      <div class="control">
+        <%= form.text_field :bajada, class: 'input' %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<div class="field is-horizontal">
+  <div class="field-label is-normal">
+    <%= form.label :mision, class: 'label' %>
+  </div>
+  <div class="field-body">
+    <div class="field">
+      <div class="control">
+        <%= form.text_area :mision, class: 'textarea' %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="field is-horizontal">
+  <div class="field-label is-normal">
+    <%= form.label :vision, class: 'label' %>
+  </div>
+  <div class="field-body">
+    <div class="field">
+      <div class="control">
+        <%= form.text_area :vision, class: 'textarea' %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<% unless 'show' == params[:action] %>
+  <div class="field is-horizontal">
+    <div class="field-label is-normal"></div>
+    <div class="field-body">
+      <div class="field">
+        <div class="control">
+          <%= form.button class: 'button is-link' %>
+          <%= link_to 'Regresar', encuentros_path %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+<% end %>

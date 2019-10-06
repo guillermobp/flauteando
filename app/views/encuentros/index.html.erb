@@ -1,0 +1,24 @@
+<h1 class="title is-1 has-text-centered">Administración de Encuentros</h1>
+
+<table class="table is-fullwidth">
+  <thead>
+    <tr>
+      <th>Versión</th>
+      <th>Título</th>
+      <th>Habilitado</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @encuentros.each do |e| %>
+      <tr>
+        <td><%= e.version %></td>
+        <td><%= e.titulo %></td>
+        <td><%= icon('fas', 'check') if e.habilitado %></td>
+        <td>
+          <%= link_to 'editar', edit_encuentro_path(e) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

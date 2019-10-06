@@ -18,4 +18,6 @@ Rails.application.routes.draw do
   get 'conciertos', to: 'home#conciertos'
   get 'galeria', to: 'home#galeria'
 
+  resources :encuentros, shallow: true
+
 end
