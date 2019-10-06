@@ -20,4 +20,6 @@ Rails.application.routes.draw do
 
   resources :encuentros, shallow: true
 
+  resources :users, only: [:edit, :update]
+
 end
