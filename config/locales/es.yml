@@ -1,0 +1,23 @@
+es:
+  time:
+    formats:
+      default: '%H:%M:%S'
+      short: '%H:%M'
+  date:
+    day_names: [Domingo, Lunes, Martes, Miércoles, Jueves, Viernes, Sábado]
+    abbr_day_names: [Do, Lu, Ma, Mi, Ju, Vi, Sá]
+    month_names: [~, Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio, Agosto, Septiembre, Octubre, Noviembre, Diciembre]
+    abbr_month_names: [~, Ene, Feb, Mar, Abr, May, Jun, Jul, Ago, Sep, Oct, Nov, Dic]
+    formats:
+      default: '%d/%m/%Y'
+      short: '%d/%m/%Y'
+      long: '%A %-d de %B de %Y'
+      day_name_day_number_month_name: '%A %-d de %B'
+  helpers:
+    label:
+      encuentro:
+        version: 'Versión'
+        epigrafe: 'Epígrafe'
+        titulo: 'Título'
+        mision: 'Misión'
+        vision: 'Visión'
