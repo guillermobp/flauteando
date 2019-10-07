@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       log_in user
       params[:session][:remember_me] == '1' ? remember(user) : forget(user)
-      redirect_to encuentros_path
+      redirect_to admin_encuentros_path
     else
       flash[:alert] = 'Las credenciales ingresadas no coinciden; inténtelo nuevamente'
       redirect_to login_path

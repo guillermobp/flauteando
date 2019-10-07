@@ -13,10 +13,10 @@
 
         <div class="navbar-dropdown">
           <% @encuentros.each do |e| %>
-            <%= link_to e.version, edit_encuentro_path(e), class: 'navbar-item' %>
+            <%= link_to e.version, edit_admin_encuentro_path(e), class: 'navbar-item' %>
             <hr class="navbar-divider">
           <% end %>
-          <%= link_to 'Crear Encuentro', new_encuentro_path, class: 'navbar-item' %>
+          <%= link_to 'Crear Encuentro', new_admin_encuentro_path, class: 'navbar-item' %>
         </div>
       </div>
     </div>
@@ -31,7 +31,7 @@
         </a>
 
         <div class="navbar-dropdown is-right">
-          <%= link_to 'Mi Cuenta', edit_user_path(current_user), class: 'navbar-item' %>
+          <%= link_to 'Mi Cuenta', edit_admin_user_path(current_user), class: 'navbar-item' %>
           <hr class="navbar-divider">
           <%= link_to 'Cerrar Sesión', logout_path, method: :delete, class: 'navbar-item' %>
         </div>

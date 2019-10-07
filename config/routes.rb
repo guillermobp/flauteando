@@ -18,8 +18,10 @@ Rails.application.routes.draw do
   get 'conciertos', to: 'home#conciertos'
   get 'galeria', to: 'home#galeria'
 
-  resources :encuentros, shallow: true
+  namespace :admin do
+    resources :encuentros, shallow: true
 
-  resources :users, only: [:edit, :update]
+    resources :users, only: [:edit, :update]
 
+  end
 end

@@ -1,4 +1,4 @@
-<%= form_with model: @user do |form| %>
+<%= form_with model: [:admin, @user] do |form| %>
 <div class="field is-horizontal">
   <div class="field-label is-normal">
     <%= form.label :name, class: 'label' %>
@@ -57,7 +57,7 @@
     <div class="field is-grouped">
       <div class="control">
         <%= form.button class: 'button is-link' %>
-        <%= link_to 'Cancelar', encuentros_path %>
+        <%= link_to 'Cancelar', admin_encuentros_path %>
       </div>
       <div class="control">
       </div>

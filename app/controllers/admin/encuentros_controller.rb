@@ -1,4 +1,4 @@
-class EncuentrosController < AdminController
+class Admin::EncuentrosController < AdminController
   before_action :find_encuentro, only: [:edit, :update, :destroy, :configuracion]
 
   def index; end
@@ -18,7 +18,7 @@ class EncuentrosController < AdminController
       flash[:alert] = 'Ha ocurrido un error intentando crear el encuentro'
     end
 
-    redirect_to encuentros_path
+    redirect_to admin_encuentros_path
   end
 
   def update
@@ -32,7 +32,7 @@ class EncuentrosController < AdminController
       flash.discard(:notice)
       redirect_to params[:encuentro][:url]
     else
-      redirect_to encuentros_path
+      redirect_to admin_encuentros_path
     end
   end
 

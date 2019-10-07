@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class UsersController < AdminController
+class Admin::UsersController < AdminController
   before_action :find_user
 
   def edit; end
@@ -19,7 +19,7 @@ class UsersController < AdminController
     # de inicio de sesión; de lo contrario, se mantiene la
     # página actual.
     if user_params[:password].to_s.strip.empty?
-      redirect_to edit_user_path(@user)
+      redirect_to edit_admin_user_path(@user)
     else
       log_out if logged_in?
       redirect_to login_path

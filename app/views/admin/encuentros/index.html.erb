@@ -16,7 +16,7 @@
         <td><%= e.titulo %></td>
         <td><%= icon('fas', 'check') if e.habilitado %></td>
         <td>
-          <%= link_to 'editar', edit_encuentro_path(e) %>
+          <%= link_to 'editar', edit_admin_encuentro_path(e) %>
         </td>
       </tr>
     <% end %>
