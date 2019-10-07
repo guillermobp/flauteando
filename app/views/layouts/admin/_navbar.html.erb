@@ -19,6 +19,17 @@
           <%= link_to 'Crear Encuentro', new_admin_encuentro_path, class: 'navbar-item' %>
         </div>
       </div>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          Artistas
+        </a>
+
+        <div class="navbar-dropdown">
+          <%= link_to 'Listado', admin_artistas_path, class: 'navbar-item' %>
+          <%= link_to 'Nuevo', new_admin_artista_path, class: 'navbar-item' %>
+        </div>
+      </div>
     </div>
 
     <div class="navbar-end">
