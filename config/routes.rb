@@ -3,9 +3,6 @@ Rails.application.routes.draw do
   root 'home#index'
 
   get 'home', to: 'home#index'
-  get 'home2', to: 'home2#index'
-  get 'home3', to: 'home3#index'
-  get 'index4', to: 'home#index4'
 
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
@@ -19,11 +16,12 @@ Rails.application.routes.draw do
   get 'galeria', to: 'home#galeria'
 
   namespace :admin do
-    resources :encuentros, shallow: true
-
     resources :users, only: [:edit, :update]
-
     resources :artistas
-  end
+    resources :presentaciones, only: [:destroy]
 
+    resources :encuentros do
+      resources :presentaciones, only: [:index, :create]
+    end
+  end
 end

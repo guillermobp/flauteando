@@ -19,20 +19,12 @@
       <div class="container has-background-light">
 
         <div class="box">
-          <% if @encuentro_tabs %>
-            <h1 class="title is-1 has-text-centered">
-              Encuentro
-              <%= @encuentro_tabs.version %>
-            </h1>
-
-            <%= render 'layouts/admin/tabs' %>
-
-          <% end %>
-
-          <% if flash[:notice] %>
-            <div class="notification is-success"><%= flash[:notice] %></div>
+          <% if flash.notice %>
+          <div class="notification is-success"><%= flash.notice %></div>
           <% elsif flash.alert %>
-            <div class="notification is-danger"><%= flash[:alert] %></div>
+          <div class="notification is-danger"><%= flash.alert %></div>
+          <% elsif flash[:warning] %>
+          <div class="notification is-warning"><%= flash[:warning] %></div>
           <% end %>
 
           <%= yield %>

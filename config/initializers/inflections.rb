@@ -16,4 +16,5 @@
 # end
 ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular 'artista', 'artistas'
+  inflect.irregular 'presentacion', 'presentaciones'
 end

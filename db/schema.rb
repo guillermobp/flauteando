@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_07_012032) do
+ActiveRecord::Schema.define(version: 2019_10_08_094603) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,15 @@ ActiveRecord::Schema.define(version: 2019_10_07_012032) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "presentaciones", force: :cascade do |t|
+    t.bigint "encuentro_id", null: false
+    t.bigint "artista_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["artista_id"], name: "index_presentaciones_on_artista_id"
+    t.index ["encuentro_id"], name: "index_presentaciones_on_encuentro_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -45,4 +54,6 @@ ActiveRecord::Schema.define(version: 2019_10_07_012032) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "presentaciones", "artistas"
+  add_foreign_key "presentaciones", "encuentros"
 end

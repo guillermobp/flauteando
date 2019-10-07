@@ -1,4 +1,12 @@
-<h1 class="title is-1 has-text-centered">Administración de Artistas</h1>
+<%= render 'admin/encuentros/tabs' %>
+
+<%= form_with url: admin_encuentro_presentaciones_path(@encuentro) do |form| %>
+<%= label_tag 'Seleccione un artista para asociarlo al encuentro', nil, class: 'label' %>
+<div class="select">
+<%= select_tag(:artista_id, options_for_select(@encuentro.artistas_asociables)) %>
+</div>
+<%= form.submit 'Asociar', class: 'button' %>
+<% end %>
 
 <table class="table is-fullwidth">
   <thead>
@@ -9,26 +17,24 @@
     </tr>
   </thead>
   <tbody>
-    <% @artistas.each do |a| %>
+    <% @encuentro.presentaciones.each do |p| %>
       <tr>
-        <td><%= a.nombre %></td>
-        <td><%= a.bio.truncate(100) %></td>
+        <td><%= p.artista.nombre %></td>
+        <td><%= p.artista.bio.truncate(100) %></td>
         <td>
           <%= link_to icon('fas', 'edit'),
-                      edit_admin_artista_path(a),
+                      edit_admin_artista_path(p.artista),
                       data: {
                         tooltip: 'Editar artista',
                       },
                       class: 'button is-info is-outlined tooltip' %>
 
-          <% tooltip_text = (a.encuentros.count > 0 ? 'Este artista no se podrá eliminar' : 'Eliminar artista') %>
-
           <%= link_to icon('fas', 'trash-alt'),
-                      admin_artista_path(a),
+                      admin_presentacion_path(p),
                       method: :delete,
                       data: {
                         confirm: '¿Está seguro?',
-                        tooltip: tooltip_text,
+                        tooltip: 'Eliminar participación de este artista'
                       },
                       class: 'button is-danger is-outlined tooltip' %>
         </td>

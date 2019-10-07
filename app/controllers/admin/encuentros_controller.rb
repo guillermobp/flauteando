@@ -3,8 +3,6 @@ class Admin::EncuentrosController < AdminController
 
   def index; end
 
-  def edit; end
-
   def new
     @encuentro = Encuentro.new
   end
@@ -20,6 +18,8 @@ class Admin::EncuentrosController < AdminController
 
     redirect_to admin_encuentros_path
   end
+
+  def edit; end
 
   def update
     if @encuentro.update(encuentro_params)

@@ -1,0 +1,15 @@
+<h1 class="title is-1 has-text-centered">
+  Encuentro
+  <%= @encuentro.version %>
+</h1>
+
+<div class="tabs is-centered is-medium is-boxed">
+  <ul>
+    <li class="<%= 'is-active' if controller_name == 'encuentros' %>">
+      <%= link_to 'Generales', edit_admin_encuentro_path(@encuentro) %>
+    </li>
+    <li class="<%= 'is-active' if controller_name == 'presentaciones' %>">
+      <%= link_to 'Artistas', admin_encuentro_presentaciones_path(@encuentro) %>
+    </li>
+  </ul>
+</div>
