@@ -1,0 +1,23 @@
+<h1 class="title is-1 has-text-centered">Administración de Artistas</h1>
+
+<table class="table is-fullwidth">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Bio</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @artistas.each do |a| %>
+      <tr>
+        <td><%= a.nombre %></td>
+        <td><%= a.bio.truncate(100) %></td>
+        <td>
+          <%= link_to 'editar', edit_admin_artista_path(a) %>
+          <%= link_to 'eliminar', admin_artista_path(a), method: :delete, data: { confirm: '¿Está seguro?'} %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

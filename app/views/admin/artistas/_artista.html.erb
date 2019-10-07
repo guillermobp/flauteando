@@ -1,0 +1,42 @@
+<%= form_with model: [:admin, @artista] do |form| %>
+
+<div class="field is-horizontal">
+  <div class="field-label is-normal">
+    <%= form.label :nombre, class: 'label' %>
+  </div>
+  <div class="field-body">
+    <div class="field">
+      <div class="control">
+        <%= form.text_field :nombre, class: 'input' %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="field is-horizontal">
+  <div class="field-label is-normal">
+    <%= form.label :bio, class: 'label' %>
+  </div>
+  <div class="field-body">
+    <div class="field">
+      <div class="control">
+        <%= form.text_area :bio, class: 'textarea' %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% unless 'show' == params[:action] %>
+  <div class="field is-horizontal">
+    <div class="field-label is-normal"></div>
+    <div class="field-body">
+      <div class="field">
+        <div class="control">
+          <%= form.button class: 'button is-link' %>
+          <%= link_to 'Regresar', admin_artistas_path %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+<% end %>
