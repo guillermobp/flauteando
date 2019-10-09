@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :password_resets, only: [:new, :create, :edit, :update]
 
   get 'artistas', to: 'home#artistas'
+  get 'artistas/:id', to: 'home#artista', as: :artista
   get 'actividades', to: 'home#actividades'
   get 'conciertos', to: 'home#conciertos'
   get 'galeria', to: 'home#galeria'

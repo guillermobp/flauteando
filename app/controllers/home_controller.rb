@@ -7,6 +7,13 @@ class HomeController < ApplicationController
 
   def artistas; end
 
+  def artista
+    @artista = Artista.find(params[:id])
+    respond_to do |format|
+      format.json { render json: @artista || false }
+    end
+  end
+
   def actividades; end
 
   def conciertos; end

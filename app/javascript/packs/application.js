@@ -23,16 +23,20 @@ document.addEventListener("turbolinks:load", async () => {
   for (const link of [...document.querySelectorAll('a[data-command=peek]')]) {
     link.addEventListener('click', e => {
       e.preventDefault();
-      console.log({
-        e
-      });
       infoOverlay.querySelector('img').src = e.target.dataset.image;
       infoOverlay.classList.replace('hidden', 'shown');
     });
   }
 
   for (const img of [...document.querySelectorAll('.main img')]) {
-    img.addEventListener('click', e => {
+    img.addEventListener('click', async (e) => {
+      const g = await fetch(e.target.dataset.url);
+      const data = await g.json();
+      const infoBio = document.getElementById('info-bio');
+
+      infoBio.querySelector('h1').textContent = data.nombre;
+      infoBio.querySelector('p').textContent = data.bio;
+
       infoOverlay.querySelector('img').src = e.target.src;
       infoOverlay.classList.replace('hidden', 'shown');
     });

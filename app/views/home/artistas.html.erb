@@ -1,11 +1,9 @@
 <section id="artistas">
   <div class="gallery">
     <% @encuentro.artistas.each do |a| %>
-      <% if a.foto.attached? %>
-      <%= image_tag a.foto, class: 'is-4by3' %>
-      <% else %>
-      <%= image_tag ('http://dummyimage.com/800x600/ccc/fff.png') %>
-      <% end %>
+      <%= image_tag a.foto.attached? ? a.foto : 'http://dummyimage.com/800x600/ccc/fff.png',
+                    class: 'is-4by3',
+                    data: { url: url_for(a) } %>
     <% end %>
   </div>
 </section>
