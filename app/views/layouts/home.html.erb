@@ -27,7 +27,7 @@
         </div>
       </div>
       <div id="info" class="info">
-        <%= image_tag @encuentro.afiche %>
+        <%= image_tag @encuentro.afiche.attached? ? @encuentro.afiche : 'http://dummyimage.com/650x1005/ccc/fff.png' %>
       </div>
     </div>
   </body>
