@@ -1,5 +1,5 @@
 <div class="gallery">
-  <% (0...6).each do |i| %>
-    <%= image_tag ('http://dummyimage.com/800x600/ccc/fff.png') %>
+  <% @encuentro.fotos.each do |f| %>
+  <%= image_tag f, class: 'is-4by3' %>
   <% end %>
 </div>
