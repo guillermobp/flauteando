@@ -13,6 +13,11 @@
     <tr>
       <th>Nombre</th>
       <th>Bio</th>
+      <th class="imagenes">
+        <span class="icon">
+          <%= icon('fas', 'images') %>
+        </span>
+      </th>
       <th>Acciones</th>
     </tr>
   </thead>
@@ -21,6 +26,15 @@
       <tr>
         <td><%= p.artista.nombre %></td>
         <td><%= p.artista.bio.truncate(100) %></td>
+        <td>
+          <% if p.artista.foto.attached? %>
+          <span class="icon tooltip" data-tooltip="El artista tiene imagen">
+          <% else %>
+          <span class="icon">
+          <% end %>
+            <%= icon('fas', 'check') if p.artista.foto.attached? %>
+          </span>
+        </td>
         <td>
           <%= link_to icon('fas', 'edit'),
                       edit_admin_artista_path(p.artista),

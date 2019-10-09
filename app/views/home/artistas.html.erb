@@ -1,7 +1,11 @@
 <section id="artistas">
   <div class="gallery">
-    <% (0...6).each do |i| %>
+    <% @encuentro.artistas.each do |a| %>
+      <% if a.foto.attached? %>
+      <%= image_tag a.foto, class: 'is-4by3' %>
+      <% else %>
       <%= image_tag ('http://dummyimage.com/800x600/ccc/fff.png') %>
+      <% end %>
     <% end %>
   </div>
 </section>
