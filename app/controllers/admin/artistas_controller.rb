@@ -48,7 +48,7 @@ class Admin::ArtistasController < AdminController
   private
 
   def artista_params
-    params.require(:artista).permit(:nombre, :bio)
+    params.require(:artista).permit(:nombre, :bio, :foto)
   end
 
   def find_artista
