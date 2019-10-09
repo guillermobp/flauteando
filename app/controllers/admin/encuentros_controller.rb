@@ -43,6 +43,7 @@ class Admin::EncuentrosController < AdminController
                                         :titulo,
                                         :epigrafe,
                                         :bajada,
+                                        :afiche,
                                         :mision,
                                         :vision,
                                         :habilitado)
