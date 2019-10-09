@@ -1,0 +1,64 @@
+<%= render 'admin/encuentros/tabs' %>
+
+<%= form_with model: [:admin, @encuentro] do |form| %>
+
+<div class="field is-horizontal">
+  <div class="field-label is-normal"></div>
+  <div class="field-body">
+    <div class="field">
+      <div class="control">
+        <h3 class="title is-3">Fotos</h3>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="field is-horizontal">
+  <div class="field-label is-normal"></div>
+  <div class="field-body">
+    <div class="field">
+      <div class="control previews-container">
+        <div class="previews">
+          <% if @encuentro.fotos.attached? %>
+            <% @encuentro.fotos.each do |f| %>
+              <span class="image-preview">
+                <%= image_tag f.variant(combine_options: { thumbnail: '250x250^', gravity: 'north', extent: '250x250' }) %>
+                <%#= link_to icon('fas', 'trash has-text-danger'), attachment_path(f), { method: 'delete', remote: true, data: { confirm: 'Esta acción es irreversible. ¿Desea continuar?' } } %>
+              </span>
+            <% end %>
+          <% end %>
+        </div>
+
+        <div class="control">
+          <div class="file">
+            <label class="file-label">
+              <%= form.file_field :fotos, multiple: true, class: 'file-input' %>
+              <span class="file-cta">
+                <span class="file-icon">
+                  <i class="fas fa-upload"></i>
+                </span>
+                <span class="file-label">
+                  Examinar
+                </span>
+              </span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="field is-horizontal">
+  <div class="field-label is-normal"></div>
+  <div class="field-body">
+    <div class="field">
+      <div class="control">
+        <%= form.button class: 'button is-link' %>
+        <%= link_to 'Regresar', admin_encuentros_path %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% end %>

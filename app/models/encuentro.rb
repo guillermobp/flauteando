@@ -4,6 +4,8 @@ class Encuentro < ApplicationRecord
 
   has_one_attached :afiche
 
+  has_many_attached :fotos
+
   def artistas_asociables
     [['==', 0]] + Artista.where.not(id: artistas).pluck(:nombre, :id)
   end

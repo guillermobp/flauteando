@@ -23,6 +23,7 @@ Rails.application.routes.draw do
 
     resources :encuentros do
       resources :presentaciones, only: [:index, :create]
+      resources :fotos, only: [:index]
     end
   end
 end

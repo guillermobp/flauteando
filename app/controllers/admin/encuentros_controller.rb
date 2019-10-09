@@ -22,6 +22,7 @@ class Admin::EncuentrosController < AdminController
   def edit; end
 
   def update
+    # byebug
     if @encuentro.update(encuentro_params)
       flash[:notice] = 'El encuentro ha sido actualizado exitosamente'
     else
@@ -46,7 +47,8 @@ class Admin::EncuentrosController < AdminController
                                         :afiche,
                                         :mision,
                                         :vision,
-                                        :habilitado)
+                                        :habilitado,
+                                        fotos: [])
     end
 
     def find_encuentro
