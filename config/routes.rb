@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root 'home#index'
 
   get 'home', to: 'home#index'
+  get '/admin', to: 'admin/encuentros#index', as: :admin
 
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
