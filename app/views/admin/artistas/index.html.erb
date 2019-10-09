@@ -5,6 +5,11 @@
     <tr>
       <th>Nombre</th>
       <th>Bio</th>
+      <th class="imagenes">
+        <span class="icon">
+          <%= icon('fas', 'images') %>
+        </span>
+      </th>
       <th>Acciones</th>
     </tr>
   </thead>
@@ -14,23 +19,39 @@
         <td><%= a.nombre %></td>
         <td><%= a.bio.truncate(100) %></td>
         <td>
-          <%= link_to icon('fas', 'edit'),
+          <% if a.foto.attached? %>
+          <span class="icon tooltip" data-tooltip="El artista tiene imagen">
+          <% else %>
+          <span class="icon">
+          <% end %>
+            <%= icon('fas', 'check') if a.foto.attached? %>
+          </span>
+        </td>
+        <td>
+
+          <%= link_to content_tag(:span,
+                                  icon('fas', 'edit'),
+                                  class: 'icon tooltip',
+                                  data: {
+                                    tooltip: 'Editar artista',
+                                  }),
                       edit_admin_artista_path(a),
-                      data: {
-                        tooltip: 'Editar artista',
-                      },
-                      class: 'button is-info is-outlined tooltip' %>
+                      class: 'button is-info is-outlined' %>
 
           <% tooltip_text = (a.encuentros.count > 0 ? 'Este artista no se podrá eliminar' : 'Eliminar artista') %>
 
-          <%= link_to icon('fas', 'trash-alt'),
+          <%= link_to content_tag(:span,
+                                  icon('fas', 'trash-alt'),
+                                  class: 'icon tooltip',
+                                  data: {
+                                    tooltip: tooltip_text,
+                                  }),
                       admin_artista_path(a),
                       method: :delete,
                       data: {
                         confirm: '¿Está seguro?',
-                        tooltip: tooltip_text,
                       },
-                      class: 'button is-danger is-outlined tooltip' %>
+                      class: 'button is-danger is-outlined' %>
         </td>
       </tr>
     <% end %>
