@@ -1,0 +1,19 @@
+<%= render 'admin/encuentros/tabs' %>
+
+<article class="message">
+  <div class="message-header">
+    <p>Habilitar/Deshabilitar Encuentro</p>
+  </div>
+  <div class="message-body">
+    <p>El estado del encuentro determina si estará disponible a los visitantes de la página.</p>
+    <p>Por defecto, el encuentro habilitado más reciente es el que se muestra al llegar a la página principal.</p>
+    <p>El cambio de este estado puede realizarse las veces que estime conveniente.</p>
+    <br>
+    <%= form_with model: [:admin, @encuentro] do |f| %>
+      <%= f.hidden_field :url, value: admin_encuentro_path(@encuentro) %>
+      <%= f.hidden_field :habilitado, value: !@encuentro.habilitado? %>
+      <%= f.submit @encuentro.habilitado? ? 'Deshabilitar' : 'Habilitar', class: 'button is-link' %>
+    <% end %>
+  </div>
+</article>
+

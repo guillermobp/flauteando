@@ -23,7 +23,7 @@ class HomeController < ApplicationController
   private
 
   def find_encuentro_actual
-    @encuentro = Encuentro.last
+    @encuentro = Encuentro.where(habilitado: true).last
   end
 
 end

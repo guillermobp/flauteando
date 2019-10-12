@@ -14,5 +14,8 @@
     <li class="<%= 'is-active' if controller_name == 'fotos' %>">
       <%= link_to 'Galería', admin_encuentro_fotos_path(@encuentro) %>
     </li>
+    <li class="<%= 'is-active' if controller_name == 'config' %>">
+      <%= link_to 'Configuración', admin_encuentro_config_index_path(@encuentro) %>
+    </li>
   </ul>
 </div>

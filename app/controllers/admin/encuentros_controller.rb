@@ -22,19 +22,13 @@ class Admin::EncuentrosController < AdminController
   def edit; end
 
   def update
-    # byebug
     if @encuentro.update(encuentro_params)
       flash[:notice] = 'El encuentro ha sido actualizado exitosamente'
     else
       flash[:alert] = 'Ocurrió un error intentando actualizar el encuentro'
     end
 
-    if params[:encuentro][:url]
-      flash.discard(:notice)
-      redirect_to params[:encuentro][:url]
-    else
-      redirect_to admin_encuentros_path
-    end
+    redirect_to admin_encuentro_config_index_path(@encuentro)
   end
 
   private
