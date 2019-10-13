@@ -38,11 +38,12 @@ document.addEventListener("turbolinks:load", async () => {
 
   for (const img of [...document.querySelectorAll('.main img')]) {
     img.addEventListener('click', async (e) => {
-      const g = await fetch(e.target.dataset.url);
-      const data = await g.json();
 
-      infoBio.querySelector('h1').textContent = data.nombre;
-      infoBio.querySelector('p').textContent = data.bio;
+      const nombre = await fetch(e.target.dataset.urlNombre);
+      const bio = await fetch(e.target.dataset.urlBio);
+
+      infoBio.querySelector('h1').textContent = await nombre.text();
+      infoBio.querySelector('div').innerHTML = await bio.text();
 
       infoOverlay.querySelector('img').src = e.target.src;
       infoOverlay.classList.replace('hidden', 'shown');

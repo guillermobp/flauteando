@@ -19,6 +19,9 @@ Rails.application.routes.draw do
   get 'vision', to: 'home#vision'
   get 'mision', to: 'home#mision'
 
+  get 'artistas/:id/nombre', to: 'artistas#nombre', as: :artista_nombre
+  get 'artistas/:id/bio', to: 'artistas#bio', as: :artista_bio
+
   namespace :admin do
     resources :users, only: [:edit, :update]
     resources :artistas

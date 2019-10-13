@@ -3,7 +3,10 @@
     <% @encuentro.artistas.each do |a| %>
       <%= image_tag a.foto.attached? ? a.foto : 'http://dummyimage.com/800x600/ccc/fff.png',
                     class: 'is-4by3',
-                    data: { url: url_for(a) } %>
+                    data: {
+                      url_bio: artista_bio_path(a),
+                      url_nombre: artista_nombre_path(a),
+                    } %>
     <% end %>
   </div>
 </section>
