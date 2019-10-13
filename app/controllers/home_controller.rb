@@ -20,6 +20,14 @@ class HomeController < ApplicationController
 
   def galeria; end
 
+  def vision
+    render layout: nil
+  end
+
+  def mision
+    render layout: nil
+  end
+
   private
 
   def find_encuentro_actual

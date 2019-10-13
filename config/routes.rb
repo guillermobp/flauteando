@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  root 'home#index'
+  root 'home#artistas'
 
-  get 'home', to: 'home#index'
   get '/admin', to: 'admin/encuentros#index', as: :admin
 
   get    '/login',   to: 'sessions#new'
@@ -16,6 +15,9 @@ Rails.application.routes.draw do
   get 'actividades', to: 'home#actividades'
   get 'conciertos', to: 'home#conciertos'
   get 'galeria', to: 'home#galeria'
+
+  get 'vision', to: 'home#vision'
+  get 'mision', to: 'home#mision'
 
   namespace :admin do
     resources :users, only: [:edit, :update]

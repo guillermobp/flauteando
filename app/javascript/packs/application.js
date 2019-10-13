@@ -18,12 +18,20 @@ require("channels")
 document.addEventListener("turbolinks:load", async () => {
 
   const info = document.getElementById('info');
+  const infoBio = document.getElementById('info-bio');
   const infoOverlay = document.getElementById('info-overlay');
 
-  for (const link of [...document.querySelectorAll('a[data-command=peek]')]) {
-    link.addEventListener('click', e => {
+  for (const link of [...document.querySelectorAll('a[data-command=show]')]) {
+    link.addEventListener('click', async (e) => {
       e.preventDefault();
-      infoOverlay.querySelector('img').src = e.target.dataset.image;
+
+      const g = await fetch(e.target.href);
+      const data = await g.text();
+
+      infoBio.querySelector('h1.title').textContent = e.target.dataset.title;
+      infoBio.querySelector('div.content').innerHTML = data;
+
+      infoOverlay.querySelector('img').src = info.querySelector('img').src;
       infoOverlay.classList.replace('hidden', 'shown');
     });
   }
@@ -32,7 +40,6 @@ document.addEventListener("turbolinks:load", async () => {
     img.addEventListener('click', async (e) => {
       const g = await fetch(e.target.dataset.url);
       const data = await g.json();
-      const infoBio = document.getElementById('info-bio');
 
       infoBio.querySelector('h1').textContent = data.nombre;
       infoBio.querySelector('p').textContent = data.bio;

@@ -18,17 +18,20 @@
         </div>
       </div>
 
-      <div id="info-overlay" class="info-overlay hidden">
-        <%= icon('fas', 'times', id: 'close') %>
-        <img src=""/>
-        <div id="info-bio" class="info-bio">
-          <h1></h1>
-          <p></p>
+      <aside class="info-container">
+        <div id="info-overlay" class="info-overlay hidden">
+          <%= icon('fas', 'times', id: 'close') %>
+          <img src=""/>
+          <div id="info-bio" class="info-bio">
+            <h1 class="title"></h1>
+            <div class="content"></div>
+          </div>
         </div>
-      </div>
-      <div id="info" class="info">
-        <%= image_tag @encuentro.afiche.attached? ? @encuentro.afiche : 'http://dummyimage.com/650x1005/ccc/fff.png' %>
-      </div>
+        <div id="info" class="info">
+          <%= image_tag @encuentro.afiche.attached? ? @encuentro.afiche : 'http://dummyimage.com/650x1005/ccc/fff.png' %>
+        </div>
+        <%= render 'layouts/navbar_info' %>
+      </aside>
     </div>
   </body>
 </html>
