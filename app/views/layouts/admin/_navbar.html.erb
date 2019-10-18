@@ -30,6 +30,17 @@
           <%= link_to 'Nuevo', new_admin_artista_path, class: 'navbar-item' %>
         </div>
       </div>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          Obras
+        </a>
+
+        <div class="navbar-dropdown">
+          <%= link_to 'Listado', admin_obras_path, class: 'navbar-item' %>
+          <%= link_to 'Nueva', new_admin_obra_path, class: 'navbar-item' %>
+        </div>
+      </div>
     </div>
 
     <div class="navbar-end">

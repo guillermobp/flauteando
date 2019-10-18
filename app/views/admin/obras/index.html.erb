@@ -1,0 +1,46 @@
+<h1 class="title is-1 has-text-centered">Administración de Obras</h1>
+
+<table class="table is-fullwidth">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Título</th>
+      <th>Compositor</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @obras.each.with_index(1) do |obra, index| %>
+      <tr>
+        <td><%= index %></td>
+        <td><%= obra.titulo %></td>
+        <td><%= obra.compositor %></td>
+        <td>
+          <%= link_to content_tag(:span,
+                                  icon('fas', 'edit'),
+                                  class: 'icon tooltip',
+                                  data: {
+                                    tooltip: 'Editar obra',
+                                  }),
+                      edit_admin_obra_path(obra),
+                      class: 'button is-info is-outlined' %>
+
+          <% tooltip_text = (obra.presentaciones.count > 0 ? 'Esta obra no se podrá eliminar' : 'Eliminar obra') %>
+
+          <%= link_to content_tag(:span,
+                                  icon('fas', 'trash-alt'),
+                                  class: 'icon tooltip',
+                                  data: {
+                                    tooltip: tooltip_text,
+                                  }),
+                      admin_obra_path(obra),
+                      method: :delete,
+                      data: {
+                        confirm: '¿Está seguro?',
+                      },
+                      class: 'button is-danger is-outlined' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

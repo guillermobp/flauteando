@@ -24,7 +24,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :users, only: %i[edit update]
-    resources :artistas
+    resources :artistas, :obras
     resources :presentaciones, only: [:destroy]
 
     resources :encuentros do
