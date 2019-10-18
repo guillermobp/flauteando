@@ -12,7 +12,7 @@ class Admin::PresentacionesController < AdminController
 
   def create
 
-    p = Presentacion.create(concierto: @concierto, orden: presentacion_params[:lugar])
+    p = Presentacion.create(concierto: @concierto, orden: presentacion_params[:orden])
 
     presentacion_params[:obras_ids].each do |id|
       ObraPresentacion.create(presentacion: p, obra_id: id)
@@ -45,7 +45,7 @@ class Admin::PresentacionesController < AdminController
   end
 
   def presentacion_params
-    params.require(:presentacion).permit(:lugar, obras_ids: [], artistas_ids: [])
+    params.require(:presentacion).permit(:lugar, :orden, obras_ids: [], artistas_ids: [])
   end
 
 end
