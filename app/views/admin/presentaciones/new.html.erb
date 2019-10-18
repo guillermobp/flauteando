@@ -1,43 +1,33 @@
 <%= render 'layouts/admin/tabs' %>
 
-<div class="box">
-  <h1 class="title">Nueva Presentación</h1>
-  <h1 class="subtitle">Para crear una presentación, seleccione una obra y luego escoja el o los artistas que participan en esta presentación.</h1>
-
-  <p>
-    <strong>Fecha:</strong>
-    <%= @concierto.display_short_date %></p>
-  <p>
-    <strong>Lugar:</strong>
-    <%= @concierto.lugar %></p>
-</div>
-
-<%= form_with model: [:admin, @concierto, @presentacion] do |form| %>
-<div class="field">
-  <%= form.label :orden, class: 'label' %>
-  <div class="control">
-    <%= form.number_field :lugar, class: 'input', min: 1 %>
+<div class="panel">
+  <p class="panel-heading">
+    Nueva Presentación
+  </p>
+  <div class="panel-block with-data">
+    <p>
+      <strong>Fecha:</strong>
+      <%= @concierto.display_short_date %></p>
+    <p>
+      <strong>Lugar:</strong>
+      <%= @concierto.lugar %></p>
+    <p>Para crear una presentación, seleccione una obra y luego escoja el o los artistas que participan en esta presentación.</p>
   </div>
-</div>
+  <div class="panel-block">
+    <%= form_with model: [:admin, @concierto, @presentacion] do |form| %>
 
-<div class="field">
-  <div class="control">
+    <%= form.label :obras, class: 'label' %>
     <%= select_tag('presentacion[obras_ids][]', options_for_select(@presentacion.obras_asociables), data: { taggable: true, tag_placeholder: 'Seleccione una o más obras' }) %>
-  </div>
-</div>
 
-<div class="field">
-  <div class="control">
+    <%= form.label :artistas, class: 'label' %>
     <%= select_tag('presentacion[artistas_ids][]', options_for_select(@presentacion.artistas_asociables), data: { taggable: true, tag_placeholder: 'Seleccione uno o más artistas' }) %>
-  </div>
-</div>
 
-<div class="field is-grouped">
-  <div class="control">
-    <%= form.submit 'Crear Presentación', class: 'button is-link' %>
+    <%= form.label :orden, class: 'label' %>
+    <%= form.number_field :orden, class: 'input', min: 1, value: 1 %>
   </div>
-  <div class="control">
+  <div class="panel-heading">
+    <%= form.submit 'Crear Presentación', class: 'button is-link' %>
     <%= link_to 'Cancelar', admin_encuentro_conciertos_path(@encuentro), class: 'button is-text' %>
   </div>
-</div>
 <% end %>
+</div>

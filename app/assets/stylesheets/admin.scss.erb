@@ -14,8 +14,8 @@ div.field.has-addons {
 }
 
 form {
-  p + label,
-  p + input {
+  p + input,
+  p + label {
     margin-top: 1rem;
   }
 }
@@ -31,5 +31,26 @@ body > div {
 
   div.container {
     width: 100%;
+  }
+}
+
+form {
+  width: 100%;
+
+  label {
+    margin-top: 1rem;
+  }
+
+  input#presentacion_orden {
+    max-width: 10rem;
+  }
+}
+
+.panel {
+  .panel-block {
+    &.with-data {
+      flex-flow: wrap column;
+      align-items: flex-start;
+    }
   }
 }
