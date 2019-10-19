@@ -1,60 +1,53 @@
 <%= render 'layouts/admin/tabs' %>
 
-<h1 class="title">Presentaciones del Concierto</h1>
+<h1 class="title">
+  Presentaciones del Concierto
+  <%= link_to 'Nueva', new_admin_concierto_presentacion_path(@concierto), class: 'button is-link' %>
+</h1>
 
 <div class="card">
   <div class="card-content">
-    <p><strong>Fecha:</strong>
+    <p>
+      <strong>Fecha:</strong>
       <%= @concierto.fecha.strftime('%d/%m/%Y') %></p>
-    <p><strong>Hora:</strong>
+    <p>
+      <strong>Hora:</strong>
       <%= @concierto.hora.strftime('%H:%M') %></p>
-    <p><strong>Lugar:</strong>
+    <p>
+      <strong>Lugar:</strong>
       <%= @concierto.lugar %></p>
   </div>
 </div>
 
 <table class="table is-fullwidth">
-<thead>
-  <tr>
-    <th>Orden</th>
-    <th>Artistas</th>
-    <th>Obras</th>
-    <th>Acciones</th>
-  </tr>
-</thead>
-<tbody>
-  <% @concierto.presentaciones.each do |p| %>
+  <thead>
     <tr>
-      <td><%= p.orden %></td>
-      <td>
-        <% p.artistas.each do |artista| %>
-          <span class="tag"><%= artista.nombre %></span>
-        <% end %>
-      </td>
-      <td>
-        <% p.obras.each do |obra| %>
-          <span class="tag"><%= obra.titulo %></span>
-        <% end %>
-      </td>
-      <td>
-        <%= link_to content_tag(:span,
-                                icon('fas', 'edit'),
-                                class: 'icon tooltip',
-                                data: {
-                                  tooltip: 'Editar artista',
-                                }),
-                    edit_admin_presentacion_path(p),
-                    class: 'button is-info is-outlined' %>
-
-        <%= link_to content_tag(:span, icon('fas', 'trash-alt'), class: 'icon'),
-                    admin_presentacion_path(p),
-                    method: :delete,
-                    data: {
-                      confirm: '¿Está seguro?',
-                    },
-                    class: 'button is-danger is-outlined' %>
-      </td>
+      <th>Orden</th>
+      <th>Artistas</th>
+      <th>Obras</th>
+      <th class="acciones has-two-icons">Acciones</th>
     </tr>
-  <% end %>
-</tbody>
+  </thead>
+  <tbody>
+    <% @concierto.presentaciones.each do |p| %>
+      <tr>
+        <td><%= p.orden %></td>
+        <td>
+          <% p.artistas.each do |artista| %>
+            <span class="tag"><%= artista.nombre %></span>
+          <% end %>
+        </td>
+        <td>
+          <% p.obras.each do |obra| %>
+            <span class="tag"><%= obra.titulo %></span>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to content_tag(:span, icon('fas', 'edit'), class: 'icon tooltip', data: { tooltip: 'Editar artista', }), edit_admin_presentacion_path(p), class: 'button is-info is-outlined' %>
+
+          <%= link_to content_tag(:span, icon('fas', 'trash-alt'), class: 'icon'), admin_presentacion_path(p), method: :delete, data: { confirm: '¿Está seguro?', }, class: 'button is-danger is-outlined' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
