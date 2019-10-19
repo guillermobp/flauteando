@@ -17,7 +17,7 @@
     <% @artistas.each do |a| %>
       <tr>
         <td><%= a.nombre %></td>
-        <td><%= a.bio.truncate(100) %></td>
+        <td><%= a.bio.truncate(100) if !a.bio.nil? %></td>
         <td>
           <% if a.foto.attached? %>
           <span class="icon tooltip" data-tooltip="El artista tiene imagen">
