@@ -1,7 +1,24 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
-@import "bulma";
-// @import 'bulma-extensions';
+@import "bulma"; // @import 'bulma-extensions';
+// @import "selectr";
+
+div.field.has-addons {
+  flex-flow: row wrap;
+  margin-bottom: 0.25rem;
+
+  & + .help {
+    margin-top: 0;
+    margin-bottom: 1rem;
+  }
+}
+
+form {
+  p + label,
+  p + input {
+    margin-top: 1rem;
+  }
+}
 
 input#encuentro_version {
   width: 5rem;

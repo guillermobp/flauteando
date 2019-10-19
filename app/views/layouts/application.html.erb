@@ -7,8 +7,11 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <link href="https://unpkg.com/mobius1-selectr@latest/dist/selectr.min.css" rel="stylesheet" type="text/css">
+    <script src="https://unpkg.com/mobius1-selectr@latest/dist/selectr.min.js" type="text/javascript"></script>
+
     <%= stylesheet_link_tag 'admin', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'admin', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body class="has-background-light">
@@ -20,18 +23,18 @@
 
         <div class="box">
           <% if flash.notice %>
-          <div class="notification is-success"><%= flash.notice %></div>
-          <% elsif flash.alert %>
-          <div class="notification is-danger"><%= flash.alert %></div>
-          <% elsif flash[:warning] %>
-          <div class="notification is-warning"><%= flash[:warning] %></div>
-          <% end %>
+            <div class="notification is-success"><%= flash.notice %></div>
+            <% elsif flash.alert %>
+              <div class="notification is-danger"><%= flash.alert %></div>
+              <% elsif flash[:warning] %>
+                <div class="notification is-warning"><%= flash[:warning] %></div>
+              <% end %>
 
-          <%= yield %>
+              <%= yield %>
+            </div>
+          </div>
+
+          <%= render 'layouts/admin/footer' %>
         </div>
-      </div>
-
-      <%= render 'layouts/admin/footer' %>
-    </div>
-  </body>
-</html>
+      </body>
+    </html>

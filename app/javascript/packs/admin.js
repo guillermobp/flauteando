@@ -8,3 +8,17 @@ require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 // require("bulma-extensions")
+// require("selectr")
+
+document.addEventListener("turbolinks:load", async () => {
+
+  for (const select of [...document.querySelectorAll('select')]) {
+    const selector = `#${select.id}`;
+    const options = {};
+
+    if (select.dataset.taggable === 'true') options.taggable = true;
+    if (select.dataset.tagPlaceholder) options.tagPlaceholder = select.dataset.tagPlaceholder;
+
+    new Selectr(selector, options);
+  }
+});

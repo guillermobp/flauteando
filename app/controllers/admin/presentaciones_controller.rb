@@ -1,19 +1,30 @@
 class Admin::PresentacionesController < AdminController
+  before_action :find_concierto, only: %i[index new create]
 
   def index
-    @encuentro = Encuentro.find(params[:encuentro_id])
+    @encuentro = @concierto.encuentro
+  end
+
+  def new
+    @encuentro = @concierto.encuentro
+    @presentacion = @concierto.presentaciones.new
   end
 
   def create
-    e = Encuentro.find(params[:encuentro_id])
-    p = Presentacion.new(artista_id: params[:artista_id], encuentro_id: params[:encuentro_id])
-    if p.save
-      flash[:notice] = 'El artista ha sido asociado exitosamente'
-    else
-      flash[:alert] = 'Ha ocurrido un error intentando asociar el artista'
+
+    p = Presentacion.create(concierto: @concierto, orden: presentacion_params[:lugar])
+
+    presentacion_params[:obras_ids].each do |id|
+      ObraPresentacion.create(presentacion: p, obra_id: id)
     end
 
-    redirect_to admin_encuentro_presentaciones_path(e)
+    presentacion_params[:artistas_ids].each do |id|
+      ArtistaPresentacion.create(presentacion: p, artista_id: id)
+    end
+
+    flash[:notice] = 'La presentación ha sido creada exitosamente'
+
+    redirect_to admin_concierto_presentaciones_path(@concierto)
   end
 
   def destroy
@@ -25,6 +36,16 @@ class Admin::PresentacionesController < AdminController
     end
 
     redirect_to admin_encuentro_presentaciones_path(p.encuentro)
+  end
+
+  private
+
+  def find_concierto
+    @concierto = Concierto.find(params[:concierto_id])
+  end
+
+  def presentacion_params
+    params.require(:presentacion).permit(:lugar, obras_ids: [], artistas_ids: [])
   end
 
 end

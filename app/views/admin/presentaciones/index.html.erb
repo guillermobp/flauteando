@@ -1,34 +1,60 @@
 <%= render 'layouts/admin/tabs' %>
 
-<%= form_with url: admin_encuentro_presentaciones_path(@encuentro) do |form| %>
-<%= label_tag 'Seleccione un artista para asociarlo al encuentro', nil, class: 'label' %>
-<div class="select">
-<%= select_tag(:artista_id, options_for_select(@encuentro.artistas_asociables)) %>
+<h1 class="title">Presentaciones del Concierto</h1>
+
+<div class="card">
+  <div class="card-content">
+    <p><strong>Fecha:</strong>
+      <%= @concierto.fecha.strftime('%d/%m/%Y') %></p>
+    <p><strong>Hora:</strong>
+      <%= @concierto.hora.strftime('%H:%M') %></p>
+    <p><strong>Lugar:</strong>
+      <%= @concierto.lugar %></p>
+  </div>
 </div>
-<%= form.submit 'Asociar', class: 'button' %>
-<% end %>
 
 <table class="table is-fullwidth">
-  <thead>
+<thead>
+  <tr>
+    <th>Orden</th>
+    <th>Artistas</th>
+    <th>Obras</th>
+    <th>Acciones</th>
+  </tr>
+</thead>
+<tbody>
+  <% @concierto.presentaciones.each do |p| %>
     <tr>
-      <th>Nombre</th>
-      <th>Bio</th>
-      <th class="imagenes">
-        <span class="icon">
-          <%= icon('fas', 'images') %>
-        </span>
-      </th>
-      <th>Acciones</th>
+      <td><%= p.orden %></td>
+      <td>
+        <% p.artistas.each do |artista| %>
+          <span class="tag"><%= artista.nombre %></span>
+        <% end %>
+      </td>
+      <td>
+        <% p.obras.each do |obra| %>
+          <span class="tag"><%= obra.titulo %></span>
+        <% end %>
+      </td>
+      <td>
+        <%= link_to content_tag(:span,
+                                icon('fas', 'edit'),
+                                class: 'icon tooltip',
+                                data: {
+                                  tooltip: 'Editar artista',
+                                }),
+                    edit_admin_presentacion_path(p),
+                    class: 'button is-info is-outlined' %>
+
+        <%= link_to content_tag(:span, icon('fas', 'trash-alt'), class: 'icon'),
+                    admin_presentacion_path(p),
+                    method: :delete,
+                    data: {
+                      confirm: '¿Está seguro?',
+                    },
+                    class: 'button is-danger is-outlined' %>
+      </td>
     </tr>
-  </thead>
-  <tbody>
-    <% @encuentro.presentaciones.each do |p| %>
-      <tr>
-        <td><%= p.artistas.pluck(:nombre).join(", ") %></td>
-        <td><%= p.obras.pluck(:titulo).join(", ") %></td>
-        <td></td>
-        <td></td>
-      </tr>
-    <% end %>
-  </tbody>
+  <% end %>
+</tbody>
 </table>
