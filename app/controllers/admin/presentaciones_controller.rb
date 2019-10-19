@@ -27,6 +27,11 @@ class Admin::PresentacionesController < AdminController
     redirect_to admin_concierto_presentaciones_path(@concierto)
   end
 
+  def edit
+    @presentacion = Presentacion.find(params[:id])
+    @encuentro = @presentacion.encuentro
+  end
+
   def destroy
     p = Presentacion.find(params[:id])
     if p.destroy

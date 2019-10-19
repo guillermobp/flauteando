@@ -1,6 +1,8 @@
 class Presentacion < ApplicationRecord
   belongs_to :concierto
 
+  has_one :encuentro, through: :concierto
+
   has_many :obras_presentaciones
   has_many :artistas_presentaciones
 
