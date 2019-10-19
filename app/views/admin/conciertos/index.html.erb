@@ -24,7 +24,7 @@
       <th>#</th>
       <th>Fecha/Hora</th>
       <th>Lugar</th>
-      <th>Acciones</th>
+      <th class="acciones has-one-icon">Acciones</th>
     </tr>
   </thead>
   <tbody>
@@ -34,8 +34,8 @@
         <td><%= concierto.fecha.strftime('%d/%m/%Y') %> <%= concierto.hora.strftime('%H:%M') %></td>
         <td><%= concierto.lugar %></td>
         <td>
-          <%= link_to 'Ver', admin_concierto_presentaciones_path(concierto) %>
-          <%= link_to 'Crear presentación', new_admin_concierto_presentacion_path(concierto) %>
+          <%= link_to content_tag(:span, icon('fas', 'edit'), class: 'icon tooltip', data: { tooltip: 'Editar concierto', }), admin_concierto_presentaciones_path(concierto), class: 'button is-info is-outlined' %>
+          <%#= link_to 'Crear presentación', new_admin_concierto_presentacion_path(concierto) %>
         </td>
       </tr>
     <% end %>
