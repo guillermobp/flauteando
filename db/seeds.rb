@@ -53,7 +53,7 @@ unless Artista.any?
   )
 
   art_he = Artista.create(
-    nombre: 'Has Ehrlich',
+    nombre: 'Hans Ehrlich',
     bio: 'Comenzó a estudiar flauta traversa en la escuela artística Violeta Parra. Luego se traslada a la ciudad de Santiago para continuar sus estudios de forma profesional en la Universidad de Chile. Mas tarde conoció en clases magistrales al maestro Gabriel Goñi de Costa Rica, Flautista y técnico de flautas. En el año 2006 al 2008 fue invitado por la empresa Yamaha para participar de los seminarios latinoamericanos de técnicos en vientos realizados en Chile y Argentina, obteniendo certificación para trabajar de forma certificada en su propio taller En el 2010 y 2011 es invitado al encuentro de flautas del sur del mundo organizado por el reconocido primer flautista de la sinfónica de Chile Hernan Jara quien invita a Hans a ser parte del encuentro como técnico activo hasta la actualidad. Fue en este Encuentro donde conoce a Catherine Miller, presidenta de las marcas Miyazawa, Sankyo y Trevor James donde es invitado a entrenarse en el en la Ciudad de Coralville Iowa. Desde el año 2013 a la fecha Hans se a certificado con marcas de flautas y repuestos como straubinger, Miyazawa, Sankyo, Trevor James, Brannen, Muramatsu, Nagahara y Haynes.',
   )
 

@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   get 'artistas/:id/nombre', to: 'artistas#nombre', as: :artista_nombre
   get 'artistas/:id/bio', to: 'artistas#bio', as: :artista_bio
 
+  patch 'encuentros/:encuentro_id/artistas/:artista_id/toggle_visibilidad_artista', to: 'admin/config#toggle_visibilidad_artista', as: :toggle_visibilidad_artista
+
   namespace :admin do
     resources :users, only: %i[edit update]
     resources :artistas, :obras

@@ -19,4 +19,5 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular 'presentacion', 'presentaciones'
   inflect.irregular 'artista_presentacion', 'artistas_presentaciones'
   inflect.irregular 'obra_presentacion', 'obras_presentaciones'
+  inflect.irregular 'artista_visible', 'artistas_visibles'
 end

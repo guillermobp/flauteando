@@ -2,6 +2,39 @@
 
 <article class="message">
   <div class="message-header">
+    <p>Artistas Visibles</p>
+  </div>
+  <div class="message-body">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Artista</th>
+          <th>Visible</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @encuentro.artistas.each.with_index(1) do |artista, index| %>
+        <tr>
+          <td><%= index %></td>
+          <td><%= artista.nombre %></td>
+          <td>
+            <%= check_box_tag dom_id(artista, 'active_toggle'),
+                  artista.visible?(@encuentro),
+                  artista.visible?(@encuentro),
+                  data: { remote: true,
+                    url: toggle_visibilidad_artista_path(@encuentro, artista),
+                    method: :patch } %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</article>
+
+<article class="message">
+  <div class="message-header">
     <p>Habilitar/Deshabilitar Encuentro</p>
   </div>
   <div class="message-body">
@@ -16,4 +49,3 @@
     <% end %>
   </div>
 </article>
-

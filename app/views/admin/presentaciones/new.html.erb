@@ -24,10 +24,9 @@
 
     <%= form.label :orden, class: 'label' %>
     <%= form.number_field :orden, class: 'input', min: 1, value: 1 %>
-  </div>
-  <div class="panel-heading">
+
     <%= form.submit 'Crear Presentación', class: 'button is-link' %>
     <%= link_to 'Cancelar', admin_encuentro_conciertos_path(@encuentro), class: 'button is-text' %>
+    <% end %>
   </div>
-<% end %>
 </div>
