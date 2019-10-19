@@ -21,14 +21,16 @@
 <table class="table is-fullwidth">
   <thead>
     <tr>
+      <th>#</th>
       <th>Fecha/Hora</th>
       <th>Lugar</th>
       <th>Acciones</th>
     </tr>
   </thead>
   <tbody>
-    <% @encuentro.conciertos.each do |concierto| %>
+    <% @encuentro.conciertos.each.with_index(1) do |concierto, index| %>
       <tr>
+        <td><%= index %></td>
         <td><%= concierto.fecha.strftime('%d/%m/%Y') %> <%= concierto.hora.strftime('%H:%M') %></td>
         <td><%= concierto.lugar %></td>
         <td>
