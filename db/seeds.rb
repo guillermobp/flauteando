@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 #
 # La siguiente línea limpia la base de datos y reinicia los índices.
-# ActiveRecord::Base.connection.execute('TRUNCATE users, presentaciones, artistas, encuentros RESTART IDENTITY')
+# ActiveRecord::Base.connection.execute('TRUNCATE users, artistas_presentaciones, obras_presentaciones, presentaciones, conciertos, artistas_visibles, artistas, obras, encuentros RESTART IDENTITY')
 # ActiveRecord::Base.connection.truncate(:users, :presentaciones, :artistas)
 
 unless User.any?
