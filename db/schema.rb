@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_09_033014) do
+ActiveRecord::Schema.define(version: 2019_10_13_173728) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,26 @@ ActiveRecord::Schema.define(version: 2019_10_09_033014) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "artistas_presentaciones", force: :cascade do |t|
+    t.bigint "artista_id", null: false
+    t.bigint "presentacion_id", null: false
+    t.text "instrumentos"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["artista_id"], name: "index_artistas_presentaciones_on_artista_id"
+    t.index ["presentacion_id"], name: "index_artistas_presentaciones_on_presentacion_id"
+  end
+
+  create_table "conciertos", force: :cascade do |t|
+    t.date "fecha"
+    t.time "hora"
+    t.string "lugar"
+    t.bigint "encuentro_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["encuentro_id"], name: "index_conciertos_on_encuentro_id"
+  end
+
   create_table "encuentros", force: :cascade do |t|
     t.integer "version"
     t.string "titulo"
@@ -55,13 +75,29 @@ ActiveRecord::Schema.define(version: 2019_10_09_033014) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "presentaciones", force: :cascade do |t|
-    t.bigint "encuentro_id", null: false
-    t.bigint "artista_id", null: false
+  create_table "obras", force: :cascade do |t|
+    t.string "titulo"
+    t.string "compositor"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["artista_id"], name: "index_presentaciones_on_artista_id"
-    t.index ["encuentro_id"], name: "index_presentaciones_on_encuentro_id"
+  end
+
+  create_table "obras_presentaciones", force: :cascade do |t|
+    t.bigint "obra_id", null: false
+    t.bigint "presentacion_id", null: false
+    t.integer "orden"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["obra_id"], name: "index_obras_presentaciones_on_obra_id"
+    t.index ["presentacion_id"], name: "index_obras_presentaciones_on_presentacion_id"
+  end
+
+  create_table "presentaciones", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "concierto_id", null: false
+    t.integer "orden"
+    t.index ["concierto_id"], name: "index_presentaciones_on_concierto_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -76,6 +112,10 @@ ActiveRecord::Schema.define(version: 2019_10_09_033014) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "presentaciones", "artistas"
-  add_foreign_key "presentaciones", "encuentros"
+  add_foreign_key "artistas_presentaciones", "artistas"
+  add_foreign_key "artistas_presentaciones", "presentaciones"
+  add_foreign_key "conciertos", "encuentros"
+  add_foreign_key "obras_presentaciones", "obras"
+  add_foreign_key "obras_presentaciones", "presentaciones"
+  add_foreign_key "presentaciones", "conciertos"
 end

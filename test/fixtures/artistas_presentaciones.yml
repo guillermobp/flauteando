@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  artista: one
+  presentacion: one
+  instrumentos: MyText
+
+two:
+  artista: two
+  presentacion: two
+  instrumentos: MyText

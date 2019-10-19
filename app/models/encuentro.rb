@@ -1,6 +1,9 @@
 class Encuentro < ApplicationRecord
-  has_many :presentaciones, -> { order :artista_id }
-  has_many :artistas, through: :presentaciones
+  has_many :conciertos, -> { order :fecha, :hora }
+  has_many :presentaciones, through: :conciertos
+  has_many :obras, through: :presentaciones
+  has_many :artistas_presentaciones, through: :presentaciones
+  has_many :artistas, through: :artistas_presentaciones
 
   has_one_attached :afiche
 

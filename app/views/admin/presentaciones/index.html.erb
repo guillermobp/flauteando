@@ -24,34 +24,10 @@
   <tbody>
     <% @encuentro.presentaciones.each do |p| %>
       <tr>
-        <td><%= p.artista.nombre %></td>
-        <td><%= p.artista.bio.truncate(100) %></td>
-        <td>
-          <% if p.artista.foto.attached? %>
-          <span class="icon tooltip" data-tooltip="El artista tiene imagen">
-          <% else %>
-          <span class="icon">
-          <% end %>
-            <%= icon('fas', 'check') if p.artista.foto.attached? %>
-          </span>
-        </td>
-        <td>
-          <%= link_to icon('fas', 'edit'),
-                      edit_admin_artista_path(p.artista),
-                      data: {
-                        tooltip: 'Editar artista',
-                      },
-                      class: 'button is-info is-outlined tooltip' %>
-
-          <%= link_to icon('fas', 'trash-alt'),
-                      admin_presentacion_path(p),
-                      method: :delete,
-                      data: {
-                        confirm: '¿Está seguro?',
-                        tooltip: 'Eliminar participación de este artista'
-                      },
-                      class: 'button is-danger is-outlined tooltip' %>
-        </td>
+        <td><%= p.artistas.pluck(:nombre).join(", ") %></td>
+        <td><%= p.obras.pluck(:titulo).join(", ") %></td>
+        <td></td>
+        <td></td>
       </tr>
     <% end %>
   </tbody>

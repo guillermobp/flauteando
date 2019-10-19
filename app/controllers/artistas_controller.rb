@@ -9,6 +9,7 @@ class ArtistasController < ApplicationController
   end
 
   def bio
+    @artista.bio = '' if @artista.bio.nil?
     @artista
     render layout: nil
   end
