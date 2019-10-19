@@ -1,32 +1,3 @@
 <%= render 'layouts/admin/tabs' %>
 
-<div class="panel">
-  <p class="panel-heading">
-    Nueva Presentación
-  </p>
-  <div class="panel-block with-data">
-    <p>
-      <strong>Fecha:</strong>
-      <%= @concierto.display_short_date %></p>
-    <p>
-      <strong>Lugar:</strong>
-      <%= @concierto.lugar %></p>
-    <p>Para crear una presentación, seleccione una obra y luego escoja el o los artistas que participan en esta presentación.</p>
-  </div>
-  <div class="panel-block">
-    <%= form_with model: [:admin, @concierto, @presentacion] do |form| %>
-
-    <%= form.label :obras, class: 'label' %>
-    <%= select_tag('presentacion[obras_ids][]', options_for_select(@presentacion.obras_asociables), data: { taggable: true, tag_placeholder: 'Seleccione una o más obras' }) %>
-
-    <%= form.label :artistas, class: 'label' %>
-    <%= select_tag('presentacion[artistas_ids][]', options_for_select(@presentacion.artistas_asociables), data: { taggable: true, tag_placeholder: 'Seleccione uno o más artistas' }) %>
-
-    <%= form.label :orden, class: 'label' %>
-    <%= form.number_field :orden, class: 'input', min: 1, value: 1 %>
-
-    <%= form.submit 'Crear Presentación', class: 'button is-link' %>
-    <%= link_to 'Cancelar', admin_concierto_presentaciones_path(@concierto), class: 'button is-text' %>
-    <% end %>
-  </div>
-</div>
+<%= render 'presentacion' %>
