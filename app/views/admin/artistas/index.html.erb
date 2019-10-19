@@ -3,6 +3,7 @@
 <table class="table is-fullwidth">
   <thead>
     <tr>
+      <th>#</th>
       <th>Nombre</th>
       <th>Bio</th>
       <th class="imagenes">
@@ -14,17 +15,18 @@
     </tr>
   </thead>
   <tbody>
-    <% @artistas.each do |a| %>
+    <% @artistas.each.with_index(1) do |artista, index| %>
       <tr>
-        <td><%= a.nombre %></td>
-        <td><%= a.bio.truncate(100) if !a.bio.nil? %></td>
+        <td><%= index %></td>
+        <td><%= artista.nombre %></td>
+        <td><%= artista.bio.truncate(100) if !artista.bio.nil? %></td>
         <td>
-          <% if a.foto.attached? %>
+          <% if artista.foto.attached? %>
           <span class="icon tooltip" data-tooltip="El artista tiene imagen">
           <% else %>
           <span class="icon">
           <% end %>
-            <%= icon('fas', 'check') if a.foto.attached? %>
+            <%= icon('fas', 'check') if artista.foto.attached? %>
           </span>
         </td>
         <td>
@@ -34,10 +36,10 @@
                                   data: {
                                     tooltip: 'Editar artista',
                                   }),
-                      edit_admin_artista_path(a),
+                      edit_admin_artista_path(artista),
                       class: 'button is-info is-outlined' %>
 
-          <% tooltip_text = (a.presentaciones.count > 0 ? 'Este artista no se podrá eliminar' : 'Eliminar artista') %>
+          <% tooltip_text = (artista.presentaciones.count > 0 ? 'Este artista no se podrá eliminar' : 'Eliminar artista') %>
 
           <%= link_to content_tag(:span,
                                   icon('fas', 'trash-alt'),
@@ -45,7 +47,7 @@
                                   data: {
                                     tooltip: tooltip_text,
                                   }),
-                      admin_artista_path(a),
+                      admin_artista_path(artista),
                       method: :delete,
                       data: {
                         confirm: '¿Está seguro?',
