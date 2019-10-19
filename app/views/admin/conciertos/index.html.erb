@@ -1,0 +1,41 @@
+<%= render 'layouts/admin/tabs' %>
+
+<%= form_with model: [:admin, @encuentro, @concierto] do |form| %>
+<div class="field has-addons">
+  <div class="control">
+    <%= form.date_field :fecha, class: 'input' %>
+  </div>
+  <div class="control">
+    <%= form.time_field :hora, class: 'input' %>
+  </div>
+  <div class="control">
+    <%= form.text_field :lugar, class: 'input', placeholder: 'Lugar' %>
+  </div>
+  <div class="control">
+    <%= form.submit 'Crear', class: 'button' %>
+  </div>
+</div>
+<p class="help">Ingrese fecha, hora y lugar, para crear un nuevo concierto para este encuentro</p>
+<% end %>
+
+<table class="table is-fullwidth">
+  <thead>
+    <tr>
+      <th>Fecha/Hora</th>
+      <th>Lugar</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @encuentro.conciertos.each do |concierto| %>
+      <tr>
+        <td><%= concierto.fecha.strftime('%d/%m/%Y') %> <%= concierto.hora.strftime('%H:%M') %></td>
+        <td><%= concierto.lugar %></td>
+        <td>
+          <%= link_to 'Ver', admin_concierto_presentaciones_path(concierto) %>
+          <%= link_to 'Crear presentación', new_admin_concierto_presentacion_path(concierto) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

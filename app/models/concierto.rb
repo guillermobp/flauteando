@@ -4,4 +4,8 @@ class Concierto < ApplicationRecord
   has_many :obras, through: :presentaciones
   has_many :artistas_presentaciones, through: :presentaciones
   has_many :artistas, through: :artistas_presentaciones
+
+  def display_short_date
+    fecha.strftime('%d/%m/%Y')
+  end
 end

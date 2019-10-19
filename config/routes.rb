@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
 
-  resources :password_resets, only: [:new, :create, :edit, :update]
+  resources :password_resets, only: %i[new create edit update]
 
   get 'artistas', to: 'home#artistas'
   get 'artistas/:id', to: 'home#artista', as: :artista
@@ -23,12 +23,14 @@ Rails.application.routes.draw do
   get 'artistas/:id/bio', to: 'artistas#bio', as: :artista_bio
 
   namespace :admin do
-    resources :users, only: [:edit, :update]
+    resources :users, only: %i[edit update]
     resources :artistas
     resources :presentaciones, only: [:destroy]
 
     resources :encuentros do
-      resources :presentaciones, only: [:index, :create]
+      resources :conciertos, shallow: true, only: %i[index new create] do
+        resources :presentaciones, shallow: true, only: %i[index new create edit]
+      end
       resources :fotos, only: [:index]
       resources :config, only: [:index]
     end
