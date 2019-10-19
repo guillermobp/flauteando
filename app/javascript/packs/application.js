@@ -50,8 +50,10 @@ document.addEventListener("turbolinks:load", async () => {
     });
   }
 
-  document.getElementById('close').addEventListener('click', e => {
-    infoOverlay.classList.replace('shown', 'hidden');
-  });
+  if (document.getElementById('close')) {
+    document.getElementById('close').addEventListener('click', e => {
+      infoOverlay.classList.replace('shown', 'hidden');
+    });
+  }
 
 });
