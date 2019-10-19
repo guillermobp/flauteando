@@ -10,4 +10,8 @@ class Encuentro < ApplicationRecord
   def artistas_asociables
     [['==', 0]] + Artista.where.not(id: artistas).pluck(:nombre, :id)
   end
+
+  def artistas_visibles
+    Artista.where(id: ArtistaVisible.where(encuentro: self))
+  end
 end

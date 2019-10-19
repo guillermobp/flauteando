@@ -1,6 +1,6 @@
 <section id="artistas">
   <div class="gallery">
-    <% @encuentro.artistas.each do |a| %>
+    <% @encuentro.artistas_visibles.each do |a| %>
       <%= image_tag a.foto.attached? ? a.foto : 'http://dummyimage.com/800x600/ccc/fff.png',
                     class: 'is-4by3',
                     data: {
