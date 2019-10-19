@@ -26,7 +26,7 @@
     <%= form.number_field :orden, class: 'input', min: 1, value: 1 %>
 
     <%= form.submit 'Crear Presentación', class: 'button is-link' %>
-    <%= link_to 'Cancelar', admin_encuentro_conciertos_path(@encuentro), class: 'button is-text' %>
+    <%= link_to 'Cancelar', admin_concierto_presentaciones_path(@concierto), class: 'button is-text' %>
     <% end %>
   </div>
 </div>
