@@ -11,18 +11,16 @@ class Admin::PresentacionesController < AdminController
   end
 
   def create
+    p = @concierto.presentaciones.new
+    p.orden = presentacion_params[:orden]
+    p.obras = Array(presentacion_params[:obras]).map { |x| Obra.find(x[:id]) }
+    p.artistas = Array(presentacion_params[:artistas]).map { |x| Artista.find(x[:id]) }
 
-    p = Presentacion.create(concierto: @concierto, orden: presentacion_params[:orden])
-
-    presentacion_params[:obras_ids].each do |id|
-      ObraPresentacion.create(presentacion: p, obra_id: id)
+    if p.save
+      flash.notice = 'La presentación ha sido creada exitosamente'
+    else
+      flash.alert = 'Ocurrió un error intentando crear la presentación'
     end
-
-    presentacion_params[:artistas_ids].each do |id|
-      ArtistaPresentacion.create(presentacion: p, artista_id: id)
-    end
-
-    flash[:notice] = 'La presentación ha sido creada exitosamente'
 
     redirect_to admin_concierto_presentaciones_path(@concierto)
   end
@@ -30,6 +28,33 @@ class Admin::PresentacionesController < AdminController
   def edit
     @presentacion = Presentacion.find(params[:id])
     @encuentro = @presentacion.encuentro
+  end
+
+  def update
+    p = Presentacion.find(params[:id])
+    p.orden = presentacion_params[:orden]
+    p.obras = Array(presentacion_params[:obras]).map { |x| Obra.find(x[:id]) }
+    p.artistas = Array(presentacion_params[:artistas]).map { |x| Artista.find(x[:id]) }
+
+    if p.save
+      flash.notice = 'La presentación fue actualizada exitosamente'
+      redirect_to admin_concierto_presentaciones_path(p.concierto)
+    else
+      flash.alert = 'Ocurrió un error intentando actualizar la presentación'
+      redirect_to edit_admin_presentacion_path(p)
+    end
+  end
+
+  def obras_for_select
+    respond_to do |format|
+      format.json { render json: Presentacion.find(params[:id]).obras_for_select }
+    end
+  end
+
+  def artistas_for_select
+    respond_to do |format|
+      format.json { render json: Presentacion.find(params[:id]).artistas_for_select }
+    end
   end
 
   def destroy
@@ -50,7 +75,7 @@ class Admin::PresentacionesController < AdminController
   end
 
   def presentacion_params
-    params.require(:presentacion).permit(:lugar, :orden, obras_ids: [], artistas_ids: [])
+    params.require(:presentacion).permit(:orden, obras: [:id], artistas: [:id])
   end
 
 end

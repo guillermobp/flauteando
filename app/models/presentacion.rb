@@ -9,11 +9,11 @@ class Presentacion < ApplicationRecord
   has_many :obras, through: :obras_presentaciones
   has_many :artistas, through: :artistas_presentaciones
 
-  def obras_asociables
-    Obra.where.not(id: obras).pluck(:titulo, :id)
+  def obras_for_select
+    Obra.all.map { |x| [x.titulo, x.id, obras.exists?(x.id)] }
   end
 
-  def artistas_asociables
-    Artista.where.not(id: artistas).pluck(:nombre, :id)
+  def artistas_for_select
+    Artista.all.map { |x| [x.nombre, x.id, artistas.exists?(x.id)] }
   end
 end

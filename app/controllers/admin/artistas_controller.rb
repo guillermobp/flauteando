@@ -1,5 +1,5 @@
 class Admin::ArtistasController < AdminController
-  before_action :find_artista, except: %i[index new create]
+  before_action :find_artista, except: %i[index new create for_select]
 
   def index
     @artistas = Artista.all
@@ -31,6 +31,12 @@ class Admin::ArtistasController < AdminController
     else
       flash.alert = 'Ocurrió un error intentando actualizar el artista'
       redirect_to edit_admin_artista_path(@artista)
+    end
+  end
+
+  def for_select
+    respond_to do |format|
+      format.json { render json: Artista.for_select }
     end
   end
 

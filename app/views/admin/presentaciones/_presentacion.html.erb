@@ -15,15 +15,27 @@
     <%= form_with model: [:admin, @concierto, @presentacion] do |form| %>
 
     <%= form.label :obras, class: 'label' %>
-    <%= select_tag('presentacion[obras_ids][]', options_for_select(@presentacion.obras_asociables), data: { taggable: true, tag_placeholder: 'Seleccione una o más obras' }) %>
+    <%= select_tag('presentacion[obras][][id]',
+                    nil,
+                    data: {
+                      taggable: true,
+                      tag_placeholder: 'Seleccione una o más obras',
+                      source: @presentacion.new_record? ? obras_for_select_path() : presentacion_obras_for_select_path(@presentacion),
+                    }) %>
 
     <%= form.label :artistas, class: 'label' %>
-    <%= select_tag('presentacion[artistas_ids][]', options_for_select(@presentacion.artistas_asociables), data: { taggable: true, tag_placeholder: 'Seleccione uno o más artistas' }) %>
+    <%= select_tag('presentacion[artistas][][id]',
+                    nil,
+                    data: {
+                      taggable: true,
+                      tag_placeholder: 'Seleccione uno o más artistas',
+                      source: @presentacion.new_record? ? artistas_for_select_path() : presentacion_artistas_for_select_path(@presentacion),
+                    }) %>
 
     <%= form.label :orden, class: 'label' %>
     <%= form.number_field :orden, class: 'input', min: 1, value: 1 %>
 
-    <%= form.submit 'Crear Presentación', class: 'button is-link' %>
+    <%= form.submit class: 'button is-link' %>
     <%= link_to 'Cancelar', admin_concierto_presentaciones_path(@presentacion.concierto), class: 'button is-text' %>
     <% end %>
   </div>

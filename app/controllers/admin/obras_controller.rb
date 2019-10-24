@@ -34,6 +34,12 @@ class Admin::ObrasController < AdminController
     end
   end
 
+  def for_select
+    respond_to do |format|
+      format.json { render json: Obra.for_select }
+    end
+  end
+
   private
 
   def find_obra

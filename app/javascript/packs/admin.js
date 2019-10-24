@@ -13,11 +13,25 @@ require("channels")
 document.addEventListener("turbolinks:load", async () => {
 
   for (const select of [...document.querySelectorAll('select')]) {
+    const data = select.dataset;
     const selector = `#${select.id}`;
     const options = {};
 
-    if (select.dataset.taggable === 'true') options.taggable = true;
-    if (select.dataset.tagPlaceholder) options.tagPlaceholder = select.dataset.tagPlaceholder;
+    if (data.taggable === 'true') options.taggable = true;
+    if (data.tagPlaceholder) options.tagPlaceholder = data.tagPlaceholder;
+
+    if (data.source) {
+      const g = await fetch(data.source);
+      const json = await g.json();
+
+      options.data = json.map(x => {
+        return {
+          text: x[0],
+          value: x[1],
+          selected: x[2],
+        };
+      });
+    }
 
     new Selectr(selector, options);
   }
