@@ -1,17 +1,23 @@
-<div class="panel">
-  <p class="panel-heading">
-    Nueva Presentación
-  </p>
-  <div class="panel-block with-data">
+<div class="card">
+  <div class="card-content">
+    <p class="title">Nueva Presentación</p>
+
+    <hr>
+
+    <p>
+      <strong>Datos del Concierto</strong></p>
     <p>
       <strong>Fecha:</strong>
       <%= @presentacion.concierto.display_short_date %></p>
     <p>
+      <strong>Hora:</strong>
+      <%= @presentacion.concierto.display_short_time %></p>
+    <p>
       <strong>Lugar:</strong>
       <%= @presentacion.concierto.lugar %></p>
-    <p>Para crear una presentación, seleccione una obra y luego escoja el o los artistas que participan en esta presentación.</p>
-  </div>
-  <div class="panel-block">
+
+    <hr>
+
     <%= form_with model: [:admin, @concierto, @presentacion] do |form| %>
 
     <%= form.label :obras, class: 'label' %>

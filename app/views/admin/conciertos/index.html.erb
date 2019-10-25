@@ -12,7 +12,8 @@
     <%= form.text_field :lugar, class: 'input', placeholder: 'Lugar' %>
   </div>
   <div class="control">
-    <%= form.submit 'Crear', class: 'button' %>
+    <%= form.submit 'Crear', class: 'button is-link' %>
+    <%= link_to 'Cancelar', edit_admin_encuentro_path(@concierto.encuentro), class: 'button is-text' %>
   </div>
 </div>
 <p class="help">Ingrese fecha, hora y lugar, para crear un nuevo concierto para este encuentro</p>

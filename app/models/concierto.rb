@@ -9,4 +9,8 @@ class Concierto < ApplicationRecord
   def display_short_date
     fecha.strftime('%d/%m/%Y')
   end
+
+  def display_short_time
+    hora.strftime('%H:%M')
+  end
 end
