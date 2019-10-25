@@ -45,6 +45,16 @@ class Admin::PresentacionesController < AdminController
     end
   end
 
+  def destroy
+    p = Presentacion.find(params[:id])
+    if p.destroy
+      flash.notice = 'La presentación fue eliminada exitosamente'
+    else
+      flash.alert = 'Ocurrió un error intentando eliminar la presentación'
+    end
+    redirect_to admin_concierto_presentaciones_path(p.concierto)
+  end
+
   def obras_for_select
     respond_to do |format|
       format.json { render json: Presentacion.find(params[:id]).obras_for_select }
@@ -55,17 +65,6 @@ class Admin::PresentacionesController < AdminController
     respond_to do |format|
       format.json { render json: Presentacion.find(params[:id]).artistas_for_select }
     end
-  end
-
-  def destroy
-    p = Presentacion.find(params[:id])
-    if p.destroy
-      flash[:notice] = 'La presentación ha sido asociado exitosamente'
-    else
-      flash[:alert] = 'Ha ocurrido un error intentando eliminar la presentación'
-    end
-
-    redirect_to admin_encuentro_presentaciones_path(p.encuentro)
   end
 
   private
