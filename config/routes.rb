@@ -35,7 +35,7 @@ Rails.application.routes.draw do
     resources :artistas, :obras
 
     resources :encuentros do
-      resources :conciertos, shallow: true, only: %i[index new create] do
+      resources :conciertos, shallow: true do
         resources :presentaciones, shallow: true, except: %i[show]
       end
       resources :fotos, only: [:index]
