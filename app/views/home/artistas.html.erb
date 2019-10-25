@@ -1,7 +1,7 @@
 <section id="artistas">
   <div class="gallery">
     <% @encuentro.artistas_visibles.each do |a| %>
-      <%= image_tag a.foto.attached? ? a.foto : 'http://dummyimage.com/800x600/ccc/fff.png',
+      <%= image_tag a.artista.foto.attached? ? a.artista.foto : 'http://dummyimage.com/800x600/ccc/fff.png',
                     class: 'is-4by3',
                     data: {
                       url_bio: artista_bio_path(a),
