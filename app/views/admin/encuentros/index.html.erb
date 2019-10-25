@@ -16,7 +16,7 @@
         <td><%= e.titulo %></td>
         <td><%= icon('fas', 'check') if e.habilitado %></td>
         <td>
-          <%= link_to 'editar', edit_admin_encuentro_path(e) %>
+          <%= link_to content_tag(:span, icon('fas', 'edit'), class: 'icon tooltip', data: { tooltip: 'Editar concierto', }), edit_admin_encuentro_path(e), class: 'button is-info is-outlined' %>
         </td>
       </tr>
     <% end %>
