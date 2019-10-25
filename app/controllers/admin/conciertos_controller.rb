@@ -1,5 +1,5 @@
 class Admin::ConciertosController < AdminController
-  before_action :find_encuentro, except: [:update]
+  before_action :find_encuentro, except: [:update, :destroy]
 
   def index
     @concierto = Concierto.new(encuentro: @encuentro)
@@ -23,6 +23,17 @@ class Admin::ConciertosController < AdminController
     else
       flash.alert = 'Ocurrió un error intentando actualizar el concierto'
       redirect_to admin_concierto_presentaciones_path(concierto)
+    end
+  end
+
+  def destroy
+    c = Concierto.find(params[:id])
+    if c.destroy
+      flash.notice = 'El concierto ha sido eliminado exitosamente'
+      redirect_to admin_encuentro_conciertos_path(c.encuentro)
+    else
+      flash.alert = 'Ocurrió un error intentando eliminar el concierto'
+      redirect_to admin_concierto_presentaciones_path(c)
     end
   end
 

@@ -1,7 +1,7 @@
 class Concierto < ApplicationRecord
   belongs_to :encuentro
 
-  has_many :presentaciones
+  has_many :presentaciones, dependent: :destroy
 
   has_many :artistas, -> { distinct }, through: :presentaciones
   has_many :obras, -> { distinct }, through: :presentaciones
