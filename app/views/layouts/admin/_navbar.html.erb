@@ -8,15 +8,21 @@
 
       <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link">
-          Administrar Encuentro
+          Encuentros
         </a>
 
         <div class="navbar-dropdown">
+          <%= link_to 'Listado', admin_encuentros_path, class: 'navbar-item' %>
+          <% if @encuentros.any? %>
+          <hr class="navbar-divider">
+          <% end %>
           <% @encuentros.each do |e| %>
             <%= link_to e.version, edit_admin_encuentro_path(e), class: 'navbar-item' %>
-            <hr class="navbar-divider">
           <% end %>
-          <%= link_to 'Crear Encuentro', new_admin_encuentro_path, class: 'navbar-item' %>
+          <% if @encuentros.any? %>
+          <hr class="navbar-divider">
+          <% end %>
+          <%= link_to 'Nuevo', new_admin_encuentro_path, class: 'navbar-item' %>
         </div>
       </div>
 
