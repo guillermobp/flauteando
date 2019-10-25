@@ -1,5 +1,6 @@
 <h1 class="title is-1 has-text-centered">Administración de Obras</h1>
 
+<% if @obras.any? %>
 <table class="table is-fullwidth">
   <thead>
     <tr>
@@ -44,3 +45,7 @@
     <% end %>
   </tbody>
 </table>
+<% else %>
+<hr>
+<p>No existen obras registradas.</p>
+<% end %>

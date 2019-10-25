@@ -27,6 +27,9 @@
 
     <h3 class="title is-3">Presentaciones</h3>
 
+    <%= link_to 'Crear Presentación', new_admin_concierto_presentacion_path(@concierto), class: 'button is-link' %>
+
+    <% if @concierto.presentaciones.any? %>
     <table class="table is-fullwidth">
       <thead>
         <tr>
@@ -38,25 +41,29 @@
       </thead>
       <tbody>
         <% @concierto.presentaciones.each do |p| %>
-          <tr>
-            <td><%= p.orden %></td>
-            <td>
-              <% p.artistas.each do |artista| %>
-                <span class="tag"><%= artista.nombre %></span>
-              <% end %>
-            </td>
-            <td>
-              <% p.obras.each do |obra| %>
-                <span class="tag"><%= obra.titulo %></span>
-              <% end %>
-            </td>
-            <td>
-              <%= link_to content_tag(:span, icon('fas', 'edit'), class: 'icon tooltip', data: { tooltip: 'Editar artista', }), edit_admin_presentacion_path(p), class: 'button is-info is-outlined' %>
-              <%= link_to content_tag(:span, icon('fas', 'trash-alt'), class: 'icon'), admin_presentacion_path(p), method: :delete, data: { confirm: '¿Está seguro?', }, class: 'button is-danger is-outlined' %>
-            </td>
-          </tr>
+        <tr>
+          <td><%= p.orden %></td>
+          <td>
+            <% p.artistas.each do |artista| %>
+            <span class="tag"><%= artista.nombre %></span>
+            <% end %>
+          </td>
+          <td>
+            <% p.obras.each do |obra| %>
+            <span class="tag"><%= obra.titulo %></span>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to content_tag(:span, icon('fas', 'edit'), class: 'icon tooltip', data: { tooltip: 'Editar artista', }), edit_admin_presentacion_path(p), class: 'button is-info is-outlined' %>
+            <%= link_to content_tag(:span, icon('fas', 'trash-alt'), class: 'icon'), admin_presentacion_path(p), method: :delete, data: { confirm: '¿Está seguro?', }, class: 'button is-danger is-outlined' %>
+          </td>
+        </tr>
         <% end %>
       </tbody>
     </table>
+    <% else %>
+    <hr>
+    <p>No existen presentaciones para este concierto.</p>
+    <% end %>
   </div>
 </div>

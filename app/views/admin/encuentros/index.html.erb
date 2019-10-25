@@ -1,12 +1,13 @@
 <h1 class="title is-1 has-text-centered">Administración de Encuentros</h1>
 
+<% if @encuentros.any? %>
 <table class="table is-fullwidth">
   <thead>
     <tr>
       <th>Versión</th>
       <th>Título</th>
       <th>Habilitado</th>
-      <th>Acciones</th>
+      <th class="acciones has-one-icon">Acciones</th>
     </tr>
   </thead>
   <tbody>
@@ -22,3 +23,7 @@
     <% end %>
   </tbody>
 </table>
+<% else %>
+<hr>
+<p>No existen encuentros registrados.</p>
+<% end %>

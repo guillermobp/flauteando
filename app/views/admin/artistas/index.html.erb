@@ -1,5 +1,6 @@
 <h1 class="title is-1 has-text-centered">Administración de Artistas</h1>
 
+<% if @artistas.any? %>
 <table class="table is-fullwidth">
   <thead>
     <tr>
@@ -58,3 +59,7 @@
     <% end %>
   </tbody>
 </table>
+<% else %>
+<hr>
+<p>No existen artistas registrados.</p>
+<% end %>

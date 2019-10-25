@@ -19,6 +19,7 @@
 <p class="help">Ingrese fecha, hora y lugar, para crear un nuevo concierto para este encuentro</p>
 <% end %>
 
+<% if @encuentro.conciertos.any? %>
 <table class="table is-fullwidth">
   <thead>
     <tr>
@@ -42,3 +43,7 @@
     <% end %>
   </tbody>
 </table>
+<% else %>
+<hr>
+<p>No existen conciertos para este encuentro.</p>
+<% end %>
