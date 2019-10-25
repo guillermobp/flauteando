@@ -49,3 +49,19 @@
     <% end %>
   </div>
 </article>
+
+<article class="message">
+  <div class="message-header">
+    <p>Eliminar Encuentro</p>
+  </div>
+  <div class="message-body">
+    <p>Eliminar un encuentro elimina todos los datos que tiene asociados de forma permanente.</p>
+    <p>Esta acción es irreversible.</p>
+    <br>
+    <%= link_to 'Eliminar Encuentro',
+                admin_encuentro_path(@encuentro),
+                method: :delete,
+                data: { confirm: '¿Está seguro?' },
+                class: 'button is-danger' %>
+  </div>
+</article>

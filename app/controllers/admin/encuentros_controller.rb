@@ -31,6 +31,17 @@ class Admin::EncuentrosController < AdminController
     redirect_to admin_encuentro_config_index_path(@encuentro)
   end
 
+  def destroy
+    e = Encuentro.find(params[:id])
+    if e.destroy
+      flash.notice = 'El encuentro ha sido eliminado exitosamente'
+      redirect_to admin_encuentros_path
+    else
+      flash.alert = 'Ocurrió un error intentando eliminar el encuentro'
+      redirect_to admin_encuentro_config_index_path(@encuentro)
+    end
+  end
+
   private
 
     def encuentro_params
