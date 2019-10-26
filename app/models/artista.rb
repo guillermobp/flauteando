@@ -15,4 +15,8 @@ class Artista < ApplicationRecord
   def visible?(encuentro)
     ArtistaVisible.exists?(artista: self, encuentro: encuentro)
   end
+
+  def conciertos_por_encuentro(id)
+    conciertos.where(encuentro_id: id)
+  end
 end

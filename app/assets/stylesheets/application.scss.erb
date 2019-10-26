@@ -35,14 +35,83 @@ div.container {
 div.gallery {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+  span.image-crop {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    height: 350px;
+    object-fit: cover;
+    overflow: hidden;
+    cursor: pointer;
+
+    img,
+    span.fechas-container,
+    span.nombre {
+      grid-column: 1/2;
+      grid-row: 1/2;
+    }
+
+    img {
+      object-fit: cover;
+      height: 350px;
+      width: 100%;
+      filter: grayscale(1) brightness(.9) contrast(1.5);
+    }
+
+    span {
+      z-index: 100;
+      opacity: 0;
+      font-weight: bold;
+      font-family: 'Lato';
+
+      &.fecha,
+      &.nombre {
+        background-color: white;
+      }
+
+      &.fechas-container {
+        display: flex;
+        flex-flow: column;
+        align-self: flex-start;
+        justify-self: flex-start;
+        margin-top: 1rem;
+
+        .fecha {
+          margin-top: 0.5rem;
+          padding: 0.5rem;
+          border-radius: 0 4px 4px 0;
+        }
+      }
+
+      &.nombre {
+        align-self: flex-end;
+        padding: 2rem;
+        font-size: 1.5rem;
+        text-align: right;
+      }
+    }
+
+    &:hover {
+      span {
+        opacity: 0.7;
+        transition-delay: 50ms;
+        transition: opacity 150ms;
+
+        &.fechas-container {
+          transition-delay: 150ms;
+        }
+      }
+
+      img {
+        filter: grayscale(1) brightness(.9) contrast(1.2);
+        transform: scale(1.1);
+        transition: filter 150ms, transform 150ms ease-in-out;
+      }
+    }
+  }
 }
-/* .main-nav {
-   grid-column: 1;
-   grid-row: 1;
-   z-index: 10;
-   position: sticky;
-   top: 0;
- } */
+
 .main-nav ul {
   display: flex;
   flex-wrap: wrap;
@@ -90,19 +159,6 @@ div.main {
    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); */
   height: 100vh;
   overflow: auto;
-}
-
-div.main img {
-  object-fit: cover;
-  height: 350px;
-  width: 100%;
-  filter: grayscale(1) brightness(.9) contrast(1.5);
-  cursor: pointer;
-}
-
-div.main img:hover {
-  filter: grayscale(1) brightness(.9) contrast(1.2);
-  transition: filter 500ms;
 }
 
 div.info {
