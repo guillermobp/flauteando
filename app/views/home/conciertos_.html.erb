@@ -1,0 +1,23 @@
+<section id="conciertos">
+  <% @encuentro.conciertos_by_date.each do |fecha, conciertos|%>
+  <h3><%= fecha %></h3>
+  <ul>
+    <% conciertos.each do |concierto| %>
+    <li>
+      <dl>
+        <dt>Hora</dt>
+        <dd><%= concierto.display_short_time %></dd>
+        <dt>Lugar</dt>
+        <dd><%= concierto.lugar %></dd>
+        <dt>Presentaciones</dt>
+        <% concierto.presentaciones.each do |presentacion| %>
+        <% presentacion.obras.each do |obra| %>
+        <dd><%= obra.titulo %></dd>
+        <% end %>
+        <% end %>
+      </dl>
+    </li>
+    <% end %>
+  </ul>
+  <% end %>
+</section>

@@ -11,4 +11,8 @@ class Encuentro < ApplicationRecord
   def artistas_asociables
     [['==', 0]] + Artista.where.not(id: artistas).pluck(:nombre, :id)
   end
+
+  def conciertos_by_date
+    conciertos.group_by(&:fecha)
+  end
 end

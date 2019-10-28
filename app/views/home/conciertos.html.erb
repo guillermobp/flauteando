@@ -1,1 +1,29 @@
-<h1>Conciertos</h1>
+<section id="conciertos">
+  <% @encuentro.conciertos.each do |concierto|%>
+    <div class="concierto">
+      <div class="fecha">
+        <span class="day"><%= concierto.fecha.strftime('%d') %></span>
+        <span class="month-name"><%= concierto.fecha.strftime('%B') %></span>
+      </div>
+      <div class="presentaciones">
+        <% concierto.presentaciones.each do |presentacion| %>
+          <div class="presentacion">
+            <div class="obras">
+              <% presentacion.obras.each do |obra| %>
+                <div class="titulo-obra"><%= obra.titulo %></div>
+              <% end %>
+            </div>
+            <div class="artistas">
+              <% presentacion.artistas.each do |artista| %>
+                <div class="artista"><%= artista.nombre %></div>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="time-place">
+        <%= "#{concierto.display_short_time} / #{concierto.lugar}" %>
+      </div>
+    </div>
+  <% end %>
+</section>
