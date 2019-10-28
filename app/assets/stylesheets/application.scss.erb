@@ -52,6 +52,11 @@ div.gallery {
       grid-row: 1/2;
     }
 
+    span.fechas-container {
+      position: relative;
+      left: -110px;
+    }
+
     img {
       object-fit: cover;
       height: 350px;
@@ -61,9 +66,10 @@ div.gallery {
 
     span {
       z-index: 100;
-      opacity: 0;
+      opacity: 0.7;
       font-weight: bold;
       font-family: 'Lato';
+      transition-duration: 150ms;
 
       &.fecha,
       &.nombre {
@@ -76,6 +82,7 @@ div.gallery {
         align-self: flex-start;
         justify-self: flex-start;
         margin-top: 1rem;
+        transition-property: left;
 
         .fecha {
           margin-top: 0.5rem;
@@ -85,21 +92,25 @@ div.gallery {
       }
 
       &.nombre {
+        position: relative;
+        bottom: -96px;
         align-self: flex-end;
         padding: 2rem;
         font-size: 1.5rem;
         text-align: right;
+        transition-delay: 50ms;
+        transition-property: bottom;
       }
     }
 
     &:hover {
       span {
-        opacity: 0.7;
-        transition-delay: 50ms;
-        transition: opacity 150ms;
-
         &.fechas-container {
-          transition-delay: 150ms;
+          left: 0;
+        }
+
+        &.nombre {
+          bottom: 0;
         }
       }
 
