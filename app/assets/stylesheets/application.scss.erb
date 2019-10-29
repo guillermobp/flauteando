@@ -103,6 +103,7 @@ section {
 div.container {
   display: grid;
   grid-template-columns: 1fr;
+  grid-template-rows: 4rem 1fr 19rem;
   justify-items: center;
 }
 
@@ -237,6 +238,34 @@ ul#main-nav-list {
   }
 }
 
+div.footer {
+  background-color: #05a99f;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  margin-top: 4rem;
+  font-family: 'Lato';
+
+  p {
+    opacity: 0.4;
+    transition: opacity 150ms, color 150ms;
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    &:hover {
+      opacity: 1;
+      color: #f3d309;
+
+      a {
+        text-decoration: underline;
+      }
+    }
+  }
 }
 
 div.main {
