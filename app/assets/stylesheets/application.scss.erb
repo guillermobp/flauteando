@@ -197,44 +197,46 @@ div.gallery {
   }
 }
 
-.main-nav ul {
+ul#main-nav-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
   list-style: none;
+
+  a {
+    font-size: 1.6rem;
+    font-weight: bold;
+    text-decoration: none;
+    display: flex;
+    // color: #f8931f; // 2017
+    color: #05a99f; // 2019
+    font-family: 'Rubik Mono One', sans-serif;
+  }
+
+  li a {
+    padding: 1rem;
+  }
+
+  a.active,
+  a:focus,
+  a:hover {
+    // background: #f8931f; // 2017
+    // color: black; // 2017
+    background: #05a99f;
+    color: #f3d309;
+  }
+
+  a:focus svg,
+  a:hover svg {
+    fill: green;
+  }
+
+  a:focus span,
+  a:hover span {
+    color: black;
+  }
 }
 
-.main-nav a {
-  font-size: 1.6rem;
-  font-weight: bold;
-  text-decoration: none;
-  display: flex;
-  // color: #f8931f; // 2017
-  color: #05a99f; // 2019
-  font-family: 'Rubik Mono One', sans-serif;
-}
-
-.main-nav li a {
-  padding: 1rem;
-}
-
-.main-nav a.active,
-.main-nav a:focus,
-.main-nav a:hover {
-  // background: #f8931f; // 2017
-  // color: black; // 2017
-  background: #05a99f;
-  color: #f3d309;
-}
-
-.main-nav a:focus svg,
-.main-nav a:hover svg {
-  fill: green;
-}
-
-.main-nav a:focus span,
-.main-nav a:hover span {
-  color: black;
 }
 
 div.main {

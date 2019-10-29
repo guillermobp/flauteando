@@ -1,8 +1,6 @@
-<nav role='navigation' class="main-nav" id="main-nav">
-  <ul id="main-nav-list">
-    <li><%= link_to 'Artistas', artistas_path, class: ('active' if action_name == 'artistas') %></li>
-    <li><%= link_to 'Actividades', actividades_path, class: ('active' if action_name == 'actividades') %></li>
-    <li><%= link_to 'Conciertos', conciertos_path, class: ('active' if action_name == 'conciertos') %></li>
-    <li><%= link_to 'Galería', galeria_path, class: ('active' if action_name == 'galeria') %></li>
-  </ul>
-</nav>
+<ul id="main-nav-list" class="main-nav">
+  <li><%= link_to 'Artistas', artistas_path, class: ('active' if action_name == 'artistas') %></li>
+  <li><%= link_to 'Actividades', actividades_path, class: ('active' if action_name == 'actividades') %></li>
+  <li><%= link_to 'Conciertos', conciertos_path, class: ('active' if action_name == 'conciertos') %></li>
+  <li><%= link_to 'Galería', galeria_path, class: ('active' if action_name == 'galeria') %></li>
+</ul>
