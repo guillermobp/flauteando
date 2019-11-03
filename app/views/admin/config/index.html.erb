@@ -10,6 +10,11 @@
         <tr>
           <th>#</th>
           <th>Artista</th>
+          <th class="imagenes">
+            <span class="icon">
+              <%= icon('fas', 'images') %>
+            </span>
+          </th>
           <th>Visible</th>
         </tr>
       </thead>
@@ -18,6 +23,9 @@
         <tr>
           <td><%= index %></td>
           <td><%= artista.nombre %></td>
+          <td>
+            <%= icon('fas', 'check') if artista.foto.attached? %>
+          </td>
           <td>
             <%= check_box_tag dom_id(artista, 'active_toggle'),
                   artista.visible?(@encuentro),
