@@ -16,6 +16,7 @@
             </span>
           </th>
           <th>Visible</th>
+          <th class="acciones has-one-icon">Acciones</th>
         </tr>
       </thead>
       <tbody>
@@ -33,6 +34,16 @@
                   data: { remote: true,
                     url: toggle_visibilidad_artista_path(@encuentro, artista),
                     method: :patch } %>
+          </td>
+          <td>
+            <%= link_to content_tag(:span,
+                                    icon('fas', 'edit'),
+                                    class: 'icon tooltip',
+                                    data: {
+                                      tooltip: 'Editar artista',
+                                    }),
+                        edit_admin_artista_path(artista),
+                        class: 'button is-info is-outlined' %>
           </td>
         </tr>
         <% end %>
