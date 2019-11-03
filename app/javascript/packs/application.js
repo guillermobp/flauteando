@@ -36,7 +36,7 @@ document.addEventListener("turbolinks:load", async () => {
     });
   }
 
-  for (const img of [...document.querySelectorAll('.main img')]) {
+  for (const img of [...document.querySelectorAll('section#artistas div.gallery img')]) {
     img.addEventListener('click', async (e) => {
 
       const nombre = await fetch(e.target.dataset.urlNombre);
