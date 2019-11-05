@@ -46,6 +46,30 @@ form {
   }
 }
 
+table {
+  width: 100%;
+
+  td {
+    div.order-controls {
+      display: flex;
+      flex-flow: column;
+      font-size: 1.2rem;
+
+      a {
+        & > i {
+          opacity: 0.5;
+          transition: opacity 150ms;
+          cursor: pointer;
+
+          &:hover {
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+}
+
 .panel {
   .panel-block {
     &.with-data {

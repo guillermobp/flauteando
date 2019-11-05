@@ -5,35 +5,48 @@
     <p>Artistas Visibles</p>
   </div>
   <div class="message-body">
+    <%= form_with model: [:admin, @encuentro, @artista_visible] do |form| %>
+    <div class="field has-addons">
+      <div class="control">
+        <%= select('artista_visible', 'artista_id', options_from_collection_for_select(@encuentro.artistas_visibilizables, :id, :nombre), { prompt: 'Seleccione un artista' }) %>
+      </div>
+      <div class="control">
+        <%= form.submit 'Agregar', class: 'button is-primary' %>
+      </div>
+    </div>
+    <% end %>
     <table class="table">
       <thead>
         <tr>
-          <th>#</th>
+          <th></th>
           <th>Artista</th>
           <th class="imagenes">
             <span class="icon">
               <%= icon('fas', 'images') %>
             </span>
           </th>
-          <th>Visible</th>
-          <th class="acciones has-one-icon">Acciones</th>
+          <th class="acciones has-two-icons">Acciones</th>
         </tr>
       </thead>
       <tbody>
-        <% @encuentro.artistas.each.with_index(1) do |artista, index| %>
-        <tr>
-          <td><%= index %></td>
-          <td><%= artista.nombre %></td>
+        <% @encuentro.artistas_visibles.each do |artista_visible| %>
+        <tr id="tr_<%= artista_visible.orden %>">
           <td>
-            <%= icon('fas', 'check') if artista.foto.attached? %>
+            <div class="order-controls">
+              <%= link_to icon('fas', 'caret-up', data: { command: 'up' }),
+                          up_artista_visible_path(artista_visible),
+                          method: :post,
+                          remote: true %>
+
+              <%= link_to icon('fas', 'caret-down', data: { command: 'up' }),
+                          down_artista_visible_path(artista_visible),
+                          method: :post,
+                          remote: true %>
+            </div>
           </td>
+          <td><%= artista_visible.artista.nombre %></td>
           <td>
-            <%= check_box_tag dom_id(artista, 'active_toggle'),
-                  artista.visible?(@encuentro),
-                  artista.visible?(@encuentro),
-                  data: { remote: true,
-                    url: toggle_visibilidad_artista_path(@encuentro, artista),
-                    method: :patch } %>
+            <%= icon('fas', 'check') if artista_visible.artista.foto.attached? %>
           </td>
           <td>
             <%= link_to content_tag(:span,
@@ -42,8 +55,21 @@
                                     data: {
                                       tooltip: 'Editar artista',
                                     }),
-                        edit_admin_artista_path(artista),
+                        edit_admin_artista_path(artista_visible.artista),
                         class: 'button is-info is-outlined' %>
+
+            <%= link_to content_tag(:span,
+                                    icon('fas', 'trash-alt'),
+                                    class: 'icon tooltip',
+                                    data: {
+                                      tooltip: 'Quitar artista de la página de inicio',
+                                    }),
+                        admin_artista_visible_path(artista_visible),
+                        method: :delete,
+                        data: {
+                          confirm: '¿Está seguro?',
+                        },
+                        class: 'button is-danger is-outlined' %>
           </td>
         </tr>
         <% end %>

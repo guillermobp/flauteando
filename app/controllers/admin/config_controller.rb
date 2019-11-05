@@ -1,7 +1,9 @@
 class Admin::ConfigController < AdminController
   before_action :find_encuentro
 
-  def index; end
+  def index
+    @artista_visible = ArtistaVisible.new(encuentro: @encuentro)
+  end
 
   def toggle_visibilidad_artista
     artista = Artista.find(params[:artista_id])

@@ -28,7 +28,9 @@ Rails.application.routes.draw do
   get 'admin/presentacion/:id/artistas/for_select', to: 'admin/presentaciones#artistas_for_select', as: :presentacion_artistas_for_select
   get 'admin/presentacion/:id/obras/for_select', to: 'admin/presentaciones#obras_for_select', as: :presentacion_obras_for_select
 
-  patch 'encuentros/:encuentro_id/artistas/:artista_id/toggle_visibilidad_artista', to: 'admin/config#toggle_visibilidad_artista', as: :toggle_visibilidad_artista
+  patch 'admin/encuentros/:encuentro_id/artistas/:artista_id/toggle_visibilidad_artista', to: 'admin/config#toggle_visibilidad_artista', as: :toggle_visibilidad_artista
+  post 'admin/artistas_visibles/:id/up', to: 'admin/artistas_visibles#up', as: :up_artista_visible
+  post 'admin/artistas_visibles/:id/down', to: 'admin/artistas_visibles#down', as: :down_artista_visible
 
   namespace :admin do
     resources :users, only: %i[edit update]
@@ -40,6 +42,7 @@ Rails.application.routes.draw do
       end
       resources :fotos, only: [:index]
       resources :config, only: [:index]
+      resources :artistas_visibles, shallow: true
     end
   end
 end
