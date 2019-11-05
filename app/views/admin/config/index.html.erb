@@ -18,7 +18,7 @@
     <table class="table">
       <thead>
         <tr>
-          <th></th>
+          <th class="acciones has-one-icon"></th>
           <th>Artista</th>
           <th class="imagenes">
             <span class="icon">
@@ -29,19 +29,23 @@
         </tr>
       </thead>
       <tbody>
-        <% @encuentro.artistas_visibles.each do |artista_visible| %>
+        <% @encuentro.artistas_visibles.each.with_index(1) do |artista_visible, index| %>
         <tr id="tr_<%= artista_visible.orden %>">
           <td>
             <div class="order-controls">
-              <%= link_to icon('fas', 'caret-up', data: { command: 'up' }),
-                          up_artista_visible_path(artista_visible),
-                          method: :post,
-                          remote: true %>
+              <% if index > 1 %>
+                <%= link_to icon('fas', 'caret-up', data: { command: 'up' }),
+                            up_artista_visible_path(artista_visible),
+                            method: :post,
+                            remote: true %>
+              <% end %>
 
-              <%= link_to icon('fas', 'caret-down', data: { command: 'up' }),
-                          down_artista_visible_path(artista_visible),
-                          method: :post,
-                          remote: true %>
+              <% if index < @encuentro.artistas_visibles.count %>
+                <%= link_to icon('fas', 'caret-down', data: { command: 'up' }),
+                            down_artista_visible_path(artista_visible),
+                            method: :post,
+                            remote: true %>
+              <% end %>
             </div>
           </td>
           <td><%= artista_visible.artista.nombre %></td>

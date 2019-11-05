@@ -35,4 +35,22 @@ document.addEventListener("turbolinks:load", async () => {
 
     new Selectr(selector, options);
   }
+
+  for (const upDown of [...document.querySelectorAll('table > tbody > tr > td > div.order-controls > i')]) {
+    upDown.addEventListener('click', async (e) => {
+      console.log({
+        e
+      });
+      const command = e.target.dataset.command;
+      const currentRow = e.target.closest('tr');
+      const tableBody = currentRow.closest('tbody');
+      if (command === 'up') {
+        const previousRow = currentRow.previousElementSibling;
+        tableBody.insertBefore(currentRow, previousRow);
+      } else {
+        const nextRow = currentRow.nextElementSibling;
+        tableBody.insertBefore(nextRow, currentRow);
+      }
+    });
+  }
 });
