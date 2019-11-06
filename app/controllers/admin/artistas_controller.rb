@@ -7,7 +7,9 @@ class Admin::ArtistasController < AdminController
 
   def show; end
 
-  def edit; end
+  def edit
+    @return_to_path = request.referer || admin_artistas_path
+  end
 
   def new
     @artista = Artista.new
