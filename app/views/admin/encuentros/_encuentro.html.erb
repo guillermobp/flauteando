@@ -1,21 +1,21 @@
 <%= form_with model: [:admin, @encuentro] do |form| %>
 
 <% if action_name == 'new' %>
-<div class="field is-horizontal">
-  <div class="field-label is-normal">
-    <%= form.label :version, class: 'label' %>
-  </div>
+  <div class="field is-horizontal">
+    <div class="field-label is-normal">
+      <%= form.label :version, class: 'label' %>
+    </div>
 
-  <div class="field-body">
-    <div class="field">
-      <div class="control">
-        <%= form.number_field :version, class: 'input is-one-fifth', min: 2017 %>
+    <div class="field-body">
+      <div class="field">
+        <div class="control">
+          <%= form.number_field :version, class: 'input is-one-fifth', min: 2017 %>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<hr>
+  <hr>
 <% end %>
 
 <div class="field is-horizontal">
@@ -66,14 +66,13 @@
   </div>
   <div class="field-body">
     <div class="field">
-      <div class="control">
-        <% if @encuentro.afiche.attached? %>
-        <%= image_tag @encuentro.afiche.variant( combine_options: { resize: '400', crop: '400x400+0+0', gravity: 'north' } ), class: 'is-square' %>
-        <% end %>
-      </div>
-
       <% unless 'show' == params[:action] %>
         <div class="control">
+          <div class="preview">
+            <% if @encuentro.afiche.attached? %>
+            <%= image_tag @encuentro.afiche.variant( combine_options: { resize: '400', crop: '400x400+0+0', gravity: 'north' } ), class: 'is-square' %>
+            <% end %>
+          </div>
           <div class="file">
             <label class="file-label">
               <%= form.file_field :afiche, class: 'file-input' %>
