@@ -35,6 +35,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users, only: %i[edit update]
     resources :artistas, :obras
+    resources :attachments, only: [:destroy]
 
     resources :encuentros do
       resources :conciertos, shallow: true do

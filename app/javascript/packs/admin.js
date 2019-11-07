@@ -61,19 +61,22 @@ document.addEventListener("turbolinks:load", async () => {
         const control = e.target.closest('.control');
 
         reader.onload = function() {
+          const imagePreview = document.createElement('div');
           const image = document.createElement('img');
           const previewsContainer = control.querySelector('.previews') || false;
           const previewContainer = control.querySelector('.preview') || false;
 
+          imagePreview.classList.add('image-preview');
           image.src = reader.result;
+          imagePreview.appendChild(image);
 
           if (previewsContainer) {
-            previewsContainer.appendChild(image);
+            previewsContainer.appendChild(imagePreview);
           }
 
           if (previewContainer) {
             previewContainer.innerHTML = null;
-            previewContainer.appendChild(image);
+            previewContainer.appendChild(imagePreview);
           }
         }
 

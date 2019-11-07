@@ -21,10 +21,10 @@
         <div class="previews">
           <% if @encuentro.fotos.attached? %>
             <% @encuentro.fotos.each do |f| %>
-              <span class="image-preview">
+              <div class="image-preview">
                 <%= image_tag f.variant(combine_options: { thumbnail: '250x250^', gravity: 'north', extent: '250x250' }) %>
-                <%#= link_to icon('fas', 'trash has-text-danger'), attachment_path(f), { method: 'delete', remote: true, data: { confirm: 'Esta acción es irreversible. ¿Desea continuar?' } } %>
-              </span>
+                <%= link_to icon('fas', 'trash'), admin_attachment_path(f), { method: 'delete', remote: true, data: { confirm: 'Esta acción es irreversible. ¿Desea continuar?' } } %>
+              </div>
             <% end %>
           <% end %>
         </div>
