@@ -35,9 +35,12 @@
       <% unless 'show' == params[:action] %>
         <div class="control">
           <div class="preview">
-            <% if @artista.foto.attached? %>
-              <%= image_tag @artista.foto.variant( combine_options: { resize: '400', crop: '400x400+0+0', gravity: 'north' } ), class: 'is-square' %>
-            <% end %>
+            <div class="image-preview">
+              <% if @artista.foto.attached? %>
+                <%= image_tag @artista.foto.variant( combine_options: { resize: '400', crop: '400x400+0+0', gravity: 'north' } ), class: 'is-square' %>
+                <%= link_to icon('fas', 'trash'), admin_attachment_path(@artista.foto.id), { method: 'delete', remote: true, data: { confirm: 'Esta acción es irreversible. ¿Desea continuar?' } } %>
+              <% end %>
+            </div>
           </div>
           <div class="file">
             <label class="file-label">
