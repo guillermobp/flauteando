@@ -28,7 +28,7 @@ class Admin::EncuentrosController < AdminController
       flash[:alert] = 'Ocurrió un error intentando actualizar el encuentro'
     end
 
-    redirect_to admin_encuentro_config_index_path(@encuentro)
+    redirect_to edit_admin_encuentro_path(@encuentro)
   end
 
   def destroy
