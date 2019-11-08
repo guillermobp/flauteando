@@ -1,4 +1,7 @@
 class Artista < ApplicationRecord
+
+  default_scope { order(:nombre) }
+
   has_many :artistas_presentaciones
 
   has_many :presentaciones, through: :artistas_presentaciones
