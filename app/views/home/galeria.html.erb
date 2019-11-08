@@ -1,5 +1,7 @@
-<div class="gallery">
+<section class="gallery">
   <% @encuentro.fotos.each do |f| %>
   <%= image_tag f, class: 'is-4by3' %>
   <% end %>
-</div>
+</section>
+
+<%= render 'layouts/footer' %>
