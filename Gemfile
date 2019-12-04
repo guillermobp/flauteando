@@ -33,6 +33,8 @@ gem 'font-awesome-sass', '~> 5.9'
 gem 'bulma-rails', '~> 0.7.5'
 # gem 'bulma-extensions-rails', '~> 6.2', '>= 6.2.7'
 
+gem 'aws-sdk-s3', '~> 1'
+
 gem 'selectr-rails', '~> 2.4', '>= 2.4.8'
 
 group :development, :test do
