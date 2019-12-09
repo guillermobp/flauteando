@@ -391,16 +391,29 @@ body {
   }
 
   &.galeria > div.container {
-    div.gallery {
+    section.gallery {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
-      grid-template-rows: 18rem;
-      grid-gap: 1rem;
+      grid-gap: 0.5rem;
+      padding: 4rem 10rem;
 
-      img {
-        object-fit: cover;
-        width: 100%;
-        height: 100%;
+      span.image-crop {
+        border-radius: 0.5rem;
+        overflow: hidden;
+
+        img {
+          object-fit: cover;
+          width: 100%;
+          height: 100%;
+          cursor: crosshair;
+          filter: brightness(0.7);
+          transition: scale 150ms, filter 150ms;
+
+          &:hover {
+            scale: 1.25;
+            filter: brightness(1);
+          }
+        }
       }
     }
   }
@@ -408,12 +421,11 @@ body {
   div.footer {
     background-color: #05a99f;
     width: 100%;
-    height: 20rem;
+    height: 24rem;
     display: flex;
     justify-content: center;
     align-content: center;
     align-items: center;
-    margin-top: 4rem;
     font-family: 'Lato';
 
     p {

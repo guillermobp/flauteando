@@ -1,6 +1,8 @@
 <section class="gallery">
   <% @encuentro.fotos.each do |f| %>
-  <%= image_tag f, class: 'is-4by3' %>
+  <span class="image-crop">
+    <%= image_tag f.variant(combine_options: { thumbnail: '700x700^', gravity: 'north', extent: '700x700' }) %>
+  </span>
   <% end %>
 </section>
 
