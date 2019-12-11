@@ -1,7 +1,7 @@
 <section class="gallery">
   <% @encuentro.fotos.each do |f| %>
   <span class="image-crop">
-    <%= image_tag f.variant(combine_options: { thumbnail: '700x700^', gravity: 'north', extent: '700x700' }) %>
+    <%= link_to image_tag(f.variant(combine_options: { thumbnail: '700x700^', gravity: 'north', extent: '700x700' })), f, target: '_blank' %>
   </span>
   <% end %>
 </section>
