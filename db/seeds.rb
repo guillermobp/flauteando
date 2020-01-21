@@ -226,3 +226,49 @@ unless ObraPresentacion.any?
   ObraPresentacion.create(obra: obra_16, presentacion: pres_14)
   ObraPresentacion.create(obra: obra_9, presentacion: pres_15)
 end
+
+unless Fecha.any?
+  fecha_1 = Fecha.create(encuentro: Encuentro.first, fecha: '2019-10-08')
+  fecha_2 = Fecha.create(encuentro: Encuentro.first, fecha: '2019-10-09')
+  fecha_3 = Fecha.create(encuentro: Encuentro.first, fecha: '2019-10-10')
+  fecha_4 = Fecha.create(encuentro: Encuentro.first, fecha: '2019-10-11')
+end
+
+unless FechaActividad.any?
+  fecha_actividad_1 = FechaActividad.create(fecha: fecha_1, lugar: nil, tematica: nil)
+  fecha_actividad_2 = FechaActividad.create(fecha: fecha_2, lugar: 'Sala Subterráneo', tematica: 'Exposición y Luthería')
+  fecha_actividad_3 = FechaActividad.create(fecha: fecha_3, lugar: 'Sala Subterráneo', tematica: 'Exposición y Luthería')
+  fecha_actividad_4 = FechaActividad.create(fecha: fecha_4, lugar: 'Sala Subterráneo', tematica: 'Exposición y Luthería')
+end
+
+unless Actividad.any?
+  # Fecha 1 (2019-10-08)
+  Actividad.create(fecha_actividad: fecha_actividad_1, inicio: '09:00', termino: nil, titulo: 'Salida a Panguipulli', descripcion: nil, lugar: nil)
+  Actividad.create(fecha_actividad: fecha_actividad_1, inicio: '11:30', termino: '13:00', titulo: 'Panguipulli', descripcion: 'Ingauguración clases estudiantes de colegios', lugar: 'Panguipulli')
+  Actividad.create(fecha_actividad: fecha_actividad_1, inicio: '13:30', termino: '15:00', titulo: 'Almuerzo', descripcion: nil, lugar: nil)
+  Actividad.create(fecha_actividad: fecha_actividad_1, inicio: '16:00', termino: '17:30', titulo: 'Clases Estudiantes', descripcion: nil, lugar: 'Casona Cultural')
+  Actividad.create(fecha_actividad: fecha_actividad_1, inicio: '18:00', termino: '19:00', titulo: 'Coffee', descripcion: nil, lugar: nil)
+  Actividad.create(fecha_actividad: fecha_actividad_1, inicio: '19:30', termino: nil, titulo: 'Concierto de Ingauguración', descripcion: nil, lugar: 'Casona Cultural Amigos de Panguipulli')
+  # Fecha 2 (2019-10-09)
+  Actividad.create(fecha_actividad: fecha_actividad_2, inicio: '10:00', termino: '10:45', titulo: 'Clase magistral Felipe García', descripcion: nil, lugar: nil)
+  Actividad.create(fecha_actividad: fecha_actividad_2, inicio: '10:45', termino: '11:30', titulo: 'Clase individual Raúl Pimentel', descripcion: nil, lugar: nil)
+  Actividad.create(fecha_actividad: fecha_actividad_2, inicio: '11:45', termino: '13:00', titulo: 'Charla Fernando Harms', descripcion: nil, lugar: nil)
+  Actividad.create(fecha_actividad: fecha_actividad_2, inicio: '13:30', termino: '15:00', titulo: 'Almuerzo', descripcion: nil, lugar: nil)
+  Actividad.create(fecha_actividad: fecha_actividad_2, inicio: '15:00', termino: '18:00', titulo: 'Ensambles Dir. Jorge Valdebenito', descripcion: nil, lugar: nil)
+  Actividad.create(fecha_actividad: fecha_actividad_2, inicio: '18:00', termino: '18:30', titulo: 'Coffee', descripcion: nil, lugar: nil)
+  Actividad.create(fecha_actividad: fecha_actividad_2, inicio: '19:30', termino: nil, titulo: 'Concierto', descripcion: nil, lugar: nil)
+  # Fecha 3 (2019-10-10)
+  Actividad.create(fecha_actividad: fecha_actividad_3, inicio: '10:00', termino: '10:45', titulo: 'Clase magistral Raúl Pimentel', descripcion: nil, lugar: nil)
+  Actividad.create(fecha_actividad: fecha_actividad_3, inicio: '10:45', termino: '11:30', titulo: 'Clase individual Felipe García', descripcion: nil, lugar: nil)
+  Actividad.create(fecha_actividad: fecha_actividad_3, inicio: '11:45', termino: '13:00', titulo: 'Clase Fernando Harms', descripcion: nil, lugar: nil)
+  Actividad.create(fecha_actividad: fecha_actividad_3, inicio: '13:30', termino: '15:00', titulo: 'Almuerzo', descripcion: nil, lugar: nil)
+  Actividad.create(fecha_actividad: fecha_actividad_3, inicio: '15:00', termino: '18:00', titulo: 'Ensambles Dir. Jorge Valdebenito', descripcion: nil, lugar: nil)
+  Actividad.create(fecha_actividad: fecha_actividad_3, inicio: '18:00', termino: '18:30', titulo: 'Coffee', descripcion: nil, lugar: nil)
+  # Fecha 4 (2019-10-11)
+  Actividad.create(fecha_actividad: fecha_actividad_4, inicio: '10:00', termino: '11:30', titulo: 'Conversatorio Felipe García, Raúl Pimentel, María José Carrasqueira, Fernando Harms, Jorge Valdebenito, Florángel Mesko', descripcion: nil, lugar: nil)
+  Actividad.create(fecha_actividad: fecha_actividad_4, inicio: '12:00', termino: '13:30', titulo: 'Concierto de mediodía', descripcion: nil, lugar: 'Sala Sergio Pineda')
+  Actividad.create(fecha_actividad: fecha_actividad_4, inicio: '13:30', termino: '15:00', titulo: 'Almuerzo', descripcion: nil, lugar: nil)
+  Actividad.create(fecha_actividad: fecha_actividad_4, inicio: '15:00', termino: '18:00', titulo: 'Ensambles Dir. Jorge Valdebenito', descripcion: nil, lugar: nil)
+  Actividad.create(fecha_actividad: fecha_actividad_4, inicio: '18:00', termino: '18:30', titulo: 'Coffee', descripcion: nil, lugar: nil)
+  Actividad.create(fecha_actividad: fecha_actividad_4, inicio: '19:30', termino: nil, titulo: 'Concierto Clausura', descripcion: nil, lugar: nil)
+end

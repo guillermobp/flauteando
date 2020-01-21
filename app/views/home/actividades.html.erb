@@ -1,1 +1,34 @@
-<h1>Actividades</h1>
+<section id="actividades">
+  <% @encuentro.fechas_actividades.each do |fecha_actividad|%>
+    <div class="concierto">
+      <div class="fecha">
+        <span class="day"><%= fecha_actividad.fecha.fecha.strftime('%d') %></span>
+        <span class="month-name"><%= fecha_actividad.fecha.fecha.strftime('%B') %></span>
+      </div>
+      <div class="presentaciones">
+        <% fecha_actividad.actividades.each do |actividad| %>
+          <div class="presentacion">
+            <div class="obras">
+                <div class="titulo-obra">
+                  <%= actividad.inicio.strftime('%H:%M') %>
+                  <%= "- #{actividad.termino.strftime('%H:%M')}" if actividad.termino != nil %>
+                </div>
+            </div>
+            <div class="artistas">
+              <div class="titulo"><%= actividad.titulo %></div>
+              <div class="descripcion"><%= actividad.descripcion %></div>
+              <% if actividad.lugar != nil %>
+              <div class="lugar"><%= actividad.lugar %></div>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="time-place">
+        <%= "#{fecha_actividad.lugar} / #{fecha_actividad.tematica}" if fecha_actividad.lugar != nil %>
+      </div>
+    </div>
+  <% end %>
+</section>
+
+<%= render 'layouts/footer' %>

@@ -3,6 +3,9 @@ class Encuentro < ApplicationRecord
   has_many :presentaciones, through: :conciertos
   has_many :artistas, -> { distinct }, through: :presentaciones
   has_many :artistas_visibles, dependent: :destroy
+  has_many :fechas, dependent: :destroy
+  has_many :fechas_actividades, through: :fechas
+  has_many :actividades, through: :fechas_actividades
 
   has_one_attached :afiche
 
