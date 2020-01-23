@@ -95,17 +95,12 @@ ActiveRecord::Schema.define(version: 2020_01_20_003448) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "fechas", force: :cascade do |t|
+  create_table "fechas_actividades", force: :cascade do |t|
     t.bigint "encuentro_id", null: false
     t.date "fecha"
-    t.index ["encuentro_id"], name: "index_fechas_on_encuentro_id"
-  end
-
-  create_table "fechas_actividades", force: :cascade do |t|
-    t.bigint "fecha_id", null: false
     t.string "lugar"
     t.string "tematica"
-    t.index ["fecha_id"], name: "index_fechas_actividades_on_fecha_id"
+    t.index ["encuentro_id"], name: "index_fechas_actividades_on_encuentro_id"
   end
 
   create_table "obras", force: :cascade do |t|
@@ -151,8 +146,7 @@ ActiveRecord::Schema.define(version: 2020_01_20_003448) do
   add_foreign_key "artistas_visibles", "artistas"
   add_foreign_key "artistas_visibles", "encuentros"
   add_foreign_key "conciertos", "encuentros"
-  add_foreign_key "fechas", "encuentros"
-  add_foreign_key "fechas_actividades", "fechas"
+  add_foreign_key "fechas_actividades", "encuentros"
   add_foreign_key "obras_presentaciones", "obras"
   add_foreign_key "obras_presentaciones", "presentaciones"
   add_foreign_key "presentaciones", "conciertos"

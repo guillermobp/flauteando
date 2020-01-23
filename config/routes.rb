@@ -38,9 +38,15 @@ Rails.application.routes.draw do
     resources :attachments, only: [:destroy]
 
     resources :encuentros do
+
       resources :conciertos, shallow: true do
         resources :presentaciones, shallow: true, except: %i[show]
       end
+
+      resources :fechas_actividades, shallow: true do
+        resources :actividades, shallow: true, except: %i[show]
+      end
+
       resources :fotos, only: [:index]
       resources :config, only: [:index]
       resources :artistas_visibles, shallow: true

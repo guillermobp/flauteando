@@ -2,8 +2,8 @@
   <% @encuentro.fechas_actividades.each do |fecha_actividad|%>
     <div class="concierto">
       <div class="fecha">
-        <span class="day"><%= fecha_actividad.fecha.fecha.strftime('%d') %></span>
-        <span class="month-name"><%= fecha_actividad.fecha.fecha.strftime('%B') %></span>
+        <span class="day"><%= fecha_actividad.fecha.strftime('%d') %></span>
+        <span class="month-name"><%= fecha_actividad.fecha.strftime('%B') %></span>
       </div>
       <div class="presentaciones">
         <% fecha_actividad.actividades.each do |actividad| %>

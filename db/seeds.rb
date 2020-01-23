@@ -227,18 +227,11 @@ unless ObraPresentacion.any?
   ObraPresentacion.create(obra: obra_9, presentacion: pres_15)
 end
 
-unless Fecha.any?
-  fecha_1 = Fecha.create(encuentro: Encuentro.first, fecha: '2019-10-08')
-  fecha_2 = Fecha.create(encuentro: Encuentro.first, fecha: '2019-10-09')
-  fecha_3 = Fecha.create(encuentro: Encuentro.first, fecha: '2019-10-10')
-  fecha_4 = Fecha.create(encuentro: Encuentro.first, fecha: '2019-10-11')
-end
-
 unless FechaActividad.any?
-  fecha_actividad_1 = FechaActividad.create(fecha: fecha_1, lugar: nil, tematica: nil)
-  fecha_actividad_2 = FechaActividad.create(fecha: fecha_2, lugar: 'Sala Subterráneo', tematica: 'Exposición y Luthería')
-  fecha_actividad_3 = FechaActividad.create(fecha: fecha_3, lugar: 'Sala Subterráneo', tematica: 'Exposición y Luthería')
-  fecha_actividad_4 = FechaActividad.create(fecha: fecha_4, lugar: 'Sala Subterráneo', tematica: 'Exposición y Luthería')
+  fecha_actividad_1 = FechaActividad.create(encuentro: Encuentro.first, fecha: '2019-10-08', lugar: nil, tematica: nil)
+  fecha_actividad_2 = FechaActividad.create(encuentro: Encuentro.first, fecha: '2019-10-09', lugar: 'Sala Subterráneo', tematica: 'Exposición y Luthería')
+  fecha_actividad_3 = FechaActividad.create(encuentro: Encuentro.first, fecha: '2019-10-10', lugar: 'Sala Subterráneo', tematica: 'Exposición y Luthería')
+  fecha_actividad_4 = FechaActividad.create(encuentro: Encuentro.first, fecha: '2019-10-11', lugar: 'Sala Subterráneo', tematica: 'Exposición y Luthería')
 end
 
 unless Actividad.any?
