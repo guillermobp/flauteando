@@ -1,6 +1,7 @@
 <%= render 'layouts/admin/tabs' %>
 
 <%= form_with model: [:admin, @encuentro] do |form| %>
+<%= form.hidden_field :return_path, value: admin_encuentro_fotos_path(@encuentro) %>
 
 <div class="field is-horizontal">
   <div class="field-label is-normal"></div>
