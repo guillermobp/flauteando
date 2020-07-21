@@ -11,7 +11,7 @@ class Encuentro < ApplicationRecord
   has_many_attached :fotos
 
   def artistas_visibilizables
-    artistas.where.not(id: artistas_visibles.pluck(:artista_id))
+    Artista.all.where.not(id: artistas_visibles.pluck(:artista_id))
   end
 
   def conciertos_by_date
