@@ -11,8 +11,8 @@
         <%= image_tag a.artista.foto.attached? ? a.artista.foto : 'http://dummyimage.com/800x600/ccc/fff.png',
                       class: 'is-4by3',
                       data: {
-                        url_bio: artista_bio_path(a),
-                        url_nombre: artista_nombre_path(a),
+                        url_bio: artista_bio_path(a.artista),
+                        url_nombre: artista_nombre_path(a.artista),
                       } %>
         <span class="nombre"><%= a.artista.nombre %></span>
       </span>
