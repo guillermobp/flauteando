@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css?family=Rubik+Mono+One&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+body {
+  margin: 0;
+
+  section.hero {
+    height: 100vh;
+    overflow: hidden;
+
+    div.slider-track {
+      .slider {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        width: 200%;
+
+        .slider-item {
+          display: grid;
+          width: 100%;
+          overflow: hidden;
+          transition-property: transform;
+          transition-duration: 250ms;
+
+          img {
+            object-fit: cover;
+            height: 200vh;
+            grid-column: 1/2;
+            grid-row: 1/2;
+          }
+
+          h1 {
+            grid-column: 1/2;
+            grid-row: 1/2;
+            color: white;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 900;
+            font-size: 7rem;
+            margin-top: 22rem;
+            margin-left: 25rem;
+          }
+
+          p {
+            grid-column: 1/2;
+            grid-row: 1/2;
+            margin-top: 30rem;
+            margin-left: 25rem;
+            color: white;
+            width: 27rem;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 400;
+            font-size: 1.25em;
+          }
+
+          &.active {
+            transform: translate3d(-100%,0,0);
+          }
+        }
+      }
+    }
+  }
+
+  section.counter {
+    border: 1px solid green;
+    height: 100vh;
+  }
+}
