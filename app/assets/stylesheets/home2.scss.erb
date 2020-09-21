@@ -3,13 +3,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;900&display=swap');
+$base-color-dark: #4b44e2;
+$base-color-light: #01dddb;
 
 body {
   margin: 0;
+  background-color: $base-color-dark;
+  color: white;
 
   section.hero {
     height: 100vh;
     overflow: hidden;
+    background-color: #222;
 
     div.slider-track {
       .slider {
@@ -46,7 +51,7 @@ body {
 
             h1 {
               color: white;
-              font-family: 'Roboto';
+              font-family: 'Roboto', sans-serif;
               font-weight: 900;
               font-size: 7rem;
               letter-spacing: 0.25rem;
@@ -91,11 +96,13 @@ body {
 
   section.counter {
     display: grid;
+    grid-template-columns: 1fr max-content 1fr;
+    overflow: hidden;
     justify-content: center;
-    background-color: #cdd4d5;
+    background-color: $base-color-light;
     color: white;
     text-shadow: 2px 2px 8px #000;
-    font-family: 'Montserrat';
+    font-family: 'Montserrat', sans-serif;
 
     .counter-title {
       grid-column: 2;
@@ -136,12 +143,11 @@ body {
         .counter-component-value {
           span {
             padding: 1rem;
-            background-color: #38375b;
+            background-color: $base-color-dark;
             border-radius: 4px;
             color: white;
             font-size: 5rem;
             font-weight: 900;
-            // text-shadow: 2px 2px 8px #000;
           }
         }
 
@@ -179,7 +185,6 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
     align-content: flex-start;
-    background-color: black;
     padding-bottom: 5rem;
     overflow: hidden;
 
@@ -219,7 +224,7 @@ body {
         z-index: 100;
         opacity: 0.7;
         font-weight: bold;
-        font-family: 'Lato';
+        font-family: 'Lato', sans-serif;
         transition-duration: 150ms;
 
         &.fecha,
@@ -227,7 +232,7 @@ body {
           // background-color: white;
           color: white;
           text-shadow: 1px 1px 4px black;
-          font-family: 'Montserrat';
+          font-family: 'Montserrat', sans-serif;
         }
 
         &.fechas-container {
