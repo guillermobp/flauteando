@@ -1,20 +1,85 @@
 <section class="hero">
   <div class="slider-track">
     <ul class="slider">
-      <li class="slider-item">
+      <li class="slider-item active">
         <%= image_tag asset_path("hero-bg-1.jpg") %>
-        <h1>Clases</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque magnam provident vero nobis, sequi, dolores aperiam. Quo optio non eos nobis at, facilis, ea a voluptatibus voluptates doloremque, nisi expedita.</p>
+        <span class="slider-item-text">
+          <h1>Clases</h1>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque magnam provident vero nobis, sequi, dolores aperiam.</p>
+        </span>
       </li>
       <li class="slider-item">
         <%= image_tag asset_path("hero-bg-2.jpg") %>
-        <h1>Clases</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque magnam provident vero nobis, sequi, dolores aperiam. Quo optio non eos nobis at, facilis, ea a voluptatibus voluptates doloremque, nisi expedita.</p>
+        <span class="slider-item-text">
+          <h1>Charlas</h1>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque magnam provident vero nobis, sequi, dolores aperiam.</p>
+        </span>
+      </li>
+      <li class="slider-item">
+        <%= image_tag asset_path("hero-bg-3.jpg") %>
+        <span class="slider-item-text">
+          <h1>Talleres</h1>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque magnam provident vero nobis, sequi, dolores aperiam.</p>
+        </span>
       </li>
     </ul>
   </div>
 </section>
 
 <section class="counter">
-  <h1>COUNTER HERE</h1>
+  <!-- <canvas id="canvas" width="100%" height="300"></canvas> -->
+  <span class="counter-title">
+    Conteo para el encuentro
+  </span>
+  <div class="counter-components">
+    <span class="counter-component">
+      <span class="counter-component-value">
+        <span>0</span>
+        <span>5</span>
+      </span>
+      <span class="counter-component-text">Días</span>
+    </span>
+    <span class="counter-component">
+      <span class="counter-component-value">
+        <span>1</span>
+        <span>5</span>
+      </span>
+      <span class="counter-component-text">Horas</span>
+    </span>
+    <span class="counter-component">
+      <span class="counter-component-value">
+        <span>5</span>
+        <span>0</span>
+      </span>
+      <span class="counter-component-text">Minutos</span>
+    </span>
+    <span class="counter-component">
+      <span class="counter-component-value">
+        <span>5</span>
+        <span>0</span>
+      </span>
+      <span class="counter-component-text">Segundos</span>
+    </span>
+  </div>
 </section>
+
+<section class="profiles">
+  <% (1..7).each do |a| %>
+  <span class="image-crop">
+    <span class="fechas-container">
+      <span class="fecha">20/10</span>
+    </span>
+    <%= image_tag 'http://dummyimage.com/800x600/ccc/fff.png',
+                  class: 'is-4by3' %>
+    <span class="nombre">Nombre Artista</span>
+  </span>
+  <% end %>
+</section>
+
+<section class="calendar"></section>
+
+<section class="twitter"></section>
+
+<section class="footer"></section>
+
+<section class="creator"></section>
