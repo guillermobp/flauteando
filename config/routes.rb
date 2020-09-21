@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  # root 'home#artistas'
-  root 'home2#index'
+  root 'home#artistas'
 
   get '/admin', to: 'admin/encuentros#index', as: :admin
 
@@ -11,6 +10,7 @@ Rails.application.routes.draw do
 
   resources :password_resets, only: %i[new create edit update]
 
+  get 'home2020', to: 'home2#index'
   get 'artistas', to: 'home#artistas'
   get 'artistas/:id', to: 'home#artista', as: :artista
   get 'actividades', to: 'home#actividades'
