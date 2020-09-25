@@ -64,20 +64,15 @@
 
 <section class="profiles">
   <% @encuentro.artistas_visibles.each do |a| %>
-  <span class="image-crop">
-    <span class="fechas-container">
-      <% a.artista.conciertos_por_encuentro(@encuentro).each do |c| %>
-      <span class="fecha"><%= c.display_short_date %></span>
-      <% end %>
+    <span class="image-crop">
+      <span class="fechas-container">
+        <% a.artista.conciertos_por_encuentro(@encuentro).each do |c| %>
+          <span class="fecha"><%= c.display_short_date %></span>
+        <% end %>
+      </span>
+      <%= image_tag a.artista.foto.attached? ? a.artista.foto : 'http://dummyimage.com/800x600/ccc/fff.png', class: 'is-4by3', data: { url_bio: artista_bio_path(a.artista), url_nombre: artista_nombre_path(a.artista), } %>
+      <span class="nombre"><%= a.artista.nombre %></span>
     </span>
-    <%= image_tag a.artista.foto.attached? ? a.artista.foto : 'http://dummyimage.com/800x600/ccc/fff.png',
-                  class: 'is-4by3',
-                  data: {
-                    url_bio: artista_bio_path(a.artista),
-                    url_nombre: artista_nombre_path(a.artista),
-                  } %>
-    <span class="nombre"><%= a.artista.nombre %></span>
-  </span>
   <% end %>
 </section>
 
