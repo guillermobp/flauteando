@@ -384,4 +384,42 @@ body {
       grid-template-columns: 5rem 1fr;
     }
   }
+
+  section.instagram {
+    background: linear-gradient(180deg, $base-color-dark 0, $base-color-light 100%);
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    font-family: 'Montserrat', sans-serif;
+
+    .instagram-title {
+      grid-column: 2;
+      justify-self: center;
+      align-self: center;
+      font-size: 2rem;
+      font-weight: 900;
+      margin: 4rem 0;
+
+      a {
+        text-decoration: none;
+        color: #01dddb;
+      }
+    }
+
+    div#instafeed {
+      grid-column: 2;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+      grid-gap: 2rem;
+      margin: 0 4rem;
+
+      a {
+        overflow: hidden;
+
+        img {
+          width: 100%;
+          object-fit: contain;
+        }
+      }
+    }
+  }
 }
