@@ -1,3 +1,5 @@
+import Instafeed from 'instafeed.js/dist/instafeed.js';
+
 window.addEventListener('scroll', async (e) => {
 
   // Setup parallax effect
@@ -58,4 +60,16 @@ window.addEventListener('DOMContentLoaded', async () => {
   };
 
   setInterval(showNextImage, 2000);
+
+  const getToken = async () => {
+    const g = await fetch('https://flauteandoenelrio-igtoken.herokuapp.com/token.json');
+    const json = await g.json();
+    return json.token;
+  };
+
+  new Instafeed({
+    accessToken: await getToken(),
+    limit: 9,
+    template: '<a href="{{link}}"><img title="{{caption}}" src="{{image}}" /></a>',
+  }).run();
 });
