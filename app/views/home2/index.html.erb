@@ -78,11 +78,18 @@
 
 <!-- <section class="calendar"></section> -->
 
-<section class="instagram">
-  <span class="instagram-title">
-    Lo más nuevo en <a href="https://www.instagram.com/flauteandoenelrio" target="_blank">instagram</a>
+<section id="instagram">
+  <span id="instagram-title">
+    Lo más nuevo en
+    <%= link_to 'instagram', 'https://www.instagram.com/flauteandoenelrio', target: '_blank' %>
   </span>
-  <div id="instafeed"></div>
+  <div id="instafeed-slider">
+    <%= icon('fas', 'chevron-circle-left', id: 'instafeed-slider-control-left', class: 'instafeed-slider-control') %>
+    <div id="instafeed-slider-track-container">
+      <div id="instafeed"></div>
+    </div>
+    <%= icon('fas', 'chevron-circle-right', id: 'instafeed-slider-control-right', class: 'instafeed-slider-control') %>
+  </div>
 </section>
 
 <section class="twitter"></section>

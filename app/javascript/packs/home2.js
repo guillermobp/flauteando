@@ -29,7 +29,7 @@ window.addEventListener('scroll', async (e) => {
 });
 
 window.addEventListener('DOMContentLoaded', async () => {
-
+  let instafeedTranslation = 0;
   const slider = document.querySelector('.hero .slider');
 
   const items = [...slider.querySelectorAll('.slider-item')];
@@ -72,4 +72,37 @@ window.addEventListener('DOMContentLoaded', async () => {
     limit: 9,
     template: '<a href="{{link}}"><img title="{{caption}}" src="{{image}}" /></a>',
   }).run();
+
+  document.getElementById('instafeed-slider-control-right').addEventListener('click', async (e) => {
+    const track = document.getElementById('instafeed');
+    const trackChildCount = track.childElementCount;
+    const trackWidth = track.clientWidth;
+    const imgWidth = track.querySelector('img').clientWidth;
+    const clientWidth = document.querySelector('body').clientWidth;
+    const endTrackContentWidth = trackWidth - clientWidth - instafeedTranslation;
+
+    if ((instafeedTranslation + clientWidth) < trackWidth) {
+      if (endTrackContentWidth > (trackWidth / trackChildCount)) {
+        instafeedTranslation += 300;
+      } else {
+        instafeedTranslation += endTrackContentWidth;
+      }
+      track.style.transform = `translate(-${instafeedTranslation}px)`;
+    }
+  });
+
+  document.getElementById('instafeed-slider-control-left').addEventListener('click', async (e) => {
+    const track = document.getElementById('instafeed');
+    const trackChildCount = track.childElementCount;
+    const trackWidth = track.clientWidth;
+    const imgWidth = track.querySelector('img').clientWidth;
+    const clientWidth = document.querySelector('body').clientWidth;
+    const beginTrackContentWidth = trackWidth - clientWidth - instafeedTranslation;
+    if (instafeedTranslation >= 300) {
+      instafeedTranslation -= 300;
+    } else {
+      instafeedTranslation = 0;
+    }
+    track.style.transform = `translate(-${instafeedTranslation}px)`;
+  });
 });
