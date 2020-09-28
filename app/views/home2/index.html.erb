@@ -1,4 +1,10 @@
 <section class="hero">
+  <ul id="main-nav-list" class="main-nav">
+    <li><%= link_to 'Artistas', artistas_path, class: ('active' if action_name == 'artistas') %></li>
+    <li><%= link_to 'Actividades', actividades_path, class: ('active' if action_name == 'actividades') %></li>
+    <li><%= link_to 'Conciertos', conciertos_path, class: ('active' if action_name == 'conciertos') %></li>
+    <li><%= link_to 'Galería', galeria_path, class: ('active' if action_name == 'galeria') %></li>
+  </ul>
   <div class="slider-track">
     <ul class="slider">
       <li class="slider-item active">
@@ -33,29 +39,30 @@
   <div class="counter-components">
     <span class="counter-component">
       <span class="counter-component-value">
-        <span>0</span>
-        <span>5</span>
+        <span id="counter-days-container-hundred"></span>
+        <span id="counter-days-container-ten"></span>
+        <span id="counter-days-container-one"></span>
       </span>
       <span class="counter-component-text">Días</span>
     </span>
     <span class="counter-component">
       <span class="counter-component-value">
-        <span>1</span>
-        <span>5</span>
+        <span id="counter-hours-container-ten"></span>
+        <span id="counter-hours-container-one"></span>
       </span>
       <span class="counter-component-text">Horas</span>
     </span>
     <span class="counter-component">
       <span class="counter-component-value">
-        <span>5</span>
-        <span>0</span>
+        <span id="counter-minutes-container-ten"></span>
+        <span id="counter-minutes-container-one"></span>
       </span>
       <span class="counter-component-text">Minutos</span>
     </span>
     <span class="counter-component">
       <span class="counter-component-value">
-        <span>5</span>
-        <span>0</span>
+        <span id="counter-seconds-container-ten"></span>
+        <span id="counter-seconds-container-one"></span>
       </span>
       <span class="counter-component-text">Segundos</span>
     </span>

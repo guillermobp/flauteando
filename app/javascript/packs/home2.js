@@ -1,5 +1,7 @@
 import Instafeed from 'instafeed.js/dist/instafeed.js';
 
+const eventTime = new Date('2020-10-03').getTime();
+
 window.addEventListener('scroll', async (e) => {
 
   // Setup parallax effect
@@ -38,6 +40,16 @@ window.addEventListener('DOMContentLoaded', async () => {
   const firstImage = items[0].querySelector('img');
   const srcs = items.map(i => i.querySelector('img').src);
 
+  const daysContainerOne = document.getElementById('counter-days-container-one');
+  const daysContainerTen = document.getElementById('counter-days-container-ten');
+  const daysContainerHundred = document.getElementById('counter-days-container-hundred');
+  const hoursContainerOne = document.getElementById('counter-hours-container-one');
+  const hoursContainerTen = document.getElementById('counter-hours-container-ten');
+  const minutesContainerOne = document.getElementById('counter-minutes-container-one');
+  const minutesContainerTen = document.getElementById('counter-minutes-container-ten');
+  const secondsContainerOne = document.getElementById('counter-seconds-container-one');
+  const secondsContainerTen = document.getElementById('counter-seconds-container-ten');
+
   let sliderScroll = 0;
   let i = 0;
 
@@ -59,7 +71,40 @@ window.addEventListener('DOMContentLoaded', async () => {
     next.classList.add('active');
   };
 
+  const updateCounter = async (e) => {
+    // Get today's date and time
+    var now = new Date().getTime();
+
+    // Find the distance between now and the count down date
+    var distance = eventTime - now;
+
+    // Time calculations for days, hours, minutes and seconds
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    const daysComps = days.toString().split('');
+    const hoursComps = hours.toString().split('');
+    const minutesComps = minutes.toString().split('');
+    const secondsComps = seconds.toString().split('');
+
+    daysContainerHundred.innerText = daysComps[2] || '0';
+    daysContainerTen.innerText = daysComps[1] || '0';
+    daysContainerOne.innerText = daysComps[0] || '0';
+
+    hoursContainerTen.innerText = hoursComps[1] || '0';
+    hoursContainerOne.innerText = hoursComps[0] || '0';
+
+    minutesContainerTen.innerText = minutesComps[0] || '0';
+    minutesContainerOne.innerText = minutesComps[1] || '0';
+
+    secondsContainerTen.innerText = secondsComps[0] || '0';
+    secondsContainerOne.innerText = secondsComps[1] || '0';
+  };
+
   setInterval(showNextImage, 2000);
+  setInterval(updateCounter, 1000);
 
   const getToken = async () => {
     const g = await fetch('https://flauteandoenelrio-igtoken.herokuapp.com/token.json');
