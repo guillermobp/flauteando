@@ -1,6 +1,6 @@
 import Instafeed from 'instafeed.js/dist/instafeed.js';
 
-const eventTime = new Date('2020-10-03').getTime();
+const eventTime = new Date('2020-10-03 09:50').getTime();
 
 window.addEventListener('scroll', async (e) => {
 
@@ -84,23 +84,25 @@ window.addEventListener('DOMContentLoaded', async () => {
     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
+    console.log({days,hours,minutes,seconds});
+
     const daysComps = days.toString().split('');
     const hoursComps = hours.toString().split('');
     const minutesComps = minutes.toString().split('');
     const secondsComps = seconds.toString().split('');
 
-    daysContainerHundred.innerText = daysComps[2] || '0';
-    daysContainerTen.innerText = daysComps[1] || '0';
-    daysContainerOne.innerText = daysComps[0] || '0';
+    daysContainerHundred.innerText = daysComps[2] ? daysComps[0] : '0';
+    daysContainerTen.innerText = daysComps[2] ? daysComps[1] : (daysComps[1] ? daysComps[1] : '0');
+    daysContainerOne.innerText = daysComps[2] || daysComps[1] || daysComps[0] || '0';
 
-    hoursContainerTen.innerText = hoursComps[1] || '0';
-    hoursContainerOne.innerText = hoursComps[0] || '0';
+    hoursContainerTen.innerText = hoursComps[1] ? hoursComps[0] : '0';
+    hoursContainerOne.innerText = hoursComps[1] || '0';
 
-    minutesContainerTen.innerText = minutesComps[0] || '0';
+    minutesContainerTen.innerText = minutesComps[1] ? minutesComps[0] : '0';
     minutesContainerOne.innerText = minutesComps[1] || '0';
 
-    secondsContainerTen.innerText = secondsComps[0] || '0';
-    secondsContainerOne.innerText = secondsComps[1] || '0';
+    secondsContainerTen.innerText = secondsComps[1] ? secondsComps[0] : '0';
+    secondsContainerOne.innerText = secondsComps[1] || secondsComps[0] || '0';
   };
 
   setInterval(showNextImage, 2000);
