@@ -1,7 +1,7 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
-@import url('https://fonts.googleapis.com/css?family=Rubik+Mono+One&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Rubik+Mono+One&display=swap'); // @import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;900&display=swap');
@@ -125,7 +125,8 @@ body {
     grid-template-columns: 1fr max-content 1fr;
     overflow: hidden;
     justify-content: center;
-    background-color: $base-color-light;
+    // background-color: $base-color-light;
+    background-color: #0171DD;
     color: white;
     text-shadow: 2px 2px 8px #000;
     font-family: 'Montserrat', sans-serif;
@@ -169,7 +170,8 @@ body {
         .counter-component-value {
           span {
             padding: 1rem;
-            background-color: $base-color-dark;
+            // background-color: $base-color-dark;
+            background-color: #138BFE;
             border-radius: 4px;
             color: white;
             font-size: 4rem;
@@ -211,7 +213,8 @@ body {
   }
 
   section.profiles {
-    background: linear-gradient(180deg, $base-color-light 0, $base-color-dark 100%);
+    // background: linear-gradient(180deg, $base-color-light 0, $base-color-dark 100%);
+    background-color: #138BFE;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
     align-content: flex-start;
@@ -406,9 +409,12 @@ body {
   // }
   section.calendar {
     background-color: $base-color-dark;
+    background-color: #0171DD;
     display: grid;
     grid-template-columns: auto 1fr auto;
     // justify-content: center;
+    font-family: 'Lato', sans-serif;
+
     #calendar-nav {
       grid-column: 2;
       display: flex;
@@ -417,7 +423,6 @@ body {
       margin: 0;
       padding: 0;
       margin-top: 2rem;
-      font-family: 'Montserrat', sans-serif;
       font-size: 1.25rem;
       font-weight: 900;
       justify-self: center;
@@ -429,41 +434,145 @@ body {
         flex-direction: column;
         justify-content: center;
         text-align: center;
-        border-top: 1px solid white;
-        border-bottom: 1px solid white;
-
+        border-right: 1px solid #138BFE;
+        background-color: #00498E;
+        cursor: pointer;
+        // border-top: 1px solid white;
+        // border-bottom: 1px solid white;
         &:first-child {
-          border: 1px solid white;
-          border-top-left-radius: 4px;
-          border-bottom-left-radius: 4px;
+          // border: 1px solid white;
+          border-top-left-radius: 14px;
+          border-bottom-left-radius: 14px;
         }
 
         &:last-child {
-          border: 1px solid white;
-          border-top-right-radius: 4px;
-          border-bottom-right-radius: 4px;
+          // border: 1px solid white;
+          border-right: 0;
+          border-top-right-radius: 14px;
+          border-bottom-right-radius: 14px;
+        }
+
+        &.active,
+        &:hover {
+          background-color: #138BFE;
         }
       }
     }
 
     .calendar-day {
       grid-column: 2;
+      grid-row: 2;
       list-style: none;
       // width: 80rem;
       visibility: hidden;
+      opacity: 0;
       padding: 0;
       max-width: max-content;
       justify-self: center;
+      transition: opacity 350ms ease-in;
+      transition-delay: 150ms;
 
       &.active {
         visibility: visible;
+        opacity: 1;
       }
 
       li {
+        display: grid;
+        grid-template-columns: max-content 2fr 1fr;
+        gap: 0.5rem;
         border: 1px solid white;
         border-radius: 4px;
-        padding: 1rem;
+        padding: 1rem 2rem;
         margin-bottom: 1rem;
+
+        img {
+          grid-column: 1;
+          grid-row: 1/3;
+          border-radius: 50px;
+          margin-right: 2rem;
+        }
+
+        span {
+          &.description {
+            grid-column: 2;
+            grid-row: 1;
+            margin-right: 2rem;
+          }
+
+          &.time {
+            grid-column: 3;
+            grid-row: 1;
+          }
+
+          &.by {
+            grid-column: 2;
+            grid-row: 2;
+          }
+
+          &.place {
+            grid-column: 3;
+            grid-row: 2;
+          }
+
+          &.description,
+          &.time {
+            // font-family: 'Roboto', sans-serif;
+            font-weight: 700;
+            // font-size: 1.25rem;
+            align-self: end;
+          }
+
+          &.by,
+          &.place {
+            // font-family: 'Lato', sans-serif;
+            // font-size: 1.1rem;
+            color: #ccc;
+            font-weight: 400;
+          }
+
+          &.by,
+          &.description {
+            justify-self: start;
+          }
+
+          &.place,
+          &.time {
+            // justify-self: end;
+          }
+        }
+
+        .button {
+          grid-column: 4;
+          grid-row: 1/3;
+          align-self: center;
+          box-shadow: 0 10px 14px -7px #276873;
+          // background: linear-gradient(to bottom, #599bb3 5%, #408c99 100%);
+          background: linear-gradient(135deg, #01dddb 45%, #01DD6D 100%);
+          background-color: #599bb3;
+          border-radius: 30px;
+          display: inline-block;
+          cursor: pointer;
+          color: #ffffff;
+          font-family: Arial;
+          font-size: 20px;
+          font-weight: bold;
+          padding: 13px 32px;
+          text-decoration: none;
+          text-shadow: 0 1px 0 #3d768a;
+          transition: scale 250ms ease-in-out;
+
+          &:hover {
+            // background: linear-gradient(135deg, #01dddb -10%, #0171DD 110%);
+            background-color: #408c99;
+            scale: 1.05;
+          }
+
+          &:active {
+            position: relative;
+            top: 1px;
+          }
+        }
       }
     }
   }
