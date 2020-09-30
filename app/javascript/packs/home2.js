@@ -1,6 +1,6 @@
 import Instafeed from 'instafeed.js/dist/instafeed.js';
 
-const eventTime = new Date('2020-10-03 09:50').getTime();
+const eventTime = new Date('2020-10-06 10:00').getTime();
 
 window.addEventListener('scroll', async (e) => {
 
@@ -84,7 +84,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    console.log({days,hours,minutes,seconds});
+    // console.log({days,hours,minutes,seconds});
 
     const daysComps = days.toString().split('');
     const hoursComps = hours.toString().split('');
@@ -151,5 +151,14 @@ window.addEventListener('DOMContentLoaded', async () => {
       instafeedTranslation = 0;
     }
     track.style.transform = `translate(-${instafeedTranslation}px)`;
+  });
+
+  document.querySelectorAll('[data-toggle="visible"][data-target]').forEach(toggle => {
+    toggle.addEventListener('click', async (e) => {
+      toggle.parentElement.querySelector('.active').classList.remove('active');
+      toggle.classList.add('active');
+      document.querySelector(`${toggle.dataset.targetsContainer}.active`).classList.remove('active');
+      document.querySelector(toggle.dataset.target).classList.add('active');
+    });
   });
 });
