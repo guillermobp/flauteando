@@ -1,0 +1,36 @@
+<h1 class="title is-1 has-text-centered">Administración de Etiquetas</h1>
+
+<% if @etiquetas.any? %>
+  <table class="table is-fullwidth">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Nombre</th>
+        <th>Descripción</th>
+        <th>Usos</th>
+        <th class="acciones has-two-icons">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @etiquetas.each.with_index(1) do |etiqueta, index| %>
+        <tr>
+          <td><%= index %></td>
+          <td><%= etiqueta.nombre %></td>
+          <td><%= etiqueta.descripcion.truncate(100) if !etiqueta.descripcion.nil? %></td>
+          <td>
+            <span class="tag is-white"><%= etiqueta.actividades.count %></span></td>
+          <td>
+            <%= link_to content_tag(:span, icon('fas', 'edit'), class: 'icon tooltip', data: { tooltip: 'Editar etiqueta', }), edit_admin_etiqueta_path(etiqueta), class: 'button is-info is-outlined' %>
+
+            <% tooltip_text = (etiqueta.actividades.any? ? 'Esta etiqueta no se podrá eliminar' : 'Eliminar etiqueta') %>
+
+              <%= link_to content_tag(:span, icon('fas', 'trash-alt'), class: 'icon tooltip', data: { tooltip: tooltip_text, }), admin_etiqueta_path(etiqueta), method: :delete, data: { confirm: '¿Está seguro?', }, class: 'button is-danger is-outlined' %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <hr>
+    <p>No existen etiquetas registradas.</p>
+  <% end %>

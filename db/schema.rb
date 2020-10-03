@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_20_003448) do
+ActiveRecord::Schema.define(version: 2020_10_02_053320) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,15 @@ ActiveRecord::Schema.define(version: 2020_01_20_003448) do
     t.string "descripcion"
     t.string "lugar"
     t.index ["fecha_actividad_id"], name: "index_actividades_on_fecha_actividad_id"
+  end
+
+  create_table "actividades_etiquetas", force: :cascade do |t|
+    t.bigint "actividad_id", null: false
+    t.bigint "etiqueta_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["actividad_id"], name: "index_actividades_etiquetas_on_actividad_id"
+    t.index ["etiqueta_id"], name: "index_actividades_etiquetas_on_etiqueta_id"
   end
 
   create_table "artistas", force: :cascade do |t|
@@ -95,6 +104,13 @@ ActiveRecord::Schema.define(version: 2020_01_20_003448) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "etiquetas", force: :cascade do |t|
+    t.string "nombre", null: false
+    t.text "descripcion"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "fechas_actividades", force: :cascade do |t|
     t.bigint "encuentro_id", null: false
     t.date "fecha"
@@ -141,6 +157,8 @@ ActiveRecord::Schema.define(version: 2020_01_20_003448) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "actividades", "fechas_actividades"
+  add_foreign_key "actividades_etiquetas", "actividades"
+  add_foreign_key "actividades_etiquetas", "etiquetas"
   add_foreign_key "artistas_presentaciones", "artistas"
   add_foreign_key "artistas_presentaciones", "presentaciones"
   add_foreign_key "artistas_visibles", "artistas"

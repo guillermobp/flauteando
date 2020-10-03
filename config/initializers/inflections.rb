@@ -22,4 +22,6 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular 'artista_visible', 'artistas_visibles'
   inflect.irregular 'actividad', 'actividades'
   inflect.irregular 'fecha_actividad', 'fechas_actividades'
+  inflect.irregular 'etiqueta', 'etiquetas'
+  inflect.irregular 'actividad_etiqueta', 'actividades_etiquetas'
 end

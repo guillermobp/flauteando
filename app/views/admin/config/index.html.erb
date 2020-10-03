@@ -14,7 +14,8 @@
         <%= form.submit 'Agregar', class: 'button is-primary' %>
       </div>
     </div>
-    <% end %>
+  <% end %>
+  <% if @encuentro.artistas_visibles.any? %>
     <table class="table">
       <thead>
         <tr>
@@ -30,87 +31,66 @@
       </thead>
       <tbody>
         <% @encuentro.artistas_visibles.each.with_index(1) do |artista_visible, index| %>
-        <tr id="tr_<%= artista_visible.orden %>">
-          <td>
-            <div class="order-controls">
-              <% if index > 1 %>
-                <%= link_to icon('fas', 'caret-up', data: { command: 'up' }),
-                            up_artista_visible_path(artista_visible),
-                            method: :post,
-                            remote: true %>
-              <% end %>
+          <tr id="tr_<%= artista_visible.orden %>">
+            <td>
+              <div class="order-controls">
+                <% if index > 1 %>
+                  <%= link_to icon('fas', 'caret-up', data: { command: 'up' }), up_artista_visible_path(artista_visible), method: :post, remote: true %>
+                <% end %>
 
-              <% if index < @encuentro.artistas_visibles.count %>
-                <%= link_to icon('fas', 'caret-down', data: { command: 'up' }),
-                            down_artista_visible_path(artista_visible),
-                            method: :post,
-                            remote: true %>
-              <% end %>
-            </div>
-          </td>
-          <td><%= artista_visible.artista.nombre %></td>
-          <td>
-            <%= icon('fas', 'check') if artista_visible.artista.foto.attached? %>
-          </td>
-          <td>
-            <%= link_to content_tag(:span,
-                                    icon('fas', 'edit'),
-                                    class: 'icon tooltip',
-                                    data: {
-                                      tooltip: 'Editar artista',
-                                    }),
-                        edit_admin_artista_path(artista_visible.artista),
-                        class: 'button is-info is-outlined' %>
+                <% if index < @encuentro.artistas_visibles.count %>
+                  <%= link_to icon('fas', 'caret-down', data: { command: 'up' }), down_artista_visible_path(artista_visible), method: :post, remote: true %>
+                <% end %>
+              </div>
+            </td>
+            <td><%= artista_visible.artista.nombre %></td>
+            <td>
+              <%= icon('fas', 'check') if artista_visible.artista.foto.attached? %>
+            </td>
+            <td>
+              <%= link_to content_tag(:span, icon('fas', 'edit'), class: 'icon tooltip', data: { tooltip: 'Editar artista', }), edit_admin_artista_path(artista_visible.artista), class: 'button is-info is-outlined' %>
 
-            <%= link_to content_tag(:span,
-                                    icon('fas', 'trash-alt'),
-                                    class: 'icon tooltip',
-                                    data: {
-                                      tooltip: 'Quitar artista de la página de inicio',
-                                    }),
-                        admin_artista_visible_path(artista_visible),
-                        method: :delete,
-                        data: {
-                          confirm: '¿Está seguro?',
-                        },
-                        class: 'button is-danger is-outlined' %>
-          </td>
-        </tr>
+              <%= link_to content_tag(:span, icon('fas', 'trash-alt'), class: 'icon tooltip', data: { tooltip: 'Quitar artista de la página de inicio', }), admin_artista_visible_path(artista_visible), method: :delete, data: { confirm: '¿Está seguro?', }, class:
+              'button is-danger is-outlined' %>
+            </td>
+          </tr>
         <% end %>
       </tbody>
     </table>
-  </div>
+  <% else %>
+    <div class="message-body">
+      <p>No existen artistas visibles en la pantalla principal.</p>
+      <p>Seleccione algunos para que aparezcan en la sección correspondiente.</p>
+    </div>
+  <% end %>
+</div>
 </article>
 
 <article class="message">
-  <div class="message-header">
-    <p>Habilitar/Deshabilitar Encuentro</p>
-  </div>
-  <div class="message-body">
-    <p>El estado del encuentro determina si estará disponible a los visitantes de la página.</p>
-    <p>Por defecto, el encuentro habilitado más reciente es el que se muestra al llegar a la página principal.</p>
-    <p>El cambio de este estado puede realizarse las veces que estime conveniente.</p>
-    <br>
-    <%= form_with model: [:admin, @encuentro] do |f| %>
-      <%= f.hidden_field :return_path, value: admin_encuentro_config_index_path(@encuentro) %>
-      <%= f.hidden_field :habilitado, value: !@encuentro.habilitado? %>
-      <%= f.submit @encuentro.habilitado? ? 'Deshabilitar' : 'Habilitar', class: 'button is-link' %>
-    <% end %>
-  </div>
+<div class="message-header">
+  <p>Habilitar/Deshabilitar Encuentro</p>
+</div>
+<div class="message-body">
+  <p>El estado del encuentro determina si estará disponible a los visitantes de la página.</p>
+  <p>Por defecto, el encuentro habilitado más reciente es el que se muestra al llegar a la página principal.</p>
+  <p>El cambio de este estado puede realizarse las veces que estime conveniente.</p>
+  <br>
+  <%= form_with model: [:admin, @encuentro] do |f| %>
+  <%= f.hidden_field :return_path, value: admin_encuentro_config_index_path(@encuentro) %>
+  <%= f.hidden_field :habilitado, value: !@encuentro.habilitado? %>
+  <%= f.submit @encuentro.habilitado? ? 'Deshabilitar' : 'Habilitar', class: 'button is-link' %>
+<% end %>
+</div>
 </article>
 
 <article class="message">
-  <div class="message-header">
-    <p>Eliminar Encuentro</p>
-  </div>
-  <div class="message-body">
-    <p>Eliminar un encuentro elimina todos los datos que tiene asociados de forma permanente.</p>
-    <p>Esta acción es irreversible.</p>
-    <br>
-    <%= link_to 'Eliminar Encuentro',
-                admin_encuentro_path(@encuentro),
-                method: :delete,
-                data: { confirm: '¿Está seguro?' },
-                class: 'button is-danger' %>
-  </div>
+<div class="message-header">
+<p>Eliminar Encuentro</p>
+</div>
+<div class="message-body">
+<p>Eliminar un encuentro elimina todos los datos que tiene asociados de forma permanente.</p>
+<p>Esta acción es irreversible.</p>
+<br>
+<%= link_to 'Eliminar Encuentro', admin_encuentro_path(@encuentro), method: :delete, data: { confirm: '¿Está seguro?' }, class: 'button is-danger' %>
+</div>
 </article>
