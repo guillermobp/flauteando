@@ -12,6 +12,15 @@
     <%= form.text_field :tematica, class: 'input', placeholder: 'Temática' %>
   </div>
   <div class="control">
+    <%= select_tag('actividad[etiquetas][][id]',
+                    nil,
+                    data: {
+                      taggable: true,
+                      tag_placeholder: 'Seleccione una o más etiquetas',
+                      source: etiquetas_for_select_path,
+                    }) %>
+  </div>
+  <div class="control">
     <%= form.submit 'Crear', class: 'button is-link' %>
     <%= link_to 'Cancelar', edit_admin_encuentro_path(@fecha_actividad.encuentro), class: 'button is-text' %>
   </div>

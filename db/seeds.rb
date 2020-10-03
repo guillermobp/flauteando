@@ -265,3 +265,10 @@ unless Actividad.any?
   Actividad.create(fecha_actividad: fecha_actividad_4, inicio: '18:00', termino: '18:30', titulo: 'Coffee', descripcion: nil, lugar: nil)
   Actividad.create(fecha_actividad: fecha_actividad_4, inicio: '19:30', termino: nil, titulo: 'Concierto Clausura', descripcion: nil, lugar: nil)
 end
+
+unless Etiqueta.any?
+  Etiqueta.create(nombre: 'Clase')
+  Etiqueta.create(nombre: 'Charla')
+  Etiqueta.create(nombre: 'Oratorio')
+  Etiqueta.create(nombre: 'Concierto')
+end

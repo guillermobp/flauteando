@@ -1,0 +1,42 @@
+<%= form_with model: [:admin, @etiqueta] do |form| %>
+
+<div class="field is-horizontal">
+  <div class="field-label is-normal">
+    <%= form.label :nombre, class: 'label' %>
+  </div>
+  <div class="field-body">
+    <div class="field">
+      <div class="control">
+        <%= form.text_field :nombre, class: 'input' %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="field is-horizontal">
+  <div class="field-label is-normal">
+    <%= form.label :descripcion, class: 'label' %>
+  </div>
+  <div class="field-body">
+    <div class="field">
+      <div class="control">
+        <%= form.text_area :descripcion, class: 'textarea' %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% unless 'show' == params[:action] %>
+  <div class="field is-horizontal">
+    <div class="field-label is-normal"></div>
+    <div class="field-body">
+      <div class="field">
+        <div class="control">
+          <%= form.button class: 'button is-link' %>
+          <%= link_to 'Cancelar', @return_to_path, class: 'button is-text' %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+<% end %>
