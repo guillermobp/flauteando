@@ -1,0 +1,77 @@
+<%= form_with model: [:admin, @participante] do |form| %>
+
+<div class="field is-horizontal">
+  <div class="field-label is-normal">
+    <%= form.label :nombre, class: 'label' %>
+  </div>
+  <div class="field-body">
+    <div class="field">
+      <div class="control">
+        <%= form.text_field :nombre, class: 'input' %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="field is-horizontal">
+  <div class="field-label is-normal">
+    <%= form.label :bio, class: 'label' %>
+  </div>
+  <div class="field-body">
+    <div class="field">
+      <div class="control">
+        <%= form.text_area :bio, class: 'textarea' %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="field is-horizontal">
+  <div class="field-label is-normal">
+    <%= form.label :foto, class: 'label' %>
+  </div>
+  <div class="field-body">
+    <div class="field">
+      <% unless 'show' == params[:action] %>
+        <div class="control">
+          <div class="preview">
+            <div class="image-preview">
+              <% if @participante.foto.attached? %>
+                <%= image_tag @participante.foto.variant( combine_options: { resize: '400', crop: '400x400+0+0', gravity: 'north' } ), class: 'is-square' %>
+                <%= link_to icon('fas', 'trash'), admin_attachment_path(@participante.foto.id), { method: 'delete', remote: true, data: { confirm: 'Esta acción es irreversible. ¿Desea continuar?' } } %>
+              <% end %>
+            </div>
+          </div>
+          <div class="file">
+            <label class="file-label">
+              <%= form.file_field :foto, class: 'file-input' %>
+              <span class="file-cta">
+                <span class="file-icon">
+                  <i class="fas fa-upload"></i>
+                </span>
+                <span class="file-label">
+                  Examinar
+                </span>
+              </span>
+            </label>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<% unless 'show' == params[:action] %>
+  <div class="field is-horizontal">
+    <div class="field-label is-normal"></div>
+    <div class="field-body">
+      <div class="field">
+        <div class="control">
+          <%= form.button class: 'button is-link' %>
+          <%= link_to 'Cancelar', @return_to_path, class: 'button is-text' %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+<% end %>

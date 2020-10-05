@@ -1,0 +1,32 @@
+<% if @encuentro.actividades.any? %>
+  <section class="calendar">
+    <span class="section-title">
+      Calendario de Actividades
+    </span>
+    <ul id="calendar-nav">
+      <% @encuentro.etiquetas.each.with_index(1) do |etiqueta, index| %>
+        <li data-toggle="visible" data-targets-container=".actividad-container" data-target="#actividad-<%= index %>" class="<%= index == 1 ? 'active' : '' %>">
+          <span class="day-name"><%= etiqueta.nombre.pluralize %></span></li>
+      <% end %>
+    </ul>
+    <% @encuentro.etiquetas.each.with_index(1) do |etiqueta, index| %>
+      <div id="actividad-<%= index %>" class="actividad-container <%= index == 1 ? 'active' : '' %>">
+        <ul class="calendar-day">
+          <li>Horas
+            <%= etiqueta.nombre %></li>
+          <% etiqueta.actividades.pluck(:inicio, :termino).map { |x| [x[0].strftime('%H:%M'), x[1].nil? ? '' : x[1].strftime('%H:%M')] }.uniq.each do |horas| %>
+            <li><%= "#{horas[0]} - #{horas[1]}" %></li>
+          <% end %>
+        </ul>
+        <% etiqueta.actividades.group_by(&:fecha).each do |fecha, actividades| %>
+          <ul class="calendar-day">
+            <li><%= fecha %></li>
+            <% actividades.each do |actividad| %>
+              <li><%= actividad.participantes.any? ? actividad.participantes.last.nombre : actividad.titulo %></li>
+            <% end %>
+          </ul>
+        <% end %>
+      </div>
+    <% end %>
+  </section>
+<% end %>

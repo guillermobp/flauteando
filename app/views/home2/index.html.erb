@@ -4,7 +4,9 @@
     <li><%= link_to 'Actividades', actividades_path, class: ('active' if action_name == 'actividades') %></li>
     <li><%= link_to 'Conciertos', conciertos_path, class: ('active' if action_name == 'conciertos') %></li>
     <li><%= link_to 'Galería', galeria_path, class: ('active' if action_name == 'galeria') %></li>
-    <li><a href="#artistas">Artistas</a></li>
+    <li>
+      <a href="#artistas">Artistas</a>
+    </li>
   </ul>
   <div class="slider-track">
     <ul class="slider">
@@ -70,19 +72,48 @@
   </div>
 </section>
 
-<section id="artistas" class="profiles">
-  <% @encuentro.artistas_visibles.each do |a| %>
-    <span class="image-crop">
-      <span class="fechas-container">
-        <% a.artista.conciertos_por_encuentro(@encuentro).each do |c| %>
-          <span class="fecha"><%= c.display_short_date %></span>
-        <% end %>
+<% if @encuentro.participantes.any? %>
+  <section id="artistas" class="profiles">
+    <% @encuentro.participantes.each do |a| %>
+      <span class="image-crop">
+        <span class="fechas-container">
+          <% a.actividades.pluck(:fecha).each do |c| %>
+            <span class="fecha"><%= c %></span>
+          <% end %>
+        </span>
+        <span class="social">
+          <% if a.instagram? %>
+            <a href="<%= a.instagram %>" target="_blank" class="instagram">
+              <%= icon('fab', 'instagram') %>
+            </a>
+          <% end %>
+          <% if a.twitter? %>
+            <a href="<%= a.twitter %>" target="_blank" class="twitter">
+              <%= icon('fab', 'twitter') %>
+            </a>
+          <% end %>
+          <% if a.facebook? %>
+            <a href="<%= a.facebook %>" target="_blank" class="facebook">
+              <%= icon('fab', 'facebook') %>
+            </a>
+          <% end %>
+          <% if a.youtube? %>
+            <a href="<%= a.youtube %>" target="_blank" class="youtube">
+              <%= icon('fab', 'youtube') %>
+            </a>
+          <% end %>
+          <% if a.email? %>
+            <a href="mailto:<%= a.email %>?subject=Contacto Flauteando en el Río" class="email">
+              <%= icon('fas', 'at') %>
+            </a>
+          <% end %>
+        </span>
+        <%= image_tag a.foto_display, class: 'is-4by3' %>
+        <span class="nombre"><%= a.nombre %></span>
       </span>
-      <%= image_tag a.artista.foto.attached? ? a.artista.foto : 'http://dummyimage.com/800x600/ccc/fff.png', class: 'is-4by3', data: { url_bio: artista_bio_path(a.artista), url_nombre: artista_nombre_path(a.artista), } %>
-      <span class="nombre"><%= a.artista.nombre %></span>
-    </span>
-  <% end %>
-</section>
+    <% end %>
+  </section>
+<% end %>
 
 <section id="instagram">
   <span class="section-title">
@@ -98,94 +129,7 @@
   </div>
 </section>
 
-<section class="calendar">
-  <span class="section-title">
-    Calendario de Actividades
-  </span>
-  <ul id="calendar-nav">
-    <li data-toggle="visible" data-targets-container=".calendar-day" data-target="#day-1" class="active"><span class="day-name">Martes</span><span class="date">6 de octubre</span></li>
-    <li data-toggle="visible" data-targets-container=".calendar-day" data-target="#day-2"><span class="day-name">Miércoles</span><span class="date">7 de octubre</span></li>
-    <li data-toggle="visible" data-targets-container=".calendar-day" data-target="#day-3"><span class="day-name">Jueves</span><span class="date">8 de octubre</span></li>
-  </ul>
-  <ul id="day-1" class="calendar-day active">
-    <li>
-      <img src="https://dummyimage.com/90/ccc/ccc" alt="Imagen encargado">
-      <span class="description">Salida Panguipulli</span>
-      <span class="time">9:00</span>
-      <span class="by">Nombre Encargado</span>
-      <span class="place"></span>
-      <a href="" class="button">Ver más</a>
-    </li>
-    <li>
-      <img src="https://dummyimage.com/90/ccc/ccc" alt="Imagen encargado">
-      <span class="description">Inauguración clases estudiantes de colegios</span>
-      <span class="time">13:00 - 14:00</span>
-      <span class="by">Nombre Encargado</span>
-      <span class="place">Panguipulli</span>
-      <a href="" class="button">Ver más</a>
-    </li>
-    <li>
-      <img src="https://dummyimage.com/90/ccc/ccc" alt="Imagen encargado">
-      <span class="description"></span>
-      <span class="time"></span>
-      <span class="by">Nombre Encargado</span>
-      <span class="place"></span>
-      <a href="" class="button">Ver más</a>
-    </li>
-    <li>
-      <img src="https://dummyimage.com/90/ccc/ccc" alt="Imagen encargado">
-      <span class="description"></span>
-      <span class="time"></span>
-      <span class="by">Nombre Encargado</span>
-      <span class="place"></span>
-      <a href="" class="button">Ver más</a>
-    </li>
-    <li>
-      <img src="https://dummyimage.com/90/ccc/ccc" alt="Imagen encargado">
-      <span class="description"></span>
-      <span class="time"></span>
-      <span class="by">Nombre Encargado</span>
-      <span class="place"></span>
-      <a href="" class="button">Ver más</a>
-    </li>
-  </ul>
-  <ul id="day-2"  class="calendar-day">
-    <li>
-      <img src="https://dummyimage.com/90/ccc/ccc" alt="Imagen encargado">
-      <span class="description">Salida Panguipulli</span>
-      <span class="time">9:00</span>
-      <span class="by">Nombre Encargado</span>
-      <span class="place"></span>
-      <a href="" class="button">Ver más</a>
-    </li>
-    <li>
-      <img src="https://dummyimage.com/90/ccc/ccc" alt="Imagen encargado">
-      <span class="description">Inauguración clases estudiantes de colegios</span>
-      <span class="time">13:00 - 14:00</span>
-      <span class="by">Nombre Encargado</span>
-      <span class="place">Panguipulli</span>
-      <a href="" class="button">Ver más</a>
-    </li>
-  </ul>
-  <ul id="day-3"  class="calendar-day">
-    <li>
-      <img src="https://dummyimage.com/90/ccc/ccc" alt="Imagen encargado">
-      <span class="description">Salida Panguipulli</span>
-      <span class="time">9:00</span>
-      <span class="by">Nombre Encargado</span>
-      <span class="place"></span>
-      <a href="" class="button">Ver más</a>
-    </li>
-    <li>
-      <img src="https://dummyimage.com/90/ccc/ccc" alt="Imagen encargado">
-      <span class="description">Inauguración clases estudiantes de colegios</span>
-      <span class="time">13:00 - 14:00</span>
-      <span class="by">Nombre Encargado</span>
-      <span class="place">Panguipulli</span>
-      <a href="" class="button">Ver más</a>
-    </li>
-  </ul>
-</section>
+<%= render "calendario" %>
 
 <section class="footer"></section>
 

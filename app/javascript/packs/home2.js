@@ -21,9 +21,9 @@ window.addEventListener('scroll', async (e) => {
   }
 
   document.querySelectorAll('section.profiles .image-crop').forEach((imageCrop, i) => {
-    const isImageCropVisible = (window.innerHeight + window.scrollY) > (imageCrop.offsetTop + (imageCrop.clientHeight / 2));
+    const isImageCropVisible = (window.innerHeight + window.scrollY) > (imageCrop.offsetTop + (imageCrop.clientHeight / 4));
     if (!imageCrop.dataset.hasOwnProperty('doNotAnimate') && isImageCropVisible) {
-      imageCrop.style.transitionDelay = `${(i + 1) * 125}ms`;
+      imageCrop.style.transitionDelay = `${(i + 1) * 75}ms`;
       imageCrop.classList.add('visible');
       imageCrop.dataset.doNotAnimate = '';
     }

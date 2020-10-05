@@ -1,0 +1,66 @@
+<%= render 'layouts/admin/tabs' %>
+
+<div class="card">
+  <div class="card-content">
+    <h2 class="title is-2">Datos Fecha</h2>
+
+    <%= form_with model: [:admin, @fecha_actividad] do |form| %>
+    <div class="field has-addons">
+      <div class="control">
+        <%= form.date_field :fecha, class: 'input' %>
+      </div>
+      <div class="control">
+        <%= form.text_field :lugar, class: 'input', placeholder: 'Lugar' %>
+      </div>
+      <div class="control">
+        <%= form.text_field :tematica, class: 'input' %>
+      </div>
+      <div class="control">
+        <%= form.submit class: 'button is-link' %>
+        <%= link_to 'Cancelar', admin_encuentro_fechas_actividades_path(@fecha_actividad.encuentro), class: 'button is-text' %>
+      </div>
+    </div>
+    <p class="help">Ingrese fecha, lugar y temática, para actualizar los datos de esta fecha</p>
+    <% end %>
+
+    <hr>
+
+    <h3 class="title is-3">Actividades</h3>
+
+    <%= link_to 'Crear Actividad', new_admin_fecha_actividad_actividad_path(@fecha_actividad), class: 'button is-link' %>
+
+    <% if @fecha_actividad.actividades.any? %>
+    <table class="table is-fullwidth">
+      <thead>
+        <tr>
+          <th>Inicio/Término</th>
+          <th>Título</th>
+          <th>Descripción</th>
+          <th>Lugar</th>
+          <th class="acciones has-two-icons">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @fecha_actividad.actividades.each do |p| %>
+        <tr>
+          <td>
+            <%= p.inicio.strftime('%H:%M') %>
+            <%= "- #{p.termino.strftime('%H:%M')}" if p.termino != nil %>
+          </td>
+          <td><%= p.titulo %></td>
+          <td><%= p.descripcion %></td>
+          <td><%= p.lugar %></td>
+          <td>
+            <%= link_to content_tag(:span, icon('fas', 'edit'), class: 'icon tooltip', data: { tooltip: 'Editar artista', }), edit_admin_actividad_path(p), class: 'button is-info is-outlined' %>
+            <%= link_to content_tag(:span, icon('fas', 'trash-alt'), class: 'icon'), admin_actividad_path(p), method: :delete, data: { confirm: '¿Está seguro?', }, class: 'button is-danger is-outlined' %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <% else %>
+    <hr>
+    <p>No existen actividad para esta fecha.</p>
+    <% end %>
+  </div>
+</div>
