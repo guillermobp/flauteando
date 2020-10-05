@@ -301,11 +301,14 @@ if Encuentro.find_by(version: 2020).nil?
   p_14 = Participante.create(nombre: 'Adodlfo Muñoz', bio: '', instagram: 'https://www.instagram.com/flauteandoenelrio', twitter: 'https://www.twitter.com', facebook: 'https://www.facebook.com', youtube: 'https://www.youtube.com', email: 'participante@email.com')
   p_15 = Participante.create(nombre: 'Hans Ehrlich', bio: '', instagram: 'https://www.instagram.com/flauteandoenelrio', twitter: 'https://www.twitter.com', facebook: 'https://www.facebook.com', youtube: 'https://www.youtube.com', email: 'participante@email.com')
   p_16 = Participante.create(nombre: 'Florángel Mesko', bio: '', instagram: 'https://www.instagram.com/flauteandoenelrio', twitter: 'https://www.twitter.com', facebook: 'https://www.facebook.com', youtube: 'https://www.youtube.com', email: 'participante@email.com')
+  p_17 = Participante.create(nombre: 'Pablo Maturana', bio: '', instagram: 'https://www.instagram.com/flauteandoenelrio', twitter: 'https://www.twitter.com', facebook: 'https://www.facebook.com', youtube: 'https://www.youtube.com', email: 'participante@email.com')
+  p_18 = Participante.create(nombre: 'Rodrigo González', bio: '', instagram: 'https://www.instagram.com/flauteandoenelrio', twitter: 'https://www.twitter.com', facebook: 'https://www.facebook.com', youtube: 'https://www.youtube.com', email: 'participante@email.com')
 
   e_01 = Etiqueta.create(nombre: 'Clase')
   e_02 = Etiqueta.create(nombre: 'Charla')
   e_03 = Etiqueta.create(nombre: 'Concierto')
 
+  # Clases 2020
   Actividad.create(encuentro: e, fecha: '2020-10-06', inicio: '2020-10-06 15:00', termino: '2020-10-06 16:00', etiquetas: [e_01], participantes: [p_01])
   Actividad.create(encuentro: e, fecha: '2020-10-06', inicio: '2020-10-06 16:30', termino: '2020-10-06 17:30', etiquetas: [e_01], participantes: [p_02])
   Actividad.create(encuentro: e, fecha: '2020-10-06', inicio: '2020-10-06 18:00', termino: '2020-10-06 19:45', etiquetas: [e_01], participantes: [p_03])
@@ -322,21 +325,42 @@ if Encuentro.find_by(version: 2020).nil?
   Actividad.create(encuentro: e, fecha: '2020-10-09', inicio: '2020-10-09 16:30', termino: '2020-10-09 17:30', etiquetas: [e_01], participantes: [p_13])
   Actividad.create(encuentro: e, fecha: '2020-10-09', inicio: '2020-10-09 18:00', termino: '2020-10-09 19:45', etiquetas: [e_01], participantes: [p_14, p_10, p_07, p_16])
 
+  # Charlas 2020
+  Actividad.create(encuentro: e, fecha: '2020-10-06', inicio: '2020-10-06 10:00', termino: '2020-10-06 10:45', etiquetas: [e_02], participantes: [p_13], titulo: '"Respiración y corporeidad en la práctica flautística"')
+  Actividad.create(encuentro: e, fecha: '2020-10-06', inicio: '2020-10-06 11:00', termino: '2020-10-06 11:45', etiquetas: [e_02], participantes: [p_04, p_09], titulo: '"Una mirada desde el Folklore imaginario"')
+  Actividad.create(encuentro: e, fecha: '2020-10-06', inicio: '2020-10-06 12:00', termino: '2020-10-06 12:45', etiquetas: [e_02], participantes: [p_14], titulo: '"Reparación preventiva de nuestro instrumento"')
+  Actividad.create(encuentro: e, fecha: '2020-10-06', inicio: '2020-10-06 13:00', termino: '2020-10-06 13:45', etiquetas: [e_02], participantes: [p_17], titulo: 'Músicos: "La Frontera poco explorada" Una mirada desde la salud')
+
+  Actividad.create(encuentro: e, fecha: '2020-10-07', inicio: '2020-10-06 10:00', termino: '2020-10-06 10:45', etiquetas: [e_02], participantes: [p_08], titulo: '"Técnica vocal para flautistas"')
+  Actividad.create(encuentro: e, fecha: '2020-10-07', inicio: '2020-10-06 11:00', termino: '2020-10-06 11:45', etiquetas: [e_02], participantes: [p_15], titulo: '"Tips en tiempos de pandemia"')
+  Actividad.create(encuentro: e, fecha: '2020-10-07', inicio: '2020-10-06 12:00', termino: '2020-10-06 12:45', etiquetas: [e_02], participantes: [p_11], titulo: '"Desarrollo del sonido"')
+  Actividad.create(encuentro: e, fecha: '2020-10-07', inicio: '2020-10-06 13:00', termino: '2020-10-06 13:45', etiquetas: [e_02], participantes: [p_18], titulo: '"Ansiedad en los músicos en tiempos de pandemia"')
+
+  Actividad.create(encuentro: e, fecha: '2020-10-08', inicio: '2020-10-06 10:00', termino: '2020-10-06 10:45', etiquetas: [e_02], participantes: [p_02], titulo: '"La memoria como herramienta de estudio"')
+  Actividad.create(encuentro: e, fecha: '2020-10-08', inicio: '2020-10-06 11:00', termino: '2020-10-06 11:45', etiquetas: [e_02], participantes: [p_03], titulo: '"Reflexiones necesarias para madurar y crecer en el estudio"')
+  Actividad.create(encuentro: e, fecha: '2020-10-08', inicio: '2020-10-06 12:00', termino: '2020-10-06 12:45', etiquetas: [e_02], participantes: [p_07], titulo: '"Construcción de una flauta hecha a mano"')
+  Actividad.create(encuentro: e, fecha: '2020-10-08', inicio: '2020-10-06 13:00', termino: '2020-10-06 13:45', etiquetas: [e_02], participantes: [p_17], titulo: '"Analizando al flautista"')
+
+  Actividad.create(encuentro: e, fecha: '2020-10-09', inicio: '2020-10-06 10:00', termino: '2020-10-06 10:45', etiquetas: [e_02], participantes: [p_05], titulo: '"La afinación por tonalidades"')
+  Actividad.create(encuentro: e, fecha: '2020-10-09', inicio: '2020-10-06 11:00', termino: '2020-10-06 11:45', etiquetas: [e_02], participantes: [p_12], titulo: '"Conciertos escénicos y obras teatrales con música en vivo"')
+  Actividad.create(encuentro: e, fecha: '2020-10-09', inicio: '2020-10-06 12:00', termino: '2020-10-06 12:45', etiquetas: [e_02], participantes: [p_10], titulo: '"Repertorio para flauta sola de compositores chilenos"')
+  Actividad.create(encuentro: e, fecha: '2020-10-09', inicio: '2020-10-06 13:00', termino: '2020-10-06 13:45', etiquetas: [e_02], participantes: [p_18], titulo: '"Estrategias para afrontar la ansiedad en intérpres" Durante y después de la pandemia')
+
   # Conciertos 2020
-  Actividad.create(encuentro: e, fecha: '2020-10-06', inicio: '2020-10-09 19:30', etiquetas: [e_03], participantes: [p_16])
-  Actividad.create(encuentro: e, fecha: '2020-10-06', inicio: '2020-10-09 20:00', etiquetas: [e_03], participantes: [p_05])
-  Actividad.create(encuentro: e, fecha: '2020-10-06', inicio: '2020-10-09 20:30', etiquetas: [e_03], participantes: [p_10])
-  Actividad.create(encuentro: e, fecha: '2020-10-06', inicio: '2020-10-09 21:00', etiquetas: [e_03], participantes: [p_12])
+  Actividad.create(encuentro: e, fecha: '2020-10-06', inicio: '2020-10-06 19:30', etiquetas: [e_03], participantes: [p_16])
+  Actividad.create(encuentro: e, fecha: '2020-10-06', inicio: '2020-10-06 20:00', etiquetas: [e_03], participantes: [p_05])
+  Actividad.create(encuentro: e, fecha: '2020-10-06', inicio: '2020-10-06 20:30', etiquetas: [e_03], participantes: [p_10])
+  Actividad.create(encuentro: e, fecha: '2020-10-06', inicio: '2020-10-06 21:00', etiquetas: [e_03], participantes: [p_12])
 
-  Actividad.create(encuentro: e, fecha: '2020-10-07', inicio: '2020-10-09 19:30', etiquetas: [e_03], participantes: [p_02])
-  Actividad.create(encuentro: e, fecha: '2020-10-07', inicio: '2020-10-09 20:00', etiquetas: [e_03], participantes: [p_07])
-  Actividad.create(encuentro: e, fecha: '2020-10-07', inicio: '2020-10-09 20:30', etiquetas: [e_03], participantes: [p_13])
-  Actividad.create(encuentro: e, fecha: '2020-10-07', inicio: '2020-10-09 21:00', etiquetas: [e_03], titulo: 'Dúo Plana - Martí')
+  Actividad.create(encuentro: e, fecha: '2020-10-07', inicio: '2020-10-07 19:30', etiquetas: [e_03], participantes: [p_02])
+  Actividad.create(encuentro: e, fecha: '2020-10-07', inicio: '2020-10-07 20:00', etiquetas: [e_03], participantes: [p_07])
+  Actividad.create(encuentro: e, fecha: '2020-10-07', inicio: '2020-10-07 20:30', etiquetas: [e_03], participantes: [p_13])
+  Actividad.create(encuentro: e, fecha: '2020-10-07', inicio: '2020-10-07 21:00', etiquetas: [e_03], titulo: 'Dúo Plana - Martí')
 
-  Actividad.create(encuentro: e, fecha: '2020-10-08', inicio: '2020-10-09 19:30', etiquetas: [e_03], participantes: [p_03])
-  Actividad.create(encuentro: e, fecha: '2020-10-08', inicio: '2020-10-09 20:00', etiquetas: [e_03], participantes: [p_08])
-  Actividad.create(encuentro: e, fecha: '2020-10-08', inicio: '2020-10-09 20:30', etiquetas: [e_03], participantes: [p_11])
-  Actividad.create(encuentro: e, fecha: '2020-10-08', inicio: '2020-10-09 21:00', etiquetas: [e_03], titulo: 'Dúo Barrenechea')
+  Actividad.create(encuentro: e, fecha: '2020-10-08', inicio: '2020-10-08 19:30', etiquetas: [e_03], participantes: [p_03])
+  Actividad.create(encuentro: e, fecha: '2020-10-08', inicio: '2020-10-08 20:00', etiquetas: [e_03], participantes: [p_08])
+  Actividad.create(encuentro: e, fecha: '2020-10-08', inicio: '2020-10-08 20:30', etiquetas: [e_03], participantes: [p_11])
+  Actividad.create(encuentro: e, fecha: '2020-10-08', inicio: '2020-10-08 21:00', etiquetas: [e_03], titulo: 'Dúo Barrenechea')
 
   Actividad.create(encuentro: e, fecha: '2020-10-09', inicio: '2020-10-09 19:30', etiquetas: [e_03], titulo: 'Concierto de Clausura')
 

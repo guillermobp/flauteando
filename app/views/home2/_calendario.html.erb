@@ -13,20 +13,38 @@
       <div id="actividad-<%= index %>" class="actividad-container <%= index == 1 ? 'active' : '' %>">
         <ul class="calendar-day">
           <li>Horas
-            <%= etiqueta.nombre %></li>
-          <% etiqueta.actividades.pluck(:inicio, :termino).map { |x| [x[0].strftime('%H:%M'), x[1].nil? ? '' : x[1].strftime('%H:%M')] }.uniq.each do |horas| %>
-            <li><%= "#{horas[0]} - #{horas[1]}" %></li>
+            <%= etiqueta.nombre %>
+          </li>
+          <% @encuentro.fechas.each do |fecha| %>
+            <li><%= fecha %></li>
           <% end %>
         </ul>
-        <% etiqueta.actividades.group_by(&:fecha).each do |fecha, actividades| %>
+        <% etiqueta.actividades.group_by(&:inicio_termino_hhmm_ary).each do |rango, actividades| %>
           <ul class="calendar-day">
-            <li><%= fecha %></li>
-            <% actividades.each do |actividad| %>
-              <li><%= actividad.participantes.any? ? actividad.participantes.last.nombre : actividad.titulo %></li>
-            <% end %>
-          </ul>
-        <% end %>
-      </div>
-    <% end %>
-  </section>
-<% end %>
+            <li>
+              <% if !rango[:inicio].empty? %>
+                <span class="inicio"><%= rango[:inicio] %></span>
+              <% end %>
+              <% if !rango[:termino].empty? %>
+                <span class="termino"><%= rango[:termino] %></span>
+              <% end %>
+            </li>
+            <% @encuentro.fechas.each do |fecha| %>
+              <% actividad = actividades.select{ |x| x.fecha == fecha }.first %>
+                <li class="actividad">
+                  <% unless actividad.nil? %>
+                    <% if actividad.mostrar_participantes_en_calendario? %>
+                      <span class="participantes"><%= actividad.participantes.last.nombre %></span>
+                    <% end %>
+                    <% if actividad.mostrar_titulo_en_calendario? %>
+                      <span class="titulo"><%= actividad.titulo %></span>
+                    <% end %>
+                  <% end %>
+                </li>
+              <% end %>
+            </ul>
+          <% end %>
+        </div>
+      <% end %>
+    </section>
+  <% end %>
