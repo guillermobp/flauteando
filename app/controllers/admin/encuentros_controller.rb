@@ -25,6 +25,13 @@ class Admin::EncuentrosController < AdminController
     if (params[:encuentro][:fotos])
       @encuentro.fotos.attach(params[:encuentro][:fotos])
     end
+    if params[:encuentro][:slides]
+      params[:encuentro][:slides].each do |slide|
+        s = Slide.new(encuentro: @encuentro)
+        s.image.attach(slide)
+        s.save
+      end
+    end
     if @encuentro.update(encuentro_params)
       flash[:notice] = 'El encuentro ha sido actualizado exitosamente'
     else

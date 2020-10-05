@@ -8,31 +8,23 @@
       <a href="#artistas">Artistas</a>
     </li>
   </ul>
-  <div class="slider-track">
-    <ul class="slider">
-      <li class="slider-item active">
-        <%= image_tag asset_path("hero-bg-1.jpg") %>
-        <span class="slider-item-text">
-          <h1>Clases</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque magnam provident vero nobis, sequi, dolores aperiam.</p>
-        </span>
-      </li>
-      <li class="slider-item">
-        <%= image_tag asset_path("hero-bg-2.jpg") %>
-        <span class="slider-item-text">
-          <h1>Charlas</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque magnam provident vero nobis, sequi, dolores aperiam.</p>
-        </span>
-      </li>
-      <li class="slider-item">
-        <%= image_tag asset_path("hero-bg-3.jpg") %>
-        <span class="slider-item-text">
-          <h1>Talleres</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque magnam provident vero nobis, sequi, dolores aperiam.</p>
-        </span>
-      </li>
-    </ul>
-  </div>
+  <% if @encuentro.slides.any? %>
+    <div class="slider-track">
+      <ul class="slider">
+        <% @encuentro.slides.each.with_index(1) do |slide, index| %>
+          <li class="slider-item <%= index == 1 ? 'active' : '' %>">
+            <% if slide.image.attached? %>
+              <%= image_tag slide.image %>
+            <% end %>
+            <span class="slider-item-text">
+              <h1><%= slide.title %></h1>
+              <p><%= slide.description %></p>
+            </span>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 </section>
 
 <section class="counter">

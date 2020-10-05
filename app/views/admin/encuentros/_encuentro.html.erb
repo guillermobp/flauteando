@@ -125,6 +125,55 @@
 
 <hr>
 
+<div class="field is-horizontal">
+  <div class="field-label is-normal">
+    <%= form.label :slides, class: 'label' %>
+  </div>
+  <div class="field-body">
+    <div class="field">
+      <div class="control">
+        <div class="previews">
+          <% if @encuentro.slides.any? %>
+            <ul>
+              <% @encuentro.slides.each do |slide| %>
+                <li>
+                  <% if slide.image.attached? %>
+                    <div class="image-preview">
+                      <%= image_tag slide.image.variant(combine_options: { thumbnail: '250x250^', gravity: 'north', extent: '250x250' }) %>
+                      <%= link_to icon('fas', 'trash'), admin_attachment_path(slide.image.id), { method: 'delete', remote: true, data: { confirm: 'Esta acción es irreversible. ¿Desea continuar?' } } %>
+                    </div>
+                  <% end %>
+                  <span>
+                    <input type="text" name="encuentro[slides][<%= slide.id %>][title]"/>
+                    <textarea name="encuentro[slides][<%= slide.id %>][description]" id="" cols="30" rows="10"></textarea>
+                  </span>
+                  <%= link_to icon('fas', 'trash'), admin_slide_path(slide), { method: 'delete', remote: true, data: { confirm: 'Esta acción es irreversible. ¿Desea continuar?' } } %>
+                </li>
+              <% end %>
+            </ul>
+          <% end %>
+        </div>
+
+        <div class="file">
+          <label class="file-label">
+            <%= form.file_field :slides, multiple: true, class: 'file-input' %>
+            <span class="file-cta">
+              <span class="file-icon">
+                <i class="fas fa-upload"></i>
+              </span>
+              <span class="file-label">
+                Examinar
+              </span>
+            </span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr>
+
 <% unless 'show' == params[:action] %>
   <div class="field is-horizontal">
     <div class="field-label is-normal"></div>

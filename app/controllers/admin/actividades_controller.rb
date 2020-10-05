@@ -1,5 +1,5 @@
 class Admin::ActividadesController < AdminController
-  before_action :find_encuentro, except: [:update, :destroy]
+  before_action :find_encuentro, except: [:edit, :update, :destroy]
   before_action :find_actividad, except: %i[index new create for_select]
 
   def index; end
@@ -7,7 +7,7 @@ class Admin::ActividadesController < AdminController
   def show; end
 
   def edit
-    @return_to_path = request.referer || admin_actividades_path
+    @return_to_path = request.referer || admin_encuentro_actividades_path(@actividad.encuentro)
   end
 
   def new

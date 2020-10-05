@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_05_114040) do
+ActiveRecord::Schema.define(version: 2020_10_05_215003) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,8 @@ ActiveRecord::Schema.define(version: 2020_10_05_114040) do
     t.date "fecha"
     t.boolean "titulo_en_calendario", default: true, null: false
     t.boolean "participantes_en_calendario", default: true, null: false
+    t.text "texto_calendario"
+    t.boolean "texto_en_calendario", default: false, null: false
     t.index ["encuentro_id"], name: "index_actividades_on_encuentro_id"
   end
 
@@ -168,6 +170,15 @@ ActiveRecord::Schema.define(version: 2020_10_05_114040) do
     t.index ["concierto_id"], name: "index_presentaciones_on_concierto_id"
   end
 
+  create_table "slides", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.bigint "encuentro_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["encuentro_id"], name: "index_slides_on_encuentro_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -194,4 +205,5 @@ ActiveRecord::Schema.define(version: 2020_10_05_114040) do
   add_foreign_key "obras_presentaciones", "obras"
   add_foreign_key "obras_presentaciones", "presentaciones"
   add_foreign_key "presentaciones", "conciertos"
+  add_foreign_key "slides", "encuentros"
 end

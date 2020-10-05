@@ -323,7 +323,7 @@ if Encuentro.find_by(version: 2020).nil?
 
   Actividad.create(encuentro: e, fecha: '2020-10-09', inicio: '2020-10-09 15:00', termino: '2020-10-09 16:00', etiquetas: [e_01], participantes: [p_12])
   Actividad.create(encuentro: e, fecha: '2020-10-09', inicio: '2020-10-09 16:30', termino: '2020-10-09 17:30', etiquetas: [e_01], participantes: [p_13])
-  Actividad.create(encuentro: e, fecha: '2020-10-09', inicio: '2020-10-09 18:00', termino: '2020-10-09 19:45', etiquetas: [e_01], participantes: [p_14, p_10, p_07, p_16])
+  Actividad.create(encuentro: e, fecha: '2020-10-09', inicio: '2020-10-09 18:00', termino: '2020-10-09 19:45', etiquetas: [e_01], participantes: [p_14, p_10, p_07, p_16], participantes_en_calendario: false, texto_calendario: "Conversatorio\n\nTécnicos en flauta traversa\nAdolfo Muñoz, Hans Ehrlich, Jorge Valdebento, Fernando Harms\nDesde dos miradas, Técnicos en Chile\nModera Florángel Mesko", texto_en_calendario: true)
 
   # Charlas 2020
   Actividad.create(encuentro: e, fecha: '2020-10-06', inicio: '2020-10-06 10:00', termino: '2020-10-06 10:45', etiquetas: [e_02], participantes: [p_13], titulo: '"Respiración y corporeidad en la práctica flautística"')

@@ -12,16 +12,16 @@
     <% @encuentro.etiquetas.each.with_index(1) do |etiqueta, index| %>
       <div id="actividad-<%= index %>" class="actividad-container <%= index == 1 ? 'active' : '' %>">
         <ul class="calendar-day">
-          <li>Horas
+          <li class="header">Horas
             <%= etiqueta.nombre %>
           </li>
           <% @encuentro.fechas.each do |fecha| %>
-            <li><%= fecha %></li>
+            <li class="header"><%= fecha %></li>
           <% end %>
         </ul>
         <% etiqueta.actividades.group_by(&:inicio_termino_hhmm_ary).each do |rango, actividades| %>
           <ul class="calendar-day">
-            <li>
+            <li class="header">
               <% if !rango[:inicio].empty? %>
                 <span class="inicio"><%= rango[:inicio] %></span>
               <% end %>
@@ -38,6 +38,9 @@
                     <% end %>
                     <% if actividad.mostrar_titulo_en_calendario? %>
                       <span class="titulo"><%= actividad.titulo %></span>
+                    <% end %>
+                    <% if actividad.mostrar_texto_calendario? %>
+                      <span class="texto"><%= simple_format(actividad.texto_calendario) %></span>
                     <% end %>
                   <% end %>
                 </li>

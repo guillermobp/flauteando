@@ -56,4 +56,8 @@ class Actividad < ApplicationRecord
     participantes_en_calendario? && participantes.any?
   end
 
+  def mostrar_texto_calendario?
+   texto_en_calendario && !texto_calendario.nil? && !texto_calendario.empty?
+  end
+
 end

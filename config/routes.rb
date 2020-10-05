@@ -45,6 +45,8 @@ Rails.application.routes.draw do
 
     resources :encuentros do
 
+      resources :slides, shallow: true, only: %i[edit, destroy]
+
       resources :conciertos, shallow: true do
         resources :presentaciones, shallow: true, except: %i[show]
       end

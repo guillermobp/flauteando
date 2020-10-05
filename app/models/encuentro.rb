@@ -11,6 +11,7 @@ class Encuentro < ApplicationRecord
   has_many :etiquetas, -> { distinct }, through: :actividades
   # has_many :fechas, -> { distinct }, through: :actividades
   # has_many :fechas, through: :actividades
+  has_many :slides
 
   has_one_attached :afiche
 
