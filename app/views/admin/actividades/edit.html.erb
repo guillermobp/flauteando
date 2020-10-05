@@ -1,3 +1,5 @@
-<%= render 'layouts/admin/tabs' %>
+<% unless @encuentro.nil? %>
+  <%= render 'layouts/admin/tabs' %>
+<% end %>
 
 <%= render 'actividad' %>

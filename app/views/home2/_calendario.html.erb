@@ -1,0 +1,53 @@
+<% if @encuentro.actividades.any? %>
+  <section id="calendar" class="calendar">
+    <span class="section-title">
+      Calendario de Actividades
+    </span>
+    <ul id="calendar-nav">
+      <% @encuentro.etiquetas.each.with_index(1) do |etiqueta, index| %>
+        <li data-toggle="visible" data-targets-container=".actividad-container" data-target="#actividad-<%= index %>" class="<%= index == 1 ? 'active' : '' %>">
+          <span class="day-name"><%= etiqueta.nombre.pluralize %></span></li>
+      <% end %>
+    </ul>
+    <% @encuentro.etiquetas.each.with_index(1) do |etiqueta, index| %>
+      <div id="actividad-<%= index %>" class="actividad-container <%= index == 1 ? 'active' : '' %>">
+        <ul class="calendar-day">
+          <li class="header">Horas
+            <%= etiqueta.nombre %>
+          </li>
+          <% @encuentro.fechas_calendario.each do |fecha| %>
+            <li class="header"><%= fecha[3] %></li>
+          <% end %>
+        </ul>
+        <% etiqueta.actividades.group_by(&:inicio_termino_hhmm_ary).each do |rango, actividades| %>
+          <ul class="calendar-day">
+            <li class="header">
+              <% if !rango[:inicio].empty? %>
+                <span class="inicio"><%= rango[:inicio] %></span>
+              <% end %>
+              <% if !rango[:termino].empty? %>
+                <span class="termino"><%= rango[:termino] %></span>
+              <% end %>
+            </li>
+            <% @encuentro.fechas.each do |fecha| %>
+              <% actividad = actividades.select{ |x| x.fecha == fecha }.first %>
+                <li class="actividad">
+                  <% unless actividad.nil? %>
+                    <% if actividad.mostrar_participantes_en_calendario? %>
+                      <span class="participantes"><%= actividad.participantes.last.nombre %></span>
+                    <% end %>
+                    <% if actividad.mostrar_titulo_en_calendario? %>
+                      <span class="titulo"><%= actividad.titulo %></span>
+                    <% end %>
+                    <% if actividad.mostrar_texto_calendario? %>
+                      <span class="texto"><%= simple_format(actividad.texto_calendario) %></span>
+                    <% end %>
+                  <% end %>
+                </li>
+              <% end %>
+            </ul>
+          <% end %>
+        </div>
+      <% end %>
+    </section>
+  <% end %>

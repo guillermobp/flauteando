@@ -26,6 +26,7 @@
         </div>
       </div>
 
+      <% if false %>
       <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link">
           Artistas
@@ -34,6 +35,18 @@
         <div class="navbar-dropdown">
           <%= link_to 'Listado', admin_artistas_path, class: 'navbar-item' %>
           <%= link_to 'Nuevo', new_admin_artista_path, class: 'navbar-item' %>
+        </div>
+      </div>
+      <% end %>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          Participantes
+        </a>
+
+        <div class="navbar-dropdown">
+          <%= link_to 'Listado', admin_participantes_path, class: 'navbar-item' %>
+          <%= link_to 'Nuevo', new_admin_participante_path, class: 'navbar-item' %>
         </div>
       </div>
 

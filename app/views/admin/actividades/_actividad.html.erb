@@ -2,42 +2,44 @@
   <div class="card-content">
     <p class="title">Nueva Actividad</p>
 
-    <hr>
-
-    <p>
-      <strong>Datos de la Fecha</strong>
-    </p>
-    <p>
-      <strong>Fecha:</strong>
-      <%= @actividad.fecha_actividad.fecha_ddmmyyyy %></p>
-    <p>
-      <strong>Lugar:</strong>
-      <%= @actividad.fecha_actividad.lugar %></p>
-    <p>
-      <strong>Temática:</strong>
-      <%= @actividad.fecha_actividad.tematica %></p>
-
-    <hr>
-
-    <%= form_with model: [:admin, @fecha_actividad, @actividad] do |form| %>
+    <%= form_with model: [:admin, @encuentro, @actividad] do |form| %>
 
     <div class="columns">
+      <div class="field column is-6">
+        <%= form.label :titulo, class: 'label' %>
+        <div class="control">
+          <%= form.text_field :titulo, class: 'input' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="field">
+      <%= form.label :etiquetas, class: 'label' %>
+      <%= select_tag('actividad[etiquetas][][id]', nil, data: { taggable: true, tag_placeholder: 'Seleccione una o más etiquetas', source: etiquetas_for_select_path(), }) %>
+    </div>
+
+    <div class="field">
+      <%= form.label :participantes, class: 'label' %>
+      <%= select_tag('actividad[participantes][][id]', nil, data: { taggable: true, tag_placeholder: 'Seleccione uno o más participantes', source: participantes_for_select_path(), }) %>
+    </div>
+
+    <div class="columns">
+      <div class="field column is-3">
+        <%= form.label :fecha, class: 'label' %>
+        <div class="control">
+          <%= form.time_field :fecha, class: 'input' %>
+        </div>
+      </div>
       <div class="field column is-3">
         <%= form.label :inicio, class: 'label' %>
         <div class="control">
           <%= form.time_field :inicio, class: 'input' %>
         </div>
       </div>
-      <div class="field column is-3">
+      <div class="field column is-6">
         <%= form.label :termino, class: 'label' %>
         <div class="control">
           <%= form.time_field :termino, class: 'input' %>
-        </div>
-      </div>
-      <div class="field column is-6">
-        <%= form.label :titulo, class: 'label' %>
-        <div class="control">
-          <%= form.text_field :titulo, class: 'input' %>
         </div>
       </div>
     </div>
@@ -56,12 +58,19 @@
       </div>
     </div>
 
+    <div class="field">
+      <%= form.label :texto_calendario, class: 'label' %>
+      <div class="control">
+        <%= form.text_area :texto_calendario, class: 'textarea' %>
+      </div>
+    </div>
+
     <div class="field is-grouped">
       <div class="control">
         <%= form.submit class: 'button is-link' %>
       </div>
       <div class="control">
-        <%= link_to 'Cancelar', admin_fecha_actividad_actividades_path(@actividad.fecha_actividad), class: 'button is-text' %>
+        <%= link_to 'Cancelar', admin_encuentro_actividades_path(@actividad.encuentro), class: 'button is-text' %>
       </div>
     </div>
   <% end %>

@@ -1,7 +1,5 @@
 import Instafeed from 'instafeed.js/dist/instafeed.js';
 
-const eventTime = new Date('2020-10-06 10:00').getTime();
-
 window.addEventListener('scroll', async (e) => {
 
   // Setup parallax effect
@@ -21,34 +19,28 @@ window.addEventListener('scroll', async (e) => {
   }
 
   document.querySelectorAll('section.profiles .image-crop').forEach((imageCrop, i) => {
-    const isImageCropVisible = (window.innerHeight + window.scrollY) > (imageCrop.offsetTop + (imageCrop.clientHeight / 2));
+    const isImageCropVisible = (window.innerHeight + window.scrollY) > (imageCrop.offsetTop + (imageCrop.clientHeight / 4));
     if (!imageCrop.dataset.hasOwnProperty('doNotAnimate') && isImageCropVisible) {
-      imageCrop.style.transitionDelay = `${(i + 1) * 125}ms`;
+      imageCrop.style.transitionDelay = `${(i + 1) * 75}ms`;
       imageCrop.classList.add('visible');
       imageCrop.dataset.doNotAnimate = '';
     }
   });
 });
 
-window.addEventListener('DOMContentLoaded', async () => {
-  let instafeedTranslation = 0;
+const initSlider = async () => {
+
   const slider = document.querySelector('.hero .slider');
+
+  if (slider == null) {
+    return;
+  }
 
   const items = [...slider.querySelectorAll('.slider-item')];
   const sliderStep = 100;
 
   const firstImage = items[0].querySelector('img');
   const srcs = items.map(i => i.querySelector('img').src);
-
-  const daysContainerOne = document.getElementById('counter-days-container-one');
-  const daysContainerTen = document.getElementById('counter-days-container-ten');
-  const daysContainerHundred = document.getElementById('counter-days-container-hundred');
-  const hoursContainerOne = document.getElementById('counter-hours-container-one');
-  const hoursContainerTen = document.getElementById('counter-hours-container-ten');
-  const minutesContainerOne = document.getElementById('counter-minutes-container-one');
-  const minutesContainerTen = document.getElementById('counter-minutes-container-ten');
-  const secondsContainerOne = document.getElementById('counter-seconds-container-one');
-  const secondsContainerTen = document.getElementById('counter-seconds-container-ten');
 
   let sliderScroll = 0;
   let i = 0;
@@ -70,6 +62,21 @@ window.addEventListener('DOMContentLoaded', async () => {
     active.classList.remove('active');
     next.classList.add('active');
   };
+
+  setInterval(showNextImage, 5000);
+};
+
+const initCountdown = async () => {
+
+  const daysContainerOne = document.getElementById('counter-days-container-one');
+  const daysContainerTen = document.getElementById('counter-days-container-ten');
+  const daysContainerHundred = document.getElementById('counter-days-container-hundred');
+  const hoursContainerOne = document.getElementById('counter-hours-container-one');
+  const hoursContainerTen = document.getElementById('counter-hours-container-ten');
+  const minutesContainerOne = document.getElementById('counter-minutes-container-one');
+  const minutesContainerTen = document.getElementById('counter-minutes-container-ten');
+  const secondsContainerOne = document.getElementById('counter-seconds-container-one');
+  const secondsContainerTen = document.getElementById('counter-seconds-container-ten');
 
   const updateCounter = async (e) => {
     // Get today's date and time
@@ -96,7 +103,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     daysContainerOne.innerText = daysComps[2] || daysComps[1] || daysComps[0] || '0';
 
     hoursContainerTen.innerText = hoursComps[1] ? hoursComps[0] : '0';
-    hoursContainerOne.innerText = hoursComps[1] || '0';
+    hoursContainerOne.innerText = hoursComps[1] ? hoursComps[1] : (hoursComps[0] || '0');
 
     minutesContainerTen.innerText = minutesComps[1] ? minutesComps[0] : '0';
     minutesContainerOne.innerText = minutesComps[1] || '0';
@@ -105,8 +112,12 @@ window.addEventListener('DOMContentLoaded', async () => {
     secondsContainerOne.innerText = secondsComps[1] || secondsComps[0] || '0';
   };
 
-  setInterval(showNextImage, 2000);
   setInterval(updateCounter, 1000);
+};
+
+const initInstafeed = async () => {
+
+  let instafeedTranslation = 0;
 
   const getToken = async () => {
     const g = await fetch('https://flauteandoenelrio-igtoken.herokuapp.com/token.json');
@@ -152,7 +163,9 @@ window.addEventListener('DOMContentLoaded', async () => {
     }
     track.style.transform = `translate(-${instafeedTranslation}px)`;
   });
+};
 
+const initToggles = async () => {
   document.querySelectorAll('[data-toggle="visible"][data-target]').forEach(toggle => {
     toggle.addEventListener('click', async (e) => {
       toggle.parentElement.querySelector('.active').classList.remove('active');
@@ -161,4 +174,11 @@ window.addEventListener('DOMContentLoaded', async () => {
       document.querySelector(toggle.dataset.target).classList.add('active');
     });
   });
+};
+
+window.addEventListener('DOMContentLoaded', async () => {
+  initSlider();
+  initCountdown();
+  initInstafeed();
+  initToggles();
 });

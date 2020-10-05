@@ -8,14 +8,8 @@
     <li class="<%= 'is-active' if controller_name == 'encuentros' %>">
       <%= link_to 'Generales', edit_admin_encuentro_path(@encuentro) %>
     </li>
-    <li class="<%= 'is-active' if %w[fechas_actividades actividades].include?(controller_name) %>">
-      <%= link_to 'Actividades', admin_encuentro_fechas_actividades_path(@encuentro) %>
-    </li>
-    <li class="<%= 'is-active' if %w[conciertos presentaciones].include?(controller_name) %>">
-      <%= link_to 'Conciertos', admin_encuentro_conciertos_path(@encuentro) %>
-    </li>
-    <li class="<%= 'is-active' if controller_name == 'fotos' %>">
-      <%= link_to 'Galería', admin_encuentro_fotos_path(@encuentro) %>
+    <li class="<%= 'is-active' if %w[actividades].include?(controller_name) %>">
+      <%= link_to 'Actividades', admin_encuentro_actividades_path(@encuentro) %>
     </li>
     <li class="<%= 'is-active' if controller_name == 'config' %>">
       <%= link_to 'Configuración', admin_encuentro_config_index_path(@encuentro) %>

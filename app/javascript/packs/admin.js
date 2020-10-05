@@ -10,7 +10,15 @@ require("channels")
 // require("bulma-extensions")
 // require("selectr")
 
+// require("bulma-calendar")
+
+// import BulmaCalendar from 'bulma-calendar/dist/js/bulma-calendar.js';
+
 document.addEventListener("turbolinks:load", async () => {
+
+  // const calendars = BulmaCalendar.attach('[type="time"]', {
+  //   type: 'time',
+  // });
 
   for (const select of [...document.querySelectorAll('select')]) {
     const data = select.dataset;
@@ -84,4 +92,6 @@ document.addEventListener("turbolinks:load", async () => {
       }
     });
   }
+
+
 });

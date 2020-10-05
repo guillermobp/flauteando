@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_02_053320) do
+ActiveRecord::Schema.define(version: 2020_10_05_215003) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,13 +37,18 @@ ActiveRecord::Schema.define(version: 2020_10_02_053320) do
   end
 
   create_table "actividades", force: :cascade do |t|
-    t.bigint "fecha_actividad_id", null: false
-    t.time "inicio"
-    t.time "termino"
+    t.bigint "encuentro_id", null: false
+    t.datetime "inicio"
+    t.datetime "termino"
     t.string "titulo"
     t.string "descripcion"
     t.string "lugar"
-    t.index ["fecha_actividad_id"], name: "index_actividades_on_fecha_actividad_id"
+    t.date "fecha"
+    t.boolean "titulo_en_calendario", default: true, null: false
+    t.boolean "participantes_en_calendario", default: true, null: false
+    t.text "texto_calendario"
+    t.boolean "texto_en_calendario", default: false, null: false
+    t.index ["encuentro_id"], name: "index_actividades_on_encuentro_id"
   end
 
   create_table "actividades_etiquetas", force: :cascade do |t|
@@ -53,6 +58,15 @@ ActiveRecord::Schema.define(version: 2020_10_02_053320) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["actividad_id"], name: "index_actividades_etiquetas_on_actividad_id"
     t.index ["etiqueta_id"], name: "index_actividades_etiquetas_on_etiqueta_id"
+  end
+
+  create_table "actividades_participantes", force: :cascade do |t|
+    t.bigint "actividad_id", null: false
+    t.bigint "participante_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["actividad_id"], name: "index_actividades_participantes_on_actividad_id"
+    t.index ["participante_id"], name: "index_actividades_participantes_on_participante_id"
   end
 
   create_table "artistas", force: :cascade do |t|
@@ -136,12 +150,33 @@ ActiveRecord::Schema.define(version: 2020_10_02_053320) do
     t.index ["presentacion_id"], name: "index_obras_presentaciones_on_presentacion_id"
   end
 
+  create_table "participantes", force: :cascade do |t|
+    t.string "nombre"
+    t.text "bio"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "instagram"
+    t.string "twitter"
+    t.string "facebook"
+    t.string "email"
+    t.string "youtube"
+  end
+
   create_table "presentaciones", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "concierto_id", null: false
     t.integer "orden"
     t.index ["concierto_id"], name: "index_presentaciones_on_concierto_id"
+  end
+
+  create_table "slides", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.bigint "encuentro_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["encuentro_id"], name: "index_slides_on_encuentro_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -156,9 +191,11 @@ ActiveRecord::Schema.define(version: 2020_10_02_053320) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "actividades", "fechas_actividades"
+  add_foreign_key "actividades", "encuentros"
   add_foreign_key "actividades_etiquetas", "actividades"
   add_foreign_key "actividades_etiquetas", "etiquetas"
+  add_foreign_key "actividades_participantes", "actividades"
+  add_foreign_key "actividades_participantes", "participantes"
   add_foreign_key "artistas_presentaciones", "artistas"
   add_foreign_key "artistas_presentaciones", "presentaciones"
   add_foreign_key "artistas_visibles", "artistas"
@@ -168,4 +205,5 @@ ActiveRecord::Schema.define(version: 2020_10_02_053320) do
   add_foreign_key "obras_presentaciones", "obras"
   add_foreign_key "obras_presentaciones", "presentaciones"
   add_foreign_key "presentaciones", "conciertos"
+  add_foreign_key "slides", "encuentros"
 end

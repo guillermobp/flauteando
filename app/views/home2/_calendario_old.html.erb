@@ -1,0 +1,57 @@
+<% if @encuentro.actividades.any? %>
+  <section class="calendar_old">
+    <span class="section-title">
+      Calendario de Clases
+    </span>
+    <ul id="calendar-nav">
+      <% @encuentro.fechas_calendario.each.with_index(1) do |fecha, index| %>
+        <li data-toggle="visible" data-targets-container=".calendar-day" data-target="#day-<%= index %>" class="<%= index == 1 ? 'active' : '' %>">
+          <span class="day-name"><%= fecha[0] %></span><span class="date"><%= fecha[1] %></span></li>
+      <% end %>
+    </ul>
+    <% @encuentro.fechas_calendario.each.with_index(1) do |fecha, index| %>
+      <ul id="day-<%= index %>" class="calendar-day <%= index == 1 ? 'active' : '' %>">
+        <li>
+          <img src="https://dummyimage.com/90/ccc/ccc" alt="Imagen encargado">
+          <span class="description">Salida Panguipulli</span>
+          <span class="time">9:00</span>
+          <span class="by">Nombre Encargado</span>
+          <span class="place"></span>
+          <a href="" class="button">Ver más</a>
+        </li>
+        <li>
+          <img src="https://dummyimage.com/90/ccc/ccc" alt="Imagen encargado">
+          <span class="description">Inauguración clases estudiantes de colegios</span>
+          <span class="time">13:00 - 14:00</span>
+          <span class="by">Nombre Encargado</span>
+          <span class="place">Panguipulli</span>
+          <a href="" class="button">Ver más</a>
+        </li>
+        <li>
+          <img src="https://dummyimage.com/90/ccc/ccc" alt="Imagen encargado">
+          <span class="description"></span>
+          <span class="time"></span>
+          <span class="by">Nombre Encargado</span>
+          <span class="place"></span>
+          <a href="" class="button">Ver más</a>
+        </li>
+        <li>
+          <img src="https://dummyimage.com/90/ccc/ccc" alt="Imagen encargado">
+          <span class="description"></span>
+          <span class="time"></span>
+          <span class="by">Nombre Encargado</span>
+          <span class="place"></span>
+          <a href="" class="button">Ver más</a>
+        </li>
+        <li>
+          <img src="https://dummyimage.com/90/ccc/ccc" alt="Imagen encargado">
+          <span class="description"></span>
+          <span class="time"></span>
+          <span class="by">Nombre Encargado</span>
+          <span class="place"></span>
+          <a href="" class="button">Ver más</a>
+        </li>
+      </ul>
+    <% end %>
+  </section>
+<% end %>

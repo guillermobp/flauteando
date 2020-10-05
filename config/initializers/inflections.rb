@@ -24,4 +24,5 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular 'fecha_actividad', 'fechas_actividades'
   inflect.irregular 'etiqueta', 'etiquetas'
   inflect.irregular 'actividad_etiqueta', 'actividades_etiquetas'
+  inflect.irregular 'actividad_participante', 'actividades_participantes'
 end
