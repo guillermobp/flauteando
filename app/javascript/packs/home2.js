@@ -63,7 +63,7 @@ const initSlider = async () => {
     next.classList.add('active');
   };
 
-  setInterval(showNextImage, 2000);
+  setInterval(showNextImage, 5000);
 };
 
 const initCountdown = async () => {
