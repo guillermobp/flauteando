@@ -6,6 +6,9 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag 'home2', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'home2', 'data-turbolinks-track': 'reload' %>
+    <script type="text/javascript">
+      const eventTime = new Date('<%= @encuentro.first_activity %>').getTime();
+    </script>
   </head>
   <body class="<%= action_name %>">
     <div class="container">

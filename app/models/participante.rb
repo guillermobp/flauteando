@@ -20,4 +20,8 @@ class Participante < ApplicationRecord
     foto
   end
 
+  # def fechas_day_name_day_number
+  #   actividades.distinct.pluck(:fecha)
+  # end
+
 end

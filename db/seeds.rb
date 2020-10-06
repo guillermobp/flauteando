@@ -9,6 +9,7 @@
 # La siguiente línea limpia la base de datos y reinicia los índices.
 # ActiveRecord::Base.connection.execute('TRUNCATE users, artistas_presentaciones, obras_presentaciones, presentaciones, conciertos, artistas_visibles, artistas, obras, encuentros RESTART IDENTITY')
 # ActiveRecord::Base.connection.truncate(:users, :presentaciones, :artistas)
+add_dummy_social = false
 
 unless User.any?
   User.create(name: 'Administrador', email: 'flauteandoenelrio@gmail.com', password: 'admin')
@@ -285,24 +286,35 @@ if Encuentro.find_by(version: 2020).nil?
   )
 
   # Participantes 2020
-  p_01 = Participante.create(nombre: 'Sergio Barnechea', bio: '', instagram: 'https://www.instagram.com/flauteandoenelrio', twitter: 'https://www.twitter.com', facebook: 'https://www.facebook.com', youtube: 'https://www.youtube.com', email: 'participante@email.com')
-  p_02 = Participante.create(nombre: 'Paula Barrientos', bio: '', instagram: 'https://www.instagram.com/flauteandoenelrio', twitter: 'https://www.twitter.com', facebook: 'https://www.facebook.com', youtube: 'https://www.youtube.com', email: 'participante@email.com')
-  p_03 = Participante.create(nombre: 'Carlos Rojas', bio: '', instagram: 'https://www.instagram.com/flauteandoenelrio', twitter: 'https://www.twitter.com', facebook: 'https://www.facebook.com', youtube: 'https://www.youtube.com', email: 'participante@email.com')
-  p_04 = Participante.create(nombre: 'Beatriz Plana', bio: '', instagram: 'https://www.instagram.com/flauteandoenelrio', twitter: 'https://www.twitter.com', facebook: 'https://www.facebook.com', youtube: 'https://www.youtube.com', email: 'participante@email.com')
-  p_05 = Participante.create(nombre: 'Salvador Pradenas', bio: '', instagram: 'https://www.instagram.com/flauteandoenelrio', twitter: 'https://www.twitter.com', facebook: 'https://www.facebook.com', youtube: 'https://www.youtube.com', email: 'participante@email.com')
-  p_06 = Participante.create(nombre: 'Lucía Barrenechea', bio: '', instagram: 'https://www.instagram.com/flauteandoenelrio', twitter: 'https://www.twitter.com', facebook: 'https://www.facebook.com', youtube: 'https://www.youtube.com', email: 'participante@email.com')
-  p_07 = Participante.create(nombre: 'Fernando Harms', bio: '', instagram: 'https://www.instagram.com/flauteandoenelrio', twitter: 'https://www.twitter.com', facebook: 'https://www.facebook.com', youtube: 'https://www.youtube.com', email: 'participante@email.com')
-  p_08 = Participante.create(nombre: 'Julian Horning', bio: '', instagram: 'https://www.instagram.com/flauteandoenelrio', twitter: 'https://www.twitter.com', facebook: 'https://www.facebook.com', youtube: 'https://www.youtube.com', email: 'participante@email.com')
-  p_09 = Participante.create(nombre: 'Leopoldo Martí', bio: '', instagram: 'https://www.instagram.com/flauteandoenelrio', twitter: 'https://www.twitter.com', facebook: 'https://www.facebook.com', youtube: 'https://www.youtube.com', email: 'participante@email.com')
-  p_10 = Participante.create(nombre: 'Jorge Valdebento', bio: '', instagram: 'https://www.instagram.com/flauteandoenelrio', twitter: 'https://www.twitter.com', facebook: 'https://www.facebook.com', youtube: 'https://www.youtube.com', email: 'participante@email.com')
-  p_11 = Participante.create(nombre: 'Milén Godoy', bio: '', instagram: 'https://www.instagram.com/flauteandoenelrio', twitter: 'https://www.twitter.com', facebook: 'https://www.facebook.com', youtube: 'https://www.youtube.com', email: 'participante@email.com')
-  p_12 = Participante.create(nombre: 'Tanja von Arx', bio: '', instagram: 'https://www.instagram.com/flauteandoenelrio', twitter: 'https://www.twitter.com', facebook: 'https://www.facebook.com', youtube: 'https://www.youtube.com', email: 'participante@email.com')
-  p_13 = Participante.create(nombre: 'Marcela Bianchi', bio: '', instagram: 'https://www.instagram.com/flauteandoenelrio', twitter: 'https://www.twitter.com', facebook: 'https://www.facebook.com', youtube: 'https://www.youtube.com', email: 'participante@email.com')
-  p_14 = Participante.create(nombre: 'Adodlfo Muñoz', bio: '', instagram: 'https://www.instagram.com/flauteandoenelrio', twitter: 'https://www.twitter.com', facebook: 'https://www.facebook.com', youtube: 'https://www.youtube.com', email: 'participante@email.com')
-  p_15 = Participante.create(nombre: 'Hans Ehrlich', bio: '', instagram: 'https://www.instagram.com/flauteandoenelrio', twitter: 'https://www.twitter.com', facebook: 'https://www.facebook.com', youtube: 'https://www.youtube.com', email: 'participante@email.com')
-  p_16 = Participante.create(nombre: 'Florángel Mesko', bio: '', instagram: 'https://www.instagram.com/flauteandoenelrio', twitter: 'https://www.twitter.com', facebook: 'https://www.facebook.com', youtube: 'https://www.youtube.com', email: 'participante@email.com')
-  p_17 = Participante.create(nombre: 'Pablo Maturana', bio: '', instagram: 'https://www.instagram.com/flauteandoenelrio', twitter: 'https://www.twitter.com', facebook: 'https://www.facebook.com', youtube: 'https://www.youtube.com', email: 'participante@email.com')
-  p_18 = Participante.create(nombre: 'Rodrigo González', bio: '', instagram: 'https://www.instagram.com/flauteandoenelrio', twitter: 'https://www.twitter.com', facebook: 'https://www.facebook.com', youtube: 'https://www.youtube.com', email: 'participante@email.com')
+  p_01 = Participante.create(nombre: 'Sergio Barnechea', bio: '')
+  p_02 = Participante.create(nombre: 'Paula Barrientos', bio: '')
+  p_03 = Participante.create(nombre: 'Carlos Rojas', bio: '')
+  p_04 = Participante.create(nombre: 'Beatriz Plana', bio: '')
+  p_05 = Participante.create(nombre: 'Salvador Pradenas', bio: '')
+  p_06 = Participante.create(nombre: 'Lucía Barrenechea', bio: '')
+  p_07 = Participante.create(nombre: 'Fernando Harms', bio: '')
+  p_08 = Participante.create(nombre: 'Julian Horning', bio: '')
+  p_09 = Participante.create(nombre: 'Leopoldo Martí', bio: '')
+  p_10 = Participante.create(nombre: 'Jorge Valdebento', bio: '')
+  p_11 = Participante.create(nombre: 'Milén Godoy', bio: '')
+  p_12 = Participante.create(nombre: 'Tanja von Arx', bio: '')
+  p_13 = Participante.create(nombre: 'Marcela Bianchi', bio: '')
+  p_14 = Participante.create(nombre: 'Adodlfo Muñoz', bio: '')
+  p_15 = Participante.create(nombre: 'Hans Ehrlich', bio: '')
+  p_16 = Participante.create(nombre: 'Florángel Mesko', bio: '')
+  p_17 = Participante.create(nombre: 'Pablo Maturana', bio: '')
+  p_18 = Participante.create(nombre: 'Rodrigo González', bio: '')
+
+  if add_dummy_social
+    Participante.each do |participante|
+      participante.instagram = 'https://www.instagram.com/flauteandoenelrio'
+      participante.twitter   = 'https://www.twitter.com'
+      participante.facebook  = 'https://www.facebook.com'
+      participante.youtube   = 'https://www.youtube.com'
+      participante.email     = 'participante@email.com'
+      participante.save
+    end
+  end
 
   e_01 = Etiqueta.create(nombre: 'Clase')
   e_02 = Etiqueta.create(nombre: 'Charla')

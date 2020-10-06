@@ -56,7 +56,9 @@ class Admin::ParticipantesController < AdminController
   private
 
   def participante_params
-    params.require(:participante).permit(:nombre, :descripcion, :foto)
+    params.require(:participante)
+      .permit(:nombre, :descripcion, :foto, :bio,
+              :instagram, :twitter, :facebook, :youtube, :email)
   end
 
   def find_participante

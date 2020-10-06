@@ -6,7 +6,7 @@ class Encuentro < ApplicationRecord
   # has_many :fechas_actividades, dependent: :destroy
   # has_many :actividades, through: :fechas_actividades
 
-  has_many :actividades
+  has_many :actividades#, -> { order(:inicio) }
   has_many :participantes, -> { distinct }, through: :actividades
   has_many :etiquetas, -> { distinct }, through: :actividades
   # has_many :fechas, -> { distinct }, through: :actividades
@@ -56,6 +56,15 @@ class Encuentro < ApplicationRecord
 
   def conciertos_by_date
     conciertos.group_by(&:fecha)
+  end
+
+  def first_activity
+    actividades.pluck(:inicio).sort.first.to_s.split(' UTC').join
+    # '2020-11-06 21:00:00'
+  end
+
+  def last_activity
+    actividades.pluck(:inicio).sort.last.to_s.split(' UTC').join
   end
 
 end
