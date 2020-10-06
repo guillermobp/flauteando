@@ -1,12 +1,8 @@
 <section class="hero">
   <ul id="main-nav-list" class="main-nav">
-    <li><%= link_to 'Artistas', artistas_path, class: ('active' if action_name == 'artistas') %></li>
-    <li><%= link_to 'Actividades', actividades_path, class: ('active' if action_name == 'actividades') %></li>
-    <li><%= link_to 'Conciertos', conciertos_path, class: ('active' if action_name == 'conciertos') %></li>
-    <li><%= link_to 'Galería', galeria_path, class: ('active' if action_name == 'galeria') %></li>
-    <li>
-      <a href="#artistas">Artistas</a>
-    </li>
+    <li><%= link_to 'Artistas', '#artistas', class: ('active' if action_name == 'artistas') %></li>
+    <li><%= link_to 'Galería', '#instagram', class: ('active' if action_name == 'galeria') %></li>
+    <li><%= link_to 'Calendario', '#calendar', class: ('active' if action_name == 'actividades') %></li>
   </ul>
   <% if @encuentro.slides.any? %>
     <div class="slider-track">

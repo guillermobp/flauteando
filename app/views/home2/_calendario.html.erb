@@ -1,5 +1,5 @@
 <% if @encuentro.actividades.any? %>
-  <section class="calendar">
+  <section id="calendar" class="calendar">
     <span class="section-title">
       Calendario de Actividades
     </span>
@@ -15,8 +15,8 @@
           <li class="header">Horas
             <%= etiqueta.nombre %>
           </li>
-          <% @encuentro.fechas.each do |fecha| %>
-            <li class="header"><%= fecha %></li>
+          <% @encuentro.fechas_calendario.each do |fecha| %>
+            <li class="header"><%= fecha[3] %></li>
           <% end %>
         </ul>
         <% etiqueta.actividades.group_by(&:inicio_termino_hhmm_ary).each do |rango, actividades| %>

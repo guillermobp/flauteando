@@ -27,12 +27,19 @@ class Admin::EncuentrosController < AdminController
       @encuentro.fotos.attach(params[:encuentro][:fotos])
     end
     if params[:encuentro][:slides]
-      params[:encuentro][:slides].each do |slide|
+      params[:encuentro][:slides].each do |image|
         byebug
-        s = Slide.new(encuentro: @encuentro)
-        s.title slide[:title]
-        s.image.attach(slide)
-        s.save
+        slide = @encuentro.slides.new
+        slide.image.attach(image)
+        slide.save
+      end
+    end
+    if params[:encuentro][:slide]
+      params[:encuentro][:slide].each do |id, slide_dto|
+        slide = Slide.find(id)
+        slide.title = slide_dto[:title]
+        slide.description = slide_dto[:description]
+        slide.save
       end
     end
     if @encuentro.update(encuentro_params)

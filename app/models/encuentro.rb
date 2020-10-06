@@ -21,6 +21,10 @@ class Encuentro < ApplicationRecord
     Artista.all.where.not(id: artistas_visibles.pluck(:artista_id))
   end
 
+  def artistas_visibles
+    []
+  end
+
   def fechas_actividades
     actividades.distinct.pluck(:fecha)
   end
@@ -34,7 +38,12 @@ class Encuentro < ApplicationRecord
   end
 
   def fechas_calendario
-    fechas.map { |x| [x.strftime('%A'), x.strftime('%d de %B')] }
+    fechas.map { |x| [
+      x.strftime('%A'),
+      x.strftime('%d de octubre'),
+      I18n.l(x, format: :day_name_day_number_month_name),
+      I18n.l(x, format: :day_name_day_number),
+    ] }
   end
 
   def nombres_etiquetas

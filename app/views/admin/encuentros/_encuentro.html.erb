@@ -135,62 +135,60 @@
         <div class="previews">
           <% if @encuentro.slides.any? %>
             <ul>
-              <% @encuentro.slides.each do %>
-              <%= form.fields_for :slide_attributes do |slide| %>
-              <% byebug %>
+              <% @encuentro.slides.each do |slide| %>
+                <%= form.fields_for slide, index: slide.id do |slide_form| %>
                 <li>
                   <% if slide.image.attached? %>
                     <div class="image-preview">
                       <%= image_tag slide.image.variant(combine_options: { thumbnail: '250x250^', gravity: 'north', extent: '250x250' }) %>
-                      <%= link_to icon('fas', 'trash'), admin_attachment_path(slide.image.id), { method: 'delete', remote: true, data: { confirm: 'Esta acción es irreversible. ¿Desea continuar?' } } %>
                     </div>
                   <% end %>
                   <span>
-                      <%= slide.text_field :title %>
-                    <label for="">Título</label>
-                    <!-- <input type="text" name="encuentro[slides][][title]"/> -->
-                    <label for="">Descripción</label>
-                    <textarea name="encuentro[slides][][description]" id="" cols="30" rows="5"></textarea>
+                    <%= slide_form.label :title %>
+                    <%= slide_form.text_field :title %>
+
+                    <%= slide_form.label :description %>
+                    <%= slide_form.text_area :description %>
                   </span>
                   <%= link_to icon('fas', 'trash'), admin_slide_path(slide), { method: 'delete', remote: true, data: { confirm: 'Esta acción es irreversible. ¿Desea continuar?' } } %>
                 </li>
-                <% end %>
               <% end %>
-            </ul>
-          <% end %>
-        </div>
+            <% end %>
+          </ul>
+        <% end %>
+      </div>
 
-        <div class="file">
-          <label class="file-label">
-            <%= form.file_field :slides, multiple: true, class: 'file-input' %>
-            <span class="file-cta">
-              <span class="file-icon">
-                <i class="fas fa-upload"></i>
-              </span>
-              <span class="file-label">
-                Examinar
-              </span>
+      <div class="file">
+        <label class="file-label">
+          <%= form.file_field :slides, multiple: true, class: 'file-input' %>
+          <span class="file-cta">
+            <span class="file-icon">
+              <i class="fas fa-upload"></i>
             </span>
-          </label>
-        </div>
+            <span class="file-label">
+              Examinar
+            </span>
+          </span>
+        </label>
       </div>
     </div>
   </div>
+</div>
 </div>
 
 <hr>
 
 <% unless 'show' == params[:action] %>
-  <div class="field is-horizontal">
-    <div class="field-label is-normal"></div>
-    <div class="field-body">
-      <div class="field">
-        <div class="control">
-          <%= form.button class: 'button is-link' %>
-          <%= link_to 'Cancelar', admin_encuentros_path, class: 'button is-text' %>
-        </div>
+<div class="field is-horizontal">
+  <div class="field-label is-normal"></div>
+  <div class="field-body">
+    <div class="field">
+      <div class="control">
+        <%= form.button class: 'button is-link' %>
+        <%= link_to 'Cancelar', admin_encuentros_path, class: 'button is-text' %>
       </div>
     </div>
   </div>
+</div>
 <% end %>
 <% end %>
