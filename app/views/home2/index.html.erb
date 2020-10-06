@@ -1,124 +1,13 @@
-<section class="hero">
-  <ul id="main-nav-list" class="main-nav">
-    <li><%= link_to 'Artistas', '#artistas', class: ('active' if action_name == 'artistas') %></li>
-    <li><%= link_to 'Galería', '#instagram', class: ('active' if action_name == 'galeria') %></li>
-    <li><%= link_to 'Calendario', '#calendar', class: ('active' if action_name == 'actividades') %></li>
-  </ul>
-  <% if @encuentro.slides.any? %>
-    <div class="slider-track">
-      <ul class="slider">
-        <% @encuentro.slides.each.with_index(1) do |slide, index| %>
-          <li class="slider-item <%= index == 1 ? 'active' : '' %>">
-            <% if slide.image.attached? %>
-              <%= image_tag slide.image %>
-            <% end %>
-            <span class="slider-item-text">
-              <h1><%= slide.title %></h1>
-              <p><%= slide.description %></p>
-            </span>
-          </li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-</section>
+<%= render 'slides' %>
 
-<section class="counter">
-  <span class="counter-title">
-    Conteo para el encuentro
-  </span>
-  <div class="counter-components">
-    <span class="counter-component">
-      <span class="counter-component-value">
-        <span id="counter-days-container-hundred"></span>
-        <span id="counter-days-container-ten"></span>
-        <span id="counter-days-container-one"></span>
-      </span>
-      <span class="counter-component-text">Días</span>
-    </span>
-    <span class="counter-component">
-      <span class="counter-component-value">
-        <span id="counter-hours-container-ten"></span>
-        <span id="counter-hours-container-one"></span>
-      </span>
-      <span class="counter-component-text">Horas</span>
-    </span>
-    <span class="counter-component">
-      <span class="counter-component-value">
-        <span id="counter-minutes-container-ten"></span>
-        <span id="counter-minutes-container-one"></span>
-      </span>
-      <span class="counter-component-text">Minutos</span>
-    </span>
-    <span class="counter-component">
-      <span class="counter-component-value">
-        <span id="counter-seconds-container-ten"></span>
-        <span id="counter-seconds-container-one"></span>
-      </span>
-      <span class="counter-component-text">Segundos</span>
-    </span>
-  </div>
-</section>
+<%= render 'countdown' %>
 
-<% if @encuentro.participantes.any? %>
-  <section id="artistas" class="profiles">
-    <% @encuentro.participantes.each do |a| %>
-      <span class="image-crop">
-        <span class="fechas-container">
-          <% a.actividades.pluck(:fecha).each do |c| %>
-            <span class="fecha"><%= c %></span>
-          <% end %>
-        </span>
-        <span class="social">
-          <% if a.instagram? %>
-            <a href="<%= a.instagram %>" target="_blank" class="instagram">
-              <%= icon('fab', 'instagram') %>
-            </a>
-          <% end %>
-          <% if a.twitter? %>
-            <a href="<%= a.twitter %>" target="_blank" class="twitter">
-              <%= icon('fab', 'twitter') %>
-            </a>
-          <% end %>
-          <% if a.facebook? %>
-            <a href="<%= a.facebook %>" target="_blank" class="facebook">
-              <%= icon('fab', 'facebook') %>
-            </a>
-          <% end %>
-          <% if a.youtube? %>
-            <a href="<%= a.youtube %>" target="_blank" class="youtube">
-              <%= icon('fab', 'youtube') %>
-            </a>
-          <% end %>
-          <% if a.email? %>
-            <a href="mailto:<%= a.email %>?subject=Contacto Flauteando en el Río" class="email">
-              <%= icon('fas', 'at') %>
-            </a>
-          <% end %>
-        </span>
-        <%= image_tag a.foto_display, class: 'is-4by3' %>
-        <span class="nombre"><%= a.nombre %></span>
-      </span>
-    <% end %>
-  </section>
-<% end %>
+<%= render 'participantes' %>
 
-<section id="instagram">
-  <span class="section-title">
-    Lo más nuevo en
-    <%= link_to 'instagram', 'https://www.instagram.com/flauteandoenelrio', target: '_blank' %>
-  </span>
-  <div id="instafeed-slider">
-    <%= icon('fas', 'chevron-circle-left', id: 'instafeed-slider-control-left', class: 'instafeed-slider-control') %>
-    <div id="instafeed-slider-track-container">
-      <div id="instafeed"></div>
-    </div>
-    <%= icon('fas', 'chevron-circle-right', id: 'instafeed-slider-control-right', class: 'instafeed-slider-control') %>
-  </div>
-</section>
+<%= render 'instagram' %>
 
-<%= render "calendario" %>
+<%= render 'calendario' %>
 
-<section class="footer"></section>
+<%= render 'footer' %>
 
-<section class="creator"></section>
+<%= render 'copyright' %>

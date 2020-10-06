@@ -1,0 +1,42 @@
+<% if @encuentro.participantes.any? %>
+  <section id="artistas" class="profiles">
+    <% @encuentro.participantes.each do |a| %>
+      <span class="image-crop">
+        <span class="fechas-container">
+          <% a.actividades.pluck(:fecha).each do |c| %>
+            <span class="fecha"><%= c %></span>
+          <% end %>
+        </span>
+        <span class="social">
+          <% if a.instagram? %>
+            <a href="<%= a.instagram %>" target="_blank" class="instagram">
+              <%= icon('fab', 'instagram') %>
+            </a>
+          <% end %>
+          <% if a.twitter? %>
+            <a href="<%= a.twitter %>" target="_blank" class="twitter">
+              <%= icon('fab', 'twitter') %>
+            </a>
+          <% end %>
+          <% if a.facebook? %>
+            <a href="<%= a.facebook %>" target="_blank" class="facebook">
+              <%= icon('fab', 'facebook') %>
+            </a>
+          <% end %>
+          <% if a.youtube? %>
+            <a href="<%= a.youtube %>" target="_blank" class="youtube">
+              <%= icon('fab', 'youtube') %>
+            </a>
+          <% end %>
+          <% if a.email? %>
+            <a href="mailto:<%= a.email %>?subject=Contacto Flauteando en el Río" class="email">
+              <%= icon('fas', 'at') %>
+            </a>
+          <% end %>
+        </span>
+        <%= image_tag a.foto_display, class: 'is-4by3' %>
+        <span class="nombre"><%= a.nombre %></span>
+      </span>
+    <% end %>
+  </section>
+<% end %>
