@@ -125,7 +125,7 @@
 
 <hr>
 
-<div class="field is-horizontal">
+<div id="slides" class="field is-horizontal">
   <div class="field-label is-normal">
     <%= form.label :slides, class: 'label' %>
   </div>
@@ -135,7 +135,9 @@
         <div class="previews">
           <% if @encuentro.slides.any? %>
             <ul>
-              <% @encuentro.slides.each do |slide| %>
+              <% @encuentro.slides.each do %>
+              <%= form.fields_for :slide_attributes do |slide| %>
+              <% byebug %>
                 <li>
                   <% if slide.image.attached? %>
                     <div class="image-preview">
@@ -144,11 +146,15 @@
                     </div>
                   <% end %>
                   <span>
-                    <input type="text" name="encuentro[slides][<%= slide.id %>][title]"/>
-                    <textarea name="encuentro[slides][<%= slide.id %>][description]" id="" cols="30" rows="10"></textarea>
+                      <%= slide.text_field :title %>
+                    <label for="">Título</label>
+                    <!-- <input type="text" name="encuentro[slides][][title]"/> -->
+                    <label for="">Descripción</label>
+                    <textarea name="encuentro[slides][][description]" id="" cols="30" rows="5"></textarea>
                   </span>
                   <%= link_to icon('fas', 'trash'), admin_slide_path(slide), { method: 'delete', remote: true, data: { confirm: 'Esta acción es irreversible. ¿Desea continuar?' } } %>
                 </li>
+                <% end %>
               <% end %>
             </ul>
           <% end %>

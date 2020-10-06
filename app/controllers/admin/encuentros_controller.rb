@@ -22,12 +22,15 @@ class Admin::EncuentrosController < AdminController
   def edit; end
 
   def update
+    # byebug
     if (params[:encuentro][:fotos])
       @encuentro.fotos.attach(params[:encuentro][:fotos])
     end
     if params[:encuentro][:slides]
       params[:encuentro][:slides].each do |slide|
+        byebug
         s = Slide.new(encuentro: @encuentro)
+        s.title slide[:title]
         s.image.attach(slide)
         s.save
       end
