@@ -1,6 +1,8 @@
 <%= render 'slides' %>
 
+<% if @encuentro.show_countdown? %>
 <%= render 'countdown' %>
+<% end %>
 
 <%= render 'participantes' %>
 
