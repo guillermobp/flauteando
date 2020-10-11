@@ -1,7 +1,6 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
-@import "bulma";
-// @import 'bulma-extensions';
+@import "bulma"; // @import 'bulma-extensions';
 // @import "../../node_modules/bulma-calendar/dist/css/bulma-calendar.min.css";
 // @import "selectr";
 
@@ -145,30 +144,50 @@ th.acciones {
 
 #slides {
   .previews {
-    ul{
+    ul {
       display: flex;
       flex-direction: column;
-        gap: 1rem;
-    li{
-      display: flex;
       gap: 1rem;
-      margin: 0.5rem 0;
-border-bottom: 1px solid gray;
-padding-bottom: 2rem;
-    .image-preview{
-      img {
-      width: 15rem;
-      height: 15rem;
-      border-radius: 4px;
-    }
-    }
-    span {
-      display: flex;
-flex-direction: column;
-// gap: 1rem;
-justify-content: end;
-    }
-    }
+
+      li {
+        display: flex;
+        gap: 1rem;
+        margin: 0.5rem 0;
+        border-bottom: 1px solid gray;
+        padding-bottom: 2rem;
+
+        .sorting-handles {
+          align-self: center;
+          font-size: 2rem;
+
+          i {
+            opacity: 0.8;
+            cursor: pointer;
+
+            &:hover {
+              opacity: 1;
+            }
+          }
+        }
+
+        .image-preview {
+          img {
+            width: 15rem;
+            height: 15rem;
+            border-radius: 4px;
+          }
+        }
+
+        span {
+          display: flex;
+          flex-direction: column; // gap: 1rem;
+          justify-content: end;
+        }
+
+        a {
+          align-self: end;
+        }
+      }
     }
   }
 }
