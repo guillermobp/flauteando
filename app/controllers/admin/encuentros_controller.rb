@@ -26,9 +26,11 @@ class Admin::EncuentrosController < AdminController
       @encuentro.fotos.attach(params[:encuentro][:fotos])
     end
     if params[:encuentro][:slides]
-      params[:encuentro][:slides].each do |image|
+      next_slide_order = 1 + (@encuentro.slides.last&.order || 0)
+      params[:encuentro][:slides].each.with_index(next_slide_order) do |image, order|
         slide = @encuentro.slides.new
         slide.image.attach(image)
+        slide.order = order
         slide.save
       end
     end

@@ -53,7 +53,7 @@ class Admin::SlidesController < AdminController
     else
       flash.alert = 'Ocurrió un error intentando eliminar la slide'
     end
-    redirect_to admin_encuentros_edit_path(@encuentro)
+    redirect_to edit_admin_encuentro_path(@encuentro)
   end
 
   def up
@@ -63,8 +63,9 @@ class Admin::SlidesController < AdminController
   end
 
   def down
-    @slide.order--
-    @slide.save
+    @slide.next.decrement!(:order)
+    @slide.increment!(:order)
+    redirect_to edit_admin_encuentro_path(@slide.encuentro)
   end
 
   private
