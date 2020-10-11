@@ -36,6 +36,9 @@ Rails.application.routes.draw do
   post 'admin/artistas_visibles/:id/up', to: 'admin/artistas_visibles#up', as: :up_artista_visible
   post 'admin/artistas_visibles/:id/down', to: 'admin/artistas_visibles#down', as: :down_artista_visible
 
+  post 'admin/slides/:id/up', to: 'admin/slides#up', as: :admin_slide_up
+  post 'admin/slides/:id/down', to: 'admin/slides#down', as: :admin_slide_down
+
   namespace :admin do
     resources :users, only: %i[edit update]
     resources :artistas, :obras

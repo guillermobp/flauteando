@@ -135,9 +135,14 @@
         <div class="previews">
           <% if @encuentro.slides.any? %>
             <ul>
-              <% @encuentro.slides.each do |slide| %>
+              <% @encuentro.slides.each.with_index(1) do |slide, idx| %>
                 <%= form.fields_for slide, index: slide.id do |slide_form| %>
                 <li>
+                  <span class="sorting-handles">
+                    <%= link_to icon('fas', 'sort-up'), admin_slide_up_path(slide), { method: 'post', remote: true } if idx > 1 %>
+                    <%= icon('fas', 'sort-up') if idx > 1 %>
+                    <%= icon('fas', 'sort-down') if idx < @encuentro.slides.count %>
+                  </span>
                   <% if slide.image.attached? %>
                     <div class="image-preview">
                       <%= image_tag slide.image.variant(combine_options: { thumbnail: '250x250^', gravity: 'north', extent: '250x250' }) %>
@@ -150,7 +155,8 @@
                     <%= slide_form.label :description %>
                     <%= slide_form.text_area :description %>
                   </span>
-                  <%= link_to icon('fas', 'trash'), admin_slide_path(slide), { method: 'delete', remote: true, data: { confirm: 'Esta acción es irreversible. ¿Desea continuar?' } } %>
+                  <%# link_to icon('fas', 'trash'), admin_slide_path(slide), { method: 'delete', remote: true, data: { confirm: 'Esta acción es irreversible. ¿Desea continuar?' } } %>
+                  <%= link_to 'Eliminar', admin_slide_path(slide), { class: 'has-text-danger button', method: 'delete', remote: true, data: { confirm: 'Esta acción es irreversible. ¿Desea continuar?' } } %>
                 </li>
               <% end %>
             <% end %>

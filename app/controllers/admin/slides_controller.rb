@@ -1,5 +1,5 @@
 class Admin::SlidesController < AdminController
-  before_action :find_encuentro, except: [:edit, :update, :destroy]
+  before_action :find_encuentro, except: [:edit, :update, :destroy, :up, :down]
   before_action :find_slide, except: %i[index new create for_select]
 
   def index; end
@@ -54,6 +54,17 @@ class Admin::SlidesController < AdminController
       flash.alert = 'Ocurrió un error intentando eliminar la slide'
     end
     redirect_to admin_encuentros_edit_path(@encuentro)
+  end
+
+  def up
+    @slide.previous.increment!(:order)
+    @slide.decrement!(:order)
+    redirect_to edit_admin_encuentro_path(@slide.encuentro)
+  end
+
+  def down
+    @slide.order--
+    @slide.save
   end
 
   private
