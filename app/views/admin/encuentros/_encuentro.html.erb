@@ -140,8 +140,7 @@
                 <li>
                   <span class="sorting-handles">
                     <%= link_to icon('fas', 'sort-up'), admin_slide_up_path(slide), { method: 'post', remote: true } if idx > 1 %>
-                    <%= icon('fas', 'sort-up') if idx > 1 %>
-                    <%= icon('fas', 'sort-down') if idx < @encuentro.slides.count %>
+                    <%= link_to icon('fas', 'sort-down'), admin_slide_down_path(slide), { method: 'post', remote: true } if idx < @encuentro.slides.count %>
                   </span>
                   <% if slide.image.attached? %>
                     <div class="image-preview">
