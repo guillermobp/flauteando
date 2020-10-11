@@ -22,6 +22,7 @@ class Admin::EncuentrosController < AdminController
   def edit; end
 
   def update
+    byebug
     if (params[:encuentro][:fotos])
       @encuentro.fotos.attach(params[:encuentro][:fotos])
     end
@@ -71,6 +72,7 @@ class Admin::EncuentrosController < AdminController
                                         :afiche,
                                         :mision,
                                         :vision,
+                                        :show_countdown,
                                         :habilitado)
     end
 

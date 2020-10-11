@@ -1,68 +1,21 @@
 <%= render 'layouts/admin/tabs' %>
 
+<%#= render 'artistas_visibles' %>
+
 <article class="message">
-  <div class="message-header">
-    <p>Artistas Visibles</p>
-  </div>
-  <div class="message-body">
-    <%= form_with model: [:admin, @encuentro, @artista_visible] do |form| %>
-    <div class="field has-addons">
-      <div class="control">
-        <%= select('artista_visible', 'artista_id', options_from_collection_for_select(@encuentro.artistas_visibilizables, :id, :nombre), { prompt: 'Seleccione un artista' }) %>
-      </div>
-      <div class="control">
-        <%= form.submit 'Agregar', class: 'button is-primary' %>
-      </div>
-    </div>
-  <% end %>
-  <% if @encuentro.artistas_visibles.any? %>
-    <table class="table">
-      <thead>
-        <tr>
-          <th class="acciones has-one-icon"></th>
-          <th>Artista</th>
-          <th class="imagenes">
-            <span class="icon">
-              <%= icon('fas', 'images') %>
-            </span>
-          </th>
-          <th class="acciones has-two-icons">Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @encuentro.artistas_visibles.each.with_index(1) do |artista_visible, index| %>
-          <tr id="tr_<%= artista_visible.orden %>">
-            <td>
-              <div class="order-controls">
-                <% if index > 1 %>
-                  <%= link_to icon('fas', 'caret-up', data: { command: 'up' }), up_artista_visible_path(artista_visible), method: :post, remote: true %>
-                <% end %>
-
-                <% if index < @encuentro.artistas_visibles.count %>
-                  <%= link_to icon('fas', 'caret-down', data: { command: 'up' }), down_artista_visible_path(artista_visible), method: :post, remote: true %>
-                <% end %>
-              </div>
-            </td>
-            <td><%= artista_visible.artista.nombre %></td>
-            <td>
-              <%= icon('fas', 'check') if artista_visible.artista.foto.attached? %>
-            </td>
-            <td>
-              <%= link_to content_tag(:span, icon('fas', 'edit'), class: 'icon tooltip', data: { tooltip: 'Editar artista', }), edit_admin_artista_path(artista_visible.artista), class: 'button is-info is-outlined' %>
-
-              <%= link_to content_tag(:span, icon('fas', 'trash-alt'), class: 'icon tooltip', data: { tooltip: 'Quitar artista de la página de inicio', }), admin_artista_visible_path(artista_visible), method: :delete, data: { confirm: '¿Está seguro?', }, class:
-              'button is-danger is-outlined' %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  <% else %>
-    <div class="message-body">
-      <p>No existen artistas visibles en la pantalla principal.</p>
-      <p>Seleccione algunos para que aparezcan en la sección correspondiente.</p>
-    </div>
-  <% end %>
+<div class="message-header">
+  <p>Mostrar Conteo</p>
+</div>
+<div class="message-body">
+  <p>En esta sección puede ocultar/mostrar el conteo en la página princpal del encuentro.</p>
+  <p>El conteo tiene en cuenta la fecha y hora de la primera actividad de este encuentro.</p>
+  <p>El cambio de este estado puede realizarse las veces que estime conveniente.</p>
+  <br>
+  <%= form_with model: [:admin, @encuentro] do |f| %>
+  <%= f.hidden_field :return_path, value: admin_encuentro_config_index_path(@encuentro) %>
+  <%= f.hidden_field :show_countdown, value: !@encuentro.show_countdown? %>
+  <%= f.submit @encuentro.show_countdown? ? 'Ocultar' : 'Mostrar', class: 'button is-link' %>
+<% end %>
 </div>
 </article>
 
