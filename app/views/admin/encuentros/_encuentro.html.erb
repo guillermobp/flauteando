@@ -95,6 +95,41 @@
   </div>
 </div>
 
+<div class="field is-horizontal">
+  <div class="field-label is-normal">
+    <%= form.label :reference_image, class: 'label' %>
+  </div>
+  <div class="field-body">
+    <div class="field">
+      <% unless 'show' == params[:action] %>
+        <div class="control">
+          <div class="preview">
+            <div class="image-preview">
+              <% if @encuentro.reference_image.attached? %>
+                <%= image_tag @encuentro.reference_image.variant( combine_options: { resize: '400', crop: '400x400+0+0', gravity: 'north' } ), class: 'is-square' %>
+                <%= link_to icon('fas', 'trash'), admin_attachment_path(@encuentro.reference_image.id), { method: 'delete', remote: true, data: { confirm: 'Esta acción es irreversible. ¿Desea continuar?' } } %>
+              <% end %>
+            </div>
+          </div>
+          <div class="file">
+            <label class="file-label">
+              <%= form.file_field :reference_image, class: 'file-input' %>
+              <span class="file-cta">
+                <span class="file-icon">
+                  <i class="fas fa-upload"></i>
+                </span>
+                <span class="file-label">
+                  Examinar
+                </span>
+              </span>
+            </label>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
 <hr>
 
 <div class="field is-horizontal">

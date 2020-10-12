@@ -22,7 +22,6 @@ class Admin::EncuentrosController < AdminController
   def edit; end
 
   def update
-    byebug
     if (params[:encuentro][:fotos])
       @encuentro.fotos.attach(params[:encuentro][:fotos])
     end
@@ -69,11 +68,13 @@ class Admin::EncuentrosController < AdminController
                                         :titulo,
                                         :epigrafe,
                                         :bajada,
-                                        :afiche,
                                         :mision,
                                         :vision,
                                         :show_countdown,
-                                        :habilitado)
+                                        :show_instagram_feed,
+                                        :habilitado,
+                                        :afiche,
+                                        :reference_image)
     end
 
     def find_encuentro
