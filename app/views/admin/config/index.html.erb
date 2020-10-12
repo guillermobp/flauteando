@@ -14,7 +14,23 @@
   <%= form_with model: [:admin, @encuentro] do |f| %>
   <%= f.hidden_field :return_path, value: admin_encuentro_config_index_path(@encuentro) %>
   <%= f.hidden_field :show_countdown, value: !@encuentro.show_countdown? %>
-  <%= f.submit @encuentro.show_countdown? ? 'Ocultar' : 'Mostrar', class: 'button is-link' %>
+  <%= f.submit @encuentro.show_countdown_text, class: "button is-link #{@encuentro.show_countdown_class}" %>
+<% end %>
+</div>
+</article>
+
+<article class="message">
+<div class="message-header">
+  <p>Mostrar Instagram</p>
+</div>
+<div class="message-body">
+  <p>En esta sección puede ocultar/mostrar las últimas imágenes de Instagram.</p>
+  <p>El cambio de este estado puede realizarse las veces que estime conveniente.</p>
+  <br>
+  <%= form_with model: [:admin, @encuentro] do |f| %>
+  <%= f.hidden_field :return_path, value: admin_encuentro_config_index_path(@encuentro) %>
+  <%= f.hidden_field :show_instagram_feed, value: !@encuentro.show_instagram_feed? %>
+  <%= f.submit @encuentro.show_instagram_feed_text, class: "button is-link #{@encuentro.show_instagram_feed_class}" %>
 <% end %>
 </div>
 </article>
@@ -31,7 +47,7 @@
   <%= form_with model: [:admin, @encuentro] do |f| %>
   <%= f.hidden_field :return_path, value: admin_encuentro_config_index_path(@encuentro) %>
   <%= f.hidden_field :habilitado, value: !@encuentro.habilitado? %>
-  <%= f.submit @encuentro.habilitado? ? 'Deshabilitar' : 'Habilitar', class: 'button is-link' %>
+  <%= f.submit @encuentro.enable_disable_text, class: "button is-link #{@encuentro.enable_disable_class}" %>
 <% end %>
 </div>
 </article>

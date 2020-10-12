@@ -1,4 +1,5 @@
 class Encuentro < ApplicationRecord
+  default_scope { order(:version) }
   # has_many :conciertos, dependent: :destroy
   # has_many :presentaciones, through: :conciertos
   # has_many :artistas, -> { distinct }, through: :presentaciones
@@ -13,6 +14,7 @@ class Encuentro < ApplicationRecord
   # has_many :fechas, through: :actividades
   has_many :slides
 
+  has_one_attached :reference_image
   has_one_attached :afiche
 
   has_many_attached :fotos
@@ -65,6 +67,42 @@ class Encuentro < ApplicationRecord
 
   def last_activity
     actividades.pluck(:inicio).sort.last.to_s.split(' UTC').join
+  end
+
+  def reference_image_display
+    reference_image.attached? ? reference_image : 'https://dummyimage.com/600x400/000/fff'
+  end
+
+  def past_events
+    Encuentro.where.not(id: self.id).where(habilitado: true)
+  end
+
+  def show_countdown_text
+    show_countdown? ? 'Ocultar' : 'Mostrar'
+  end
+
+  def show_countdown_class
+    show_countdown? ? 'is-warning' : ''
+  end
+
+  def show_instagram_feed_text
+    show_instagram_feed? ? 'Ocultar' : 'Mostrar'
+  end
+
+  def show_instagram_feed_class
+    show_instagram_feed? ? 'is-warning' : ''
+  end
+
+  def enable_disable_text
+    habilitado? ? 'Deshabilitar' : 'Habilitar'
+  end
+
+  def enable_disable_class
+    habilitado? ? 'is-warning' : ''
+  end
+
+  def show_past_events?
+    self == Encuentro.where(habilitado: true).last
   end
 
 end
