@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class HomeController < ApplicationController
+class HomeOldController < ApplicationController
   before_action :find_encuentro_actual
 
   def index; end
