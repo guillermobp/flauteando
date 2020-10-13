@@ -45,6 +45,7 @@ class Encuentro < ApplicationRecord
       x.strftime('%d de octubre'),
       I18n.l(x, format: :day_name_day_number_month_name),
       I18n.l(x, format: :day_name_day_number),
+      x,
     ] }
   end
 
