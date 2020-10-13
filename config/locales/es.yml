@@ -26,6 +26,7 @@ es:
         titulo: 'Título'
         mision: 'Misión'
         vision: 'Visión'
+        reference_image: 'Imagen de Referencia'
       user:
         name: 'Nombre'
         email: 'Correo'

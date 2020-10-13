@@ -93,5 +93,40 @@ document.addEventListener("turbolinks:load", async () => {
     });
   }
 
+  // document
+  //   .getElementById('dates-events')
+  //   .querySelectorAll('input')
+  //   .forEach(input => {
+  //     input.addEventListener('change', async (e) => {
+  //       const {
+  //         target
+  //       } = e;
+  //       document
+  //         .querySelectorAll('table.actividades tr')
+  //         .forEach(row => {
+  //           if (row.dataset.date === target.value) {
+  //             row.style.visibility = target.checked ? 'visible' : 'collapse';
+  //           }
+  //         });
+  //     });
+  //   });
 
+  document
+    .getElementById('tags-events')
+    .querySelectorAll('input')
+    .forEach(input => {
+      input.addEventListener('change', async (e) => {
+        const {
+          target
+        } = e;
+        document
+          .querySelectorAll('table.actividades tr')
+          .forEach(row => {
+            if (row.dataset.tags &&
+              row.dataset.tags.split(',').includes(target.value)) {
+              row.style.visibility = target.checked ? 'visible' : 'collapse';
+            }
+          });
+      });
+    });
 });

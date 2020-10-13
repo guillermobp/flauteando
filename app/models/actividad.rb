@@ -17,6 +17,10 @@ class Actividad < ApplicationRecord
     fecha.strftime('%d de %B')
   end
 
+  def fecha_day_name_day_number
+    I18n.l(fecha, format: :day_name_day_number)
+  end
+
   def inicio_hhmm
     inicio.nil? ? '' : inicio.strftime('%H:%M')
   end

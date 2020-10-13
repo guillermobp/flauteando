@@ -1,5 +1,41 @@
 <%= render 'layouts/admin/tabs' %>
 
+<div>
+  <% if false %>
+    <div class="card">
+      <div class="card-content">
+        <h3 class="title is-4">Fecha</h3>
+        <ul id="dates-events">
+          <% @encuentro.fechas_calendario.each do |fecha| %>
+            <li>
+              <label class="checkbox">
+                <input type="checkbox" checked="checked" value="<%= fecha[4] %>">
+                <%= fecha[3] %>
+              </label>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="card">
+    <div class="card-content">
+      <h3 class="title is-4">Etiquetas</h3>
+      <ul id="tags-events">
+        <% @encuentro.etiquetas.each do |etiqueta| %>
+          <li>
+            <label class="checkbox">
+              <input type="checkbox" checked="checked" value="<%= etiqueta.id %>">
+              <%= etiqueta.nombre %>
+            </label>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
+
 <div class="card">
   <div class="card-content">
     <h3 class="title is-3">Actividades</h3>
@@ -7,10 +43,12 @@
     <%= link_to 'Crear Actividad', new_admin_encuentro_actividad_path(@encuentro), class: 'button is-link' %>
 
     <% if @encuentro.actividades.any? %>
-      <table class="table is-fullwidth">
+      <table class="actividades table is-fullwidth">
         <thead>
           <tr>
+            <th class="date">Fecha</th>
             <th>Inicio/Término</th>
+            <th>Etiquetas</th>
             <th>Título</th>
             <th>Descripción</th>
             <th>Lugar</th>
@@ -19,11 +57,13 @@
         </thead>
         <tbody>
           <% @encuentro.actividades.each do |actividad| %>
-            <tr>
+            <tr data-date="<%= actividad.fecha %>" data-tags="<%= actividad.etiquetas.pluck(:id).join(',') %>">
+              <td><%= actividad.fecha_day_name_day_number %></td>
               <td>
                 <%= actividad.inicio.strftime('%H:%M') %>
                 <%= "- #{actividad.termino.strftime('%H:%M')}" if actividad.termino != nil %>
               </td>
+              <td><%= actividad.etiquetas.pluck(:nombre).join(' ') %></td>
               <td><%= actividad.titulo %></td>
               <td><%= actividad.descripcion %></td>
               <td><%= actividad.lugar %></td>
@@ -37,7 +77,7 @@
       </table>
     <% else %>
       <hr>
-      <p>No existen actividad para esta fecha.</p>
+      <p>No existen actividades para este evento</p>
     <% end %>
   </div>
 </div>
