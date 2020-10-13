@@ -31,7 +31,11 @@ class HomeController < ApplicationController
   private
 
   def find_encuentro_actual
-    @encuentro = Encuentro.where(habilitado: true).last
+    if params[:version]
+      @encuentro = Encuentro.find_by(version: params[:version])
+    else
+      @encuentro = Encuentro.where(habilitado: true).last
+    end
   end
 
 end

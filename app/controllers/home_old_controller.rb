@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Home2Controller < ApplicationController
+class HomeController < ApplicationController
   before_action :find_encuentro_actual
 
   def index; end
@@ -31,11 +31,7 @@ class Home2Controller < ApplicationController
   private
 
   def find_encuentro_actual
-    if params[:version]
-      @encuentro = Encuentro.find_by(version: params[:version])
-    else
-      @encuentro = Encuentro.where(habilitado: true).last
-    end
+    @encuentro = Encuentro.where(habilitado: true).last
   end
 
 end
