@@ -19,21 +19,40 @@
     </div>
   <% end %>
 
-  <div class="card">
-    <div class="card-content">
-      <h3 class="title is-4">Etiquetas</h3>
-      <ul id="tags-events">
-        <% @encuentro.etiquetas.each do |etiqueta| %>
-          <li>
-            <label class="checkbox">
-              <input type="checkbox" checked="checked" value="<%= etiqueta.id %>">
-              <%= etiqueta.nombre %>
-            </label>
-          </li>
-        <% end %>
-      </ul>
+  <% if false %>
+    <div class="card">
+      <div class="card-content">
+        <h3 class="title is-4">Etiquetas</h3>
+        <ul id="tags-events">
+          <% @encuentro.etiquetas.each do |etiqueta| %>
+            <li>
+              <label class="checkbox">
+                <input type="checkbox" checked="checked" value="<%= etiqueta.id %>">
+                <%= etiqueta.nombre %>
+              </label>
+            </li>
+          <% end %>
+        </ul>
+      </div>
     </div>
   </div>
+<% end %>
+
+<div class="card">
+  <div class="card-content">
+    <h3 class="title is-4">Etiquetas</h3>
+    <ul id="tags-events">
+      <% @encuentro.available_tags.each do |tag| %>
+        <li>
+          <label class="checkbox">
+            <input type="checkbox" checked="checked" value="<%= tag.id %>">
+            <%= tag.nombre %>
+          </label>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
 </div>
 
 <div class="card">

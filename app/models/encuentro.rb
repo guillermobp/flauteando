@@ -106,4 +106,8 @@ class Encuentro < ApplicationRecord
     self == Encuentro.where(habilitado: true).last
   end
 
+  def available_tags
+    Etiqueta.all
+  end
+
 end
