@@ -11,7 +11,7 @@ class Admin::ActividadesController < AdminController
   end
 
   def new
-    @actividad = Actividad.new
+    @actividad = @encuentro.actividades.new
   end
 
   def create

@@ -14,29 +14,29 @@
         <div class="navbar-dropdown">
           <%= link_to 'Listado', admin_encuentros_path, class: 'navbar-item' %>
           <% if @encuentros.any? %>
-          <hr class="navbar-divider">
+            <hr class="navbar-divider">
           <% end %>
           <% @encuentros.each do |e| %>
             <%= link_to e.version, edit_admin_encuentro_path(e), class: 'navbar-item' %>
           <% end %>
           <% if @encuentros.any? %>
-          <hr class="navbar-divider">
+            <hr class="navbar-divider">
           <% end %>
           <%= link_to 'Nuevo', new_admin_encuentro_path, class: 'navbar-item' %>
         </div>
       </div>
 
       <% if false %>
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
-          Artistas
-        </a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link">
+            Artistas
+          </a>
 
-        <div class="navbar-dropdown">
-          <%= link_to 'Listado', admin_artistas_path, class: 'navbar-item' %>
-          <%= link_to 'Nuevo', new_admin_artista_path, class: 'navbar-item' %>
+          <div class="navbar-dropdown">
+            <%= link_to 'Listado', admin_artistas_path, class: 'navbar-item' %>
+            <%= link_to 'Nuevo', new_admin_artista_path, class: 'navbar-item' %>
+          </div>
         </div>
-      </div>
       <% end %>
 
       <div class="navbar-item has-dropdown is-hoverable">
@@ -50,16 +50,18 @@
         </div>
       </div>
 
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
-          Obras
-        </a>
+      <% if false %>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link">
+            Obras
+          </a>
 
-        <div class="navbar-dropdown">
-          <%= link_to 'Listado', admin_obras_path, class: 'navbar-item' %>
-          <%= link_to 'Nueva', new_admin_obra_path, class: 'navbar-item' %>
+          <div class="navbar-dropdown">
+            <%= link_to 'Listado', admin_obras_path, class: 'navbar-item' %>
+            <%= link_to 'Nueva', new_admin_obra_path, class: 'navbar-item' %>
+          </div>
         </div>
-      </div>
+      <% end %>
 
       <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link">

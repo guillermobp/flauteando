@@ -102,8 +102,40 @@ class Encuentro < ApplicationRecord
     habilitado? ? 'is-warning' : ''
   end
 
-  def show_past_events?
+  def is_last?
+    self == Encuentro.last
+  end
+
+  def is_last_enabled?
     self == Encuentro.where(habilitado: true).last
+  end
+
+  def is_past_event?
+    !is_last?
+  end
+
+  def is_enabled_past_event?
+    !is_last? and habilitado?
+  end
+
+  def has_past_events?
+    Encuentro.where.not(id: id).exists?
+  end
+
+  def has_enabled_past_events?
+    Encuentro.where.not(id: id).exists?(habilitado: true)
+  end
+
+  def show_countdown?
+    is_last_enabled? and show_countdown
+  end
+
+  def show_past_events?
+    is_last_enabled? and show_past_events and has_enabled_past_events?
+  end
+
+  def available_tags
+    Etiqueta.all
   end
 
 end

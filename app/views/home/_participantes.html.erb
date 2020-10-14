@@ -2,6 +2,10 @@
   <section id="artistas" class="profiles">
     <% @encuentro.participantes.each do |a| %>
       <span class="image-crop">
+        <span class="bio" style="visibility:hidden">
+          <h3><%= a.nombre %></h3>
+          <%= simple_format(a.bio) %>
+        </span>
         <span class="fechas-container">
           <% a.actividades.distinct.pluck(:fecha).each do |c| %>
             <span class="fecha"><%= l(c, format: :day_name_day_number) %></span>
@@ -39,4 +43,11 @@
       </span>
     <% end %>
   </section>
+  <div class="overlay activable">
+    <div class="toolbar"><%= icon('far', 'times-circle', class: 'close-control') %></div>
+    <div class="main">
+      <img src="" alt="">
+      <span class="bio"></span>
+    </div>
+  </div>
 <% end %>
