@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   get 'artistas/:id/nombre', to: 'artistas#nombre', as: :artista_nombre
   get 'artistas/:id/bio', to: 'artistas#bio', as: :artista_bio
 
-  get 'event/:version', to: 'home#index', as: :version
+  get '/:version', to: 'home#index', as: :version
 
   get 'admin/artistas/for_select', to: 'admin/artistas#for_select', as: :artistas_for_select
   get 'admin/obras/for_select', to: 'admin/obras#for_select', as: :obras_for_select
