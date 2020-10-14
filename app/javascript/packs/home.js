@@ -8,14 +8,16 @@ window.addEventListener('scroll', async (e) => {
   });
 
   const counter = document.querySelector('.counter');
-  const counterComponents = document.querySelectorAll('.counter-component');
-  const scrollEvent = e;
-  const isCounterVisible = (window.innerHeight + window.scrollY) > (counter.offsetTop + (counter.clientHeight / 2));
+  if (counter) {
+    const counterComponents = document.querySelectorAll('.counter-component');
+    const scrollEvent = e;
+    const isCounterVisible = (window.innerHeight + window.scrollY) > (counter.offsetTop + (counter.clientHeight / 2));
 
-  if (!counter.dataset.hasOwnProperty('doNotAnimate') && isCounterVisible) {
-    counter.querySelector('.counter-title').classList.add('visible');
-    counter.querySelectorAll('.counter-component').forEach(c => c.classList.add('visible'));
-    counter.dataset.doNotAnimate = '';
+    if (!counter.dataset.hasOwnProperty('doNotAnimate') && isCounterVisible) {
+      counter.querySelector('.counter-title').classList.add('visible');
+      counter.querySelectorAll('.counter-component').forEach(c => c.classList.add('visible'));
+      counter.dataset.doNotAnimate = '';
+    }
   }
 
   document.querySelectorAll('section.profiles .image-crop').forEach((imageCrop, i) => {
@@ -68,6 +70,10 @@ const initSlider = async () => {
 
 const initCountdown = async () => {
 
+  if (!document.querySelector('.counter')) {
+    return;
+  }
+
   const daysContainerOne = document.getElementById('counter-days-container-one');
   const daysContainerTen = document.getElementById('counter-days-container-ten');
   const daysContainerHundred = document.getElementById('counter-days-container-hundred');
@@ -90,8 +96,6 @@ const initCountdown = async () => {
     const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-    // console.log({days,hours,minutes,seconds});
 
     const daysComps = days.toString().split('');
     const hoursComps = hours.toString().split('');
@@ -116,6 +120,10 @@ const initCountdown = async () => {
 };
 
 const initInstafeed = async () => {
+
+  if (!document.querySelector('#instagram')) {
+    return;
+  }
 
   let instafeedTranslation = 0;
 
