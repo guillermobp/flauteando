@@ -184,9 +184,32 @@ const initToggles = async () => {
   });
 };
 
+const initProfiles = async () => {
+  document.querySelectorAll('.image-crop').forEach((item, i) => {
+    item.addEventListener('click', async (e) => {
+      const overlay = document.querySelector('.overlay');
+      overlay.querySelector('img').src = item.querySelector('img').src;
+      overlay.querySelector('span.bio').innerHTML = item.querySelector('.bio').innerHTML;
+      overlay.classList.add('active');
+      overlay.closest('body').style.overflow = 'hidden';
+    });
+  });
+};
+
+const hideOverlay = async (e) => {
+  const overlay = document.querySelector('.overlay');
+  overlay.classList.remove('active');
+  overlay.closest('body').style.overflow = 'initial';
+};
+
 window.addEventListener('DOMContentLoaded', async () => {
   initSlider();
   initCountdown();
   initInstafeed();
   initToggles();
+  initProfiles();
+
+  document
+    .querySelector('.overlay .close-control')
+    .addEventListener('click', hideOverlay);
 });
