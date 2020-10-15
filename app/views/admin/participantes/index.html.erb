@@ -1,67 +1,68 @@
 <h1 class="title is-1 has-text-centered">Administración de Participantes</h1>
 
-<% if @participantes.any? %>
-<table class="table is-fullwidth">
-  <thead>
-    <tr>
-      <th>#</th>
-      <th>Nombre</th>
-      <th>Bio</th>
-      <th class="imagenes">
-        <span class="icon">
-          <%= icon('fas', 'images') %>
-        </span>
-      </th>
-      <th>Actividades</th>
-      <th class="acciones has-two-icons">Acciones</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @participantes.each.with_index(1) do |participante, index| %>
-      <tr>
-        <td><%= index %></td>
-        <td><%= participante.nombre %></td>
-        <td><%= participante.bio.truncate(100) if !participante.bio.nil? %></td>
-        <td>
-          <% if participante.foto.attached? %>
-          <span class="icon tooltip" data-tooltip="El participante tiene imagen">
-          <% else %>
-          <span class="icon">
-          <% end %>
-            <%= icon('fas', 'check') if participante.foto.attached? %>
-          </span>
-        </td>
-        <td><%= participante.actividades.count %></td>
-        <td>
-          <%= link_to content_tag(:span,
-                                  icon('fas', 'edit'),
-                                  class: 'icon tooltip',
-                                  data: {
-                                    tooltip: 'Editar participante',
-                                  }),
-                      edit_admin_participante_path(participante),
-                      class: 'button is-info is-outlined' %>
+<div class="card">
+  <div class="card-content">
+    <h3 class="title is-4">Eventos</h3>
+    <ul id="tags-events">
+      <% Encuentro.pluck(:version).each do |version| %>
+        <li>
+          <label class="checkbox">
+            <input type="checkbox" checked="checked" value="<%= version %>">
+            <%= version %>
+          </label>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
 
-          <% tooltip_text = (participante.actividades.count > 0 ? 'Este participante no se podrá eliminar' : 'Eliminar participante') %>
+<div class="card">
+  <div class="card-content">
+    <% if @participantes.any? %>
+      <table class="table is-fullwidth">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Nombre</th>
+            <th>Bio</th>
+            <th class="imagenes">
+              <span class="icon">
+                <%= icon('fas', 'images') %>
+              </span>
+            </th>
+            <th>Actividades</th>
+            <th class="acciones has-two-icons">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @participantes.each.with_index(1) do |participante, index| %>
+            <tr data-events="<%= participante.encuentros.pluck(:version).join(' ') %>">
+              <td><%= index %></td>
+              <td><%= participante.nombre %></td>
+              <td><%= participante.bio.truncate(100) if !participante.bio.nil? %></td>
+              <td>
+                <% if participante.foto.attached? %>
+                  <span class="icon tooltip" data-tooltip="El participante tiene imagen">
+                  <% else %>
+                    <span class="icon">
+                    <% end %>
+                    <%= icon('fas', 'check') if participante.foto.attached? %>
+                  </span>
+                </td>
+                <td><%= participante.actividades.count %></td>
+                <td>
+                  <%= link_to content_tag(:span, icon('fas', 'edit'), class: 'icon tooltip', data: { tooltip: 'Editar participante', }), edit_admin_participante_path(participante), class: 'button is-info is-outlined' %>
 
-          <%= link_to content_tag(:span,
-                                  icon('fas', 'trash-alt'),
-                                  class: 'icon tooltip',
-                                  data: {
-                                    tooltip: tooltip_text,
-                                  }),
-                      admin_participante_path(participante),
-                      method: :delete,
-                      data: {
-                        confirm: '¿Está seguro?',
-                      },
-                      class: 'button is-danger is-outlined' %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<% else %>
-<hr>
-<p>No existen participantes registrados.</p>
-<% end %>
+                  <% tooltip_text = (participante.actividades.count > 0 ? 'Este participante no se podrá eliminar' : 'Eliminar participante') %>
+
+                    <%= link_to content_tag(:span, icon('fas', 'trash-alt'), class: 'icon tooltip', data: { tooltip: tooltip_text, }), admin_participante_path(participante), method: :delete, data: { confirm: '¿Está seguro?', }, class: 'button is-danger is-outlined' %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        <% else %>
+          <p>No existen participantes registrados.</p>
+        <% end %>
+      </div>
+    </div>
