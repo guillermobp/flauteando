@@ -3,7 +3,7 @@
 <div class="card">
   <div class="card-content">
     <h3 class="title is-4">Eventos</h3>
-    <ul id="tags-events">
+    <ul id="participantes-events">
       <% Encuentro.pluck(:version).each do |version| %>
         <li>
           <label class="checkbox">
@@ -19,7 +19,7 @@
 <div class="card">
   <div class="card-content">
     <% if @participantes.any? %>
-      <table class="table is-fullwidth">
+      <table class="participantes table is-fullwidth">
         <thead>
           <tr>
             <th>#</th>
@@ -36,7 +36,7 @@
         </thead>
         <tbody>
           <% @participantes.each.with_index(1) do |participante, index| %>
-            <tr data-events="<%= participante.encuentros.pluck(:version).join(' ') %>">
+            <tr data-events="<%= participante.encuentros.pluck(:version).join(',') %>">
               <td><%= index %></td>
               <td><%= participante.nombre %></td>
               <td><%= participante.bio.truncate(100) if !participante.bio.nil? %></td>
