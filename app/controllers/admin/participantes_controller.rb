@@ -1,5 +1,5 @@
 class Admin::ParticipantesController < AdminController
-  before_action :find_participante, except: %i[index new create for_select]
+  before_action :find_participante, except: %i[index new create]
 
   def index
     @participantes = Participante.all
@@ -36,11 +36,11 @@ class Admin::ParticipantesController < AdminController
     end
   end
 
-  def for_select
-    respond_to do |format|
-      format.json { render json: Participante.for_select }
-    end
-  end
+  # def for_select
+  #   respond_to do |format|
+  #     format.json { render json: Participante.for_select }
+  #   end
+  # end
 
   def destroy
     if @participante.actividades.count > 0

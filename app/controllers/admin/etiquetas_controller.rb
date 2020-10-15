@@ -1,5 +1,5 @@
 class Admin::EtiquetasController < AdminController
-  before_action :find_etiqueta, except: %i[index new create for_select]
+  before_action :find_etiqueta, except: %i[index new create]
 
   def index
     @etiquetas = Etiqueta.all
@@ -36,11 +36,11 @@ class Admin::EtiquetasController < AdminController
     end
   end
 
-  def for_select
-    respond_to do |format|
-      format.json { render json: Etiqueta.for_select }
-    end
-  end
+  # def for_select
+  #   respond_to do |format|
+  #     format.json { render json: Etiqueta.for_select }
+  #   end
+  # end
 
   def destroy
     if @etiqueta.actividades.count > 0

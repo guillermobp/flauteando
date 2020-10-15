@@ -1,6 +1,6 @@
 <div class="card">
   <div class="card-content">
-    <p class="title">Nueva Actividad</p>
+    <p class="title"><%= @actividad.new_record? ? 'Crear' : 'Editar' %> Actividad</p>
 
     <%= form_with model: [:admin, @encuentro, @actividad] do |form| %>
 
@@ -15,19 +15,29 @@
 
     <div class="field">
       <%= form.label :etiquetas, class: 'label' %>
-      <%= select_tag('actividad[etiquetas][][id]', nil, data: { taggable: true, tag_placeholder: 'Seleccione una o más etiquetas', source: etiquetas_for_select_path(), }) %>
+      <%= select_tag('actividad[etiquetas][][id]',
+                      nil,
+                      data: {
+                        taggable: true,
+                        tag_placeholder: 'Seleccione una o más etiquetas',
+                        source: actividad_tags_for_select_path(@actividad) }) %>
     </div>
 
     <div class="field">
       <%= form.label :participantes, class: 'label' %>
-      <%= select_tag('actividad[participantes][][id]', nil, data: { taggable: true, tag_placeholder: 'Seleccione uno o más participantes', source: participantes_for_select_path(), }) %>
+      <%= select_tag('actividad[participantes][][id]',
+                      nil,
+                      data: {
+                        taggable: true,
+                        tag_placeholder: 'Seleccione uno o más participantes',
+                        source: actividad_participantes_for_select_path(@actividad) }) %>
     </div>
 
     <div class="columns">
       <div class="field column is-3">
         <%= form.label :fecha, class: 'label' %>
         <div class="control">
-          <%= form.time_field :fecha, class: 'input' %>
+          <%= form.date_field :fecha, class: 'input' %>
         </div>
       </div>
       <div class="field column is-3">
@@ -67,10 +77,10 @@
 
     <div class="field is-grouped">
       <div class="control">
-        <%= form.submit class: 'button is-link' %>
+        <%= form.button class: 'button is-link' %>
       </div>
       <div class="control">
-        <%= link_to 'Cancelar', admin_encuentro_actividades_path(@encuentro), class: 'button is-text' %>
+        <%= link_to 'Cancelar', admin_encuentro_actividades_path(@actividad.encuentro), class: 'button is-text' %>
       </div>
     </div>
   <% end %>

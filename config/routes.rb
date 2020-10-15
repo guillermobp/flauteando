@@ -8,41 +8,46 @@ Rails.application.routes.draw do
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
 
-  resources :password_resets, only: %i[new create edit update]
-
-  get 'artistas', to: 'home#artistas'
-  get 'artistas/:id', to: 'home#artista', as: :artista
-  get 'actividades', to: 'home#actividades'
-  get 'conciertos', to: 'home#conciertos'
-  get 'galeria', to: 'home#galeria'
-
-  get 'vision', to: 'home#vision'
-  get 'mision', to: 'home#mision'
-
-  get 'artistas/:id/nombre', to: 'artistas#nombre', as: :artista_nombre
-  get 'artistas/:id/bio', to: 'artistas#bio', as: :artista_bio
-
   get '/:version', to: 'home#index', as: :version
 
-  get 'admin/artistas/for_select', to: 'admin/artistas#for_select', as: :artistas_for_select
-  get 'admin/obras/for_select', to: 'admin/obras#for_select', as: :obras_for_select
+  # get 'artistas', to: 'home#artistas'
+  # get 'artistas/:id', to: 'home#artista', as: :artista
+  # get 'actividades', to: 'home#actividades'
+  # get 'conciertos', to: 'home#conciertos'
+  # get 'galeria', to: 'home#galeria'
+  #
+  # get 'vision', to: 'home#vision'
+  # get 'mision', to: 'home#mision'
+  #
+  # get 'artistas/:id/nombre', to: 'artistas#nombre', as: :artista_nombre
+  # get 'artistas/:id/bio', to: 'artistas#bio', as: :artista_bio
 
-  get 'admin/presentacion/:id/artistas/for_select', to: 'admin/presentaciones#artistas_for_select', as: :presentacion_artistas_for_select
-  get 'admin/presentacion/:id/obras/for_select', to: 'admin/presentaciones#obras_for_select', as: :presentacion_obras_for_select
+  # get 'admin/artistas/for_select', to: 'admin/artistas#for_select', as: :artistas_for_select
+  # get 'admin/obras/for_select', to: 'admin/obras#for_select', as: :obras_for_select
 
-  get 'admin/etiquetas/for_select', to: 'admin/etiquetas#for_select', as: :etiquetas_for_select
-  get 'admin/participantes/for_select', to: 'admin/participantes#for_select', as: :participantes_for_select
+  # get 'admin/presentacion/:id/artistas/for_select', to: 'admin/presentaciones#artistas_for_select', as: :presentacion_artistas_for_select
+  # get 'admin/presentacion/:id/obras/for_select', to: 'admin/presentaciones#obras_for_select', as: :presentacion_obras_for_select
 
-  patch 'admin/encuentros/:encuentro_id/artistas/:artista_id/toggle_visibilidad_artista', to: 'admin/config#toggle_visibilidad_artista', as: :toggle_visibilidad_artista
-  post 'admin/artistas_visibles/:id/up', to: 'admin/artistas_visibles#up', as: :up_artista_visible
-  post 'admin/artistas_visibles/:id/down', to: 'admin/artistas_visibles#down', as: :down_artista_visible
+  # get 'admin/etiquetas/for_select', to: 'admin/etiquetas#for_select', as: :tags_for_select
+  # get 'admin/participantes/for_select', to: 'admin/participantes#for_select', as: :participantes_for_select
 
-  post 'admin/slides/:id/up', to: 'admin/slides#up', as: :admin_slide_up
+  get 'admin/actividad(/:id)/tags/for_select',          to: 'admin/actividades#tags_for_select',          as: :actividad_tags_for_select
+  get 'admin/actividad(/:id)/participantes/for_select', to: 'admin/actividades#participantes_for_select', as: :actividad_participantes_for_select
+
+  # get 'admin/controls/select/tags/actividad/:id'
+
+  # patch 'admin/encuentros/:encuentro_id/artistas/:artista_id/toggle_visibilidad_artista', to: 'admin/config#toggle_visibilidad_artista', as: :toggle_visibilidad_artista
+  # post 'admin/artistas_visibles/:id/up', to: 'admin/artistas_visibles#up', as: :up_artista_visible
+  # post 'admin/artistas_visibles/:id/down', to: 'admin/artistas_visibles#down', as: :down_artista_visible
+
+  post 'admin/slides/:id/up',   to: 'admin/slides#up',   as: :admin_slide_up
   post 'admin/slides/:id/down', to: 'admin/slides#down', as: :admin_slide_down
+
+  resources :password_resets, only: %i[new create edit update]
 
   namespace :admin do
     resources :users, only: %i[edit update]
-    resources :artistas, :obras
+    # resources :artistas, :obras
     resources :attachments, only: [:destroy]
     resources :etiquetas
     resources :participantes
@@ -51,19 +56,19 @@ Rails.application.routes.draw do
 
       resources :slides, shallow: true, only: %i[edit, destroy]
 
-      resources :conciertos, shallow: true do
-        resources :presentaciones, shallow: true, except: %i[show]
-      end
-
-      resources :fechas_actividades, shallow: true do
-        resources :actividades, shallow: true, except: %i[show]
-      end
+      # resources :conciertos, shallow: true do
+      #   resources :presentaciones, shallow: true, except: %i[show]
+      # end
+      #
+      # resources :fechas_actividades, shallow: true do
+      #   resources :actividades, shallow: true, except: %i[show]
+      # end
 
       resources :actividades, shallow: true
 
-      resources :fotos, only: [:index]
+      # resources :fotos, only: [:index]
       resources :config, only: [:index]
-      resources :artistas_visibles, shallow: true
+      # resources :artistas_visibles, shallow: true
     end
   end
 end

@@ -4,6 +4,7 @@ class Participante < ApplicationRecord
 
   has_many :actividades_participantes
   has_many :actividades, through: :actividades_participantes
+  has_many :encuentros, -> { distinct }, through: :actividades
 
   has_one_attached :foto
 
