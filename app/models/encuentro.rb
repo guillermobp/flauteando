@@ -126,12 +126,16 @@ class Encuentro < ApplicationRecord
     Encuentro.where.not(id: id).exists?(habilitado: true)
   end
 
-  def show_countdown?
-    is_last_enabled? and show_countdown
+  def show_countdown_section?
+    is_last_enabled? and show_countdown?
   end
 
-  def show_past_events?
-    is_last_enabled? and show_past_events and has_enabled_past_events?
+  def show_instagram_feed_section?
+    show_instagram_feed?
+  end
+
+  def show_past_events_section?
+    is_last_enabled? and show_past_events? and has_enabled_past_events?
   end
 
   def available_tags
