@@ -1,14 +1,14 @@
 <%= render 'slides' %>
 
-<%= render 'countdown' if @encuentro.show_countdown? %>
+<%= render 'countdown' if @encuentro.show_countdown_section? %>
 
 <%= render 'participantes' %>
 
-<%= render 'instagram' if @encuentro.show_instagram_feed? %>
+<%= render 'instagram' if @encuentro.show_instagram_feed_section? %>
 
 <%= render 'calendario' %>
 
-<%= render 'past_events' if @encuentro.show_past_events? %>
+<%= render 'past_events' if @encuentro.show_past_events_section? %>
 
 <%= render 'footer' %>
 
