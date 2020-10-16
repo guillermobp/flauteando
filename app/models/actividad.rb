@@ -3,10 +3,10 @@ class Actividad < ApplicationRecord
   # has_one :encuentro, through: :fecha_actividad
   belongs_to :encuentro
 
-  has_many :actividades_etiquetas
+  has_many :actividades_etiquetas, dependent: :destroy
   has_many :etiquetas, through: :actividades_etiquetas
 
-  has_many :actividades_participantes
+  has_many :actividades_participantes, dependent: :destroy
   has_many :participantes, through: :actividades_participantes
 
   def fecha_day_name
@@ -22,7 +22,7 @@ class Actividad < ApplicationRecord
   end
 
   def inicio_hhmm
-    inicio.nil? ? '' : inicio.strftime('%H:%M')
+    inicio.strftime('%H:%M')
   end
 
   def termino_hhmm
