@@ -79,8 +79,8 @@
             <tr data-date="<%= actividad.fecha %>" data-tags="<%= actividad.etiquetas.pluck(:id).join(',') %>">
               <td><%= actividad.fecha_day_name_day_number %></td>
               <td>
-                <%= actividad.inicio.strftime('%H:%M') %>
-                <%= "- #{actividad.termino.strftime('%H:%M')}" if actividad.termino != nil %>
+                <%= actividad.inicio_hhmm %>
+                <%= "- #{actividad.termino_hhmm}" if actividad.termino != nil %>
               </td>
               <td><%= actividad.etiquetas.pluck(:nombre).join(' ') %></td>
               <td><%= actividad.titulo %></td>

@@ -16,8 +16,8 @@ class Admin::ActividadesController < AdminController
 
   def create
     @actividad = @encuentro.actividades.new(actividad_params)
-    @actividad.etiquetas = etiquetas_params.map { |e| Etiqueta.find(e[:id]) }
-    @actividad.participantes = participantes_params.map { |p| Participante.find(p[:id]) }
+    @actividad.etiquetas = etiquetas_params.map { |e| Etiqueta.find(e[:id]) } unless etiquetas_params.nil?
+    @actividad.participantes = participantes_params.map { |p| Participante.find(p[:id]) } unless participantes_params.nil?
     if @actividad.save
       flash.notice = 'La actividad ha sido creado exitosamente'
       redirect_to admin_encuentro_actividades_path(@encuentro)
@@ -28,8 +28,8 @@ class Admin::ActividadesController < AdminController
   end
 
   def update
-    @actividad.etiquetas = etiquetas_params.map { |e| Etiqueta.find(e[:id]) }
-    @actividad.participantes = participantes_params.map { |p| Participante.find(p[:id]) }
+    @actividad.etiquetas = etiquetas_params.map { |e| Etiqueta.find(e[:id]) } unless etiquetas_params.nil?
+    @actividad.participantes = participantes_params.map { |p| Participante.find(p[:id]) } unless participantes_params.nil?
     if @actividad.save and @actividad.update(actividad_params)
       flash.notice = 'La actividad ha sido actualizado correctamente'
       redirect_to admin_encuentro_actividades_path(@actividad.encuentro)
@@ -46,14 +46,12 @@ class Admin::ActividadesController < AdminController
   end
 
   def destroy
-    if @actividad.actividades.count > 0
-      flash[:warning] = 'La actividad se usa en una o más actividades; debe eliminar cada uso para continuar.'
-    elsif @actividad.destroy
+    if @actividad.destroy
       flash.notice = 'La actividad ha sido eliminado permanentemente'
     else
       flash.alert = 'Ocurrió un error intentando eliminar la actividad'
     end
-    redirect_to admin_actividades_path
+    redirect_to admin_encuentro_actividades_path(@actividad.encuentro)
   end
 
   def tags_for_select
