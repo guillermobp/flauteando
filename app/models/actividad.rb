@@ -1,4 +1,5 @@
 class Actividad < ApplicationRecord
+  default_scope { order(:fecha, :inicio) }
   # belongs_to :fecha_actividad
   # has_one :encuentro, through: :fecha_actividad
   belongs_to :encuentro
