@@ -1,6 +1,7 @@
 <div class="card">
   <div class="card-content">
-    <p class="title"><%= @actividad.new_record? ? 'Crear' : 'Editar' %> Actividad</p>
+    <p class="title"><%= @actividad.new_record? ? 'Crear' : 'Editar' %>
+      Actividad</p>
 
     <%= form_with model: [:admin, @encuentro, @actividad] do |form| %>
 
@@ -10,27 +11,25 @@
         <div class="control">
           <%= form.text_field :titulo, class: 'input' %>
         </div>
+        <label class="checkbox">
+          <%= form.check_box :titulo_en_calendario %>
+          Mostrar título en calendario
+        </label>
       </div>
     </div>
 
     <div class="field">
       <%= form.label :etiquetas, class: 'label' %>
-      <%= select_tag('actividad[etiquetas][][id]',
-                      nil,
-                      data: {
-                        taggable: true,
-                        tag_placeholder: 'Seleccione una o más etiquetas',
-                        source: actividad_tags_for_select_path(@actividad) }) %>
+      <%= select_tag('actividad[etiquetas][][id]', nil, data: { taggable: true, tag_placeholder: 'Seleccione una o más etiquetas', source: actividad_tags_for_select_path(@actividad) }) %>
     </div>
 
     <div class="field">
       <%= form.label :participantes, class: 'label' %>
-      <%= select_tag('actividad[participantes][][id]',
-                      nil,
-                      data: {
-                        taggable: true,
-                        tag_placeholder: 'Seleccione uno o más participantes',
-                        source: actividad_participantes_for_select_path(@actividad) }) %>
+      <%= select_tag('actividad[participantes][][id]', nil, data: { taggable: true, tag_placeholder: 'Seleccione uno o más participantes', source: actividad_participantes_for_select_path(@actividad) }) %>
+      <label class="checkbox">
+        <%= form.check_box :show_description_in_calendar %>
+        Mostrar participantes en calendario
+      </label>
     </div>
 
     <div class="columns">
@@ -59,6 +58,10 @@
       <div class="control">
         <%= form.text_field :descripcion, class: 'input' %>
       </div>
+      <label class="checkbox">
+        <%= form.check_box :show_description_in_calendar %>
+        Mostrar descripción en calendario
+      </label>
     </div>
 
     <div class="field">
@@ -72,6 +75,17 @@
       <%= form.label :texto_calendario, class: 'label' %>
       <div class="control">
         <%= form.text_area :texto_calendario, class: 'textarea' %>
+      </div>
+      <label class="checkbox">
+        <%= form.check_box :texto_en_calendario %>
+        Mostrar texto en calendario
+      </label>
+    </div>
+
+    <div class="field">
+      <%= form.label :details, class: 'label' %>
+      <div class="control">
+        <%= form.text_area :details, class: 'textarea' %>
       </div>
     </div>
 

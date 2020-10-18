@@ -33,11 +33,14 @@
               <% actividad = actividades.select{ |x| x.fecha == fecha }.first %>
                 <li class="actividad">
                   <% unless actividad.nil? %>
-                    <% if actividad.mostrar_participantes_en_calendario? %>
-                      <span class="participantes"><%= actividad.participantes.last.nombre %></span>
-                    <% end %>
                     <% if actividad.mostrar_titulo_en_calendario? %>
                       <span class="titulo"><%= actividad.titulo %></span>
+                    <% end %>
+                    <% if actividad.show_description_in_calendar? %>
+                      <span class="titulo"><%= actividad.descripcion %></span>
+                    <% end %>
+                    <% if actividad.mostrar_participantes_en_calendario? %>
+                      <span class="participantes"><%= actividad.participantes.last.nombre %></span>
                     <% end %>
                     <% if actividad.mostrar_texto_calendario? %>
                       <span class="texto"><%= simple_format(actividad.texto_calendario) %></span>
