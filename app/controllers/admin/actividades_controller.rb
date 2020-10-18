@@ -69,7 +69,21 @@ class Admin::ActividadesController < AdminController
   private
 
   def actividad_params
-    params.require(:actividad).permit(:fecha, :inicio, :termino, :titulo, :descripcion, :lugar)
+    params
+    .require(:actividad)
+    .permit(
+      :fecha,
+      :inicio,
+      :termino,
+      :titulo,
+      :titulo_en_calendario,
+      :descripcion,
+      :show_description_in_calendar,
+      :lugar,
+      :participantes_en_calendario,
+      :texto_calendario,
+      :texto_en_calendario,
+      :details)
   end
 
   def etiquetas_params
