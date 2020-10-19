@@ -65,6 +65,10 @@ class Actividad < ApplicationRecord
    texto_en_calendario && !texto_calendario.nil? && !texto_calendario.empty?
   end
 
+  def show_details_in_calendar?
+    details.nil?
+  end
+
   def tags_for_select
     Etiqueta.all.map { |x| [x.nombre, x.id, etiquetas.exists?(x.id)] }
   end

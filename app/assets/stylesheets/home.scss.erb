@@ -36,6 +36,7 @@ body {
     overflow: hidden;
     top: 0;
     z-index: 13;
+    transition: opacity 500ms ease-in-out;
 
     .toolbar {
       display: flex;
@@ -61,11 +62,20 @@ body {
         width: 40%;
       }
 
-      .bio {
+      .bio-content {
+        visibility: hidden;
         align-self: center;
         color: white;
         font-family: 'Montserrat';
         width: 40%;
+      }
+
+      .details-content {
+        width: max-content;
+        background-color: #00498EE8;
+        padding: 2rem;
+        border-radius: 1rem;
+        border: 0.5rem solid #00498E;
       }
     }
   }
@@ -561,6 +571,7 @@ body {
     }
 
     .calendar-day {
+      background-color: green;
       grid-column: 2;
       grid-row: 3;
       list-style: none;
@@ -586,6 +597,14 @@ body {
         border-radius: 4px;
         padding: 1rem 2rem;
         margin-bottom: 1rem;
+
+        &.actividad {
+          background-color: yellow;
+
+          span.details {
+            visibility: hidden;
+          }
+        }
 
         img {
           grid-column: 1;
@@ -878,11 +897,16 @@ body {
 
           &.actividad {
             min-height: 4rem;
+            cursor: pointer;
 
             span {
-              .participantes,
-              .texto,
-              .titulo {
+              &.details {
+                visibility: collapse;
+              }
+
+              &.participantes,
+              &.texto,
+              &.titulo {
                 display: block;
               }
 

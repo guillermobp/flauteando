@@ -185,11 +185,25 @@ const initToggles = async () => {
 };
 
 const initProfiles = async () => {
+  if (!document.querySelector('#artistas')) {
+    return;
+  }
+
   document.querySelectorAll('.image-crop').forEach((item, i) => {
     item.addEventListener('click', async (e) => {
       const overlay = document.querySelector('.overlay');
-      overlay.querySelector('img').src = item.querySelector('img').src;
-      overlay.querySelector('span.bio').innerHTML = item.querySelector('.bio').innerHTML;
+      overlay.querySelector('.main').innerHTML = item.querySelector('.bio-content').innerHTML;
+      overlay.classList.add('active');
+      overlay.closest('body').style.overflow = 'hidden';
+    });
+  });
+};
+
+const initActivities = async () => {
+  document.querySelectorAll('#calendar .calendar-day .actividad.has-details').forEach((item, i) => {
+    item.addEventListener('click', async (e) => {
+      const overlay = document.querySelector('.overlay');
+      overlay.querySelector('.main').innerHTML = item.querySelector('.details').innerHTML;
       overlay.classList.add('active');
       overlay.closest('body').style.overflow = 'hidden';
     });
@@ -208,6 +222,7 @@ window.addEventListener('DOMContentLoaded', async () => {
   initInstafeed();
   initToggles();
   initProfiles();
+  initActivities();
 
   document
     .querySelector('.overlay .close-control')
