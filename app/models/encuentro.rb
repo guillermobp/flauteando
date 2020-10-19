@@ -7,7 +7,7 @@ class Encuentro < ApplicationRecord
   # has_many :fechas_actividades, dependent: :destroy
   # has_many :actividades, through: :fechas_actividades
 
-  has_many :actividades#, -> { order(:inicio) }
+  has_many :actividades#, -> { order(:fecha) }
   has_many :participantes, -> { distinct }, through: :actividades
   has_many :etiquetas, -> { distinct }, through: :actividades
   # has_many :fechas, -> { distinct }, through: :actividades
@@ -140,6 +140,10 @@ class Encuentro < ApplicationRecord
 
   def available_tags
     Etiqueta.all
+  end
+
+  def sorted_activities
+    actividades.order(:fecha, :inicio)
   end
 
 end
