@@ -19,7 +19,7 @@
             <li class="header"><%= fecha[3] %></li>
           <% end %>
         </ul>
-        <% etiqueta.actividades.group_by(&:inicio_termino_hhmm_ary).each do |rango, actividades| %>
+        <% etiqueta.actividades.order(:inicio).group_by(&:inicio_termino_hhmm_ary).each do |rango, actividades| %>
           <ul class="calendar-day">
             <li class="header">
               <% if !rango[:inicio].empty? %>
@@ -31,8 +31,13 @@
             </li>
             <% @encuentro.fechas.each do |fecha| %>
               <% actividad = actividades.select{ |x| x.fecha == fecha }.first %>
-                <li class="actividad">
+                <li class="actividad <%= actividad&.details? ? 'has-details' : '' %>">
                   <% unless actividad.nil? %>
+                    <span class="details">
+                      <span class="details-content">
+                        <%= simple_format(actividad.details) %>
+                      </span>
+                    </span>
                     <% if actividad.mostrar_titulo_en_calendario? %>
                       <span class="titulo"><%= actividad.titulo %></span>
                     <% end %>
