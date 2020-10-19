@@ -32,7 +32,7 @@ class Encuentro < ApplicationRecord
   end
 
   def fechas
-    actividades.distinct.pluck(:fecha)
+    actividades.distinct.order(:fecha).pluck(:fecha)
   end
 
   def fechas_actividades_short
