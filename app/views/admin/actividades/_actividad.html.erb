@@ -33,22 +33,24 @@
     </div>
 
     <div class="columns">
-      <div class="field column is-3">
-        <%= form.label :fecha, class: 'label' %>
-        <div class="control">
-          <%= form.date_field :fecha, class: 'input' %>
+      <% if false %>
+        <div class="field column is-3">
+          <%= form.label :fecha, class: 'label' %>
+          <div class="control">
+            <%= form.date_field :fecha, class: 'input' %>
+          </div>
         </div>
-      </div>
-      <div class="field column is-3">
+      <% end %>
+      <div class="field column is-4">
         <%= form.label :inicio, class: 'label' %>
         <div class="control">
-          <%= form.time_field :inicio, class: 'input' %>
+          <%= form.datetime_field :inicio, class: 'input', data: { link_target: '#termino' } %>
         </div>
       </div>
-      <div class="field column is-6">
+      <div class="field column is-4">
         <%= form.label :termino, class: 'label' %>
         <div class="control">
-          <%= form.time_field :termino, class: 'input' %>
+          <%= form.datetime_field :termino, class: 'input' %>
         </div>
       </div>
     </div>

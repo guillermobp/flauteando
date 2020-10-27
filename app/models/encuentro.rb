@@ -19,8 +19,12 @@ class Encuentro < ApplicationRecord
 
   has_many_attached :fotos
 
+  def activities_by_start_time
+    actividades.order(:inicio)
+  end
+
   def artistas_visibilizables
-    Artista.all.where.not(id: artistas_visibles.pluck(:artista_id))
+    Artista.where.not(id: artistas_visibles.pluck(:artista_id))
   end
 
   def artistas_visibles
@@ -28,11 +32,11 @@ class Encuentro < ApplicationRecord
   end
 
   def fechas_actividades
-    actividades.distinct.pluck(:fecha)
+    actividades.distinct.pluck(:inicio)
   end
 
   def fechas
-    actividades.distinct.order(:fecha).pluck(:fecha)
+    actividades.distinct.order(:inicio).pluck(:inicio)
   end
 
   def fechas_actividades_short
@@ -54,7 +58,8 @@ class Encuentro < ApplicationRecord
   end
 
   def calendario_encuentro
-    etiquetas.last.actividades.group_by(&:fecha).each { |fecha, actividades| puts actividades.count }
+    # etiquetas.last.actividades.group_by(&:fecha).each { |fecha, actividades| puts actividades.count }
+    Encuentro.last.actividades.group_by{ |a| a.inicio.beginning_of_day }.each { |fecha, actividades| puts actividades.count }
   end
 
   def conciertos_by_date
@@ -143,7 +148,7 @@ class Encuentro < ApplicationRecord
   end
 
   def sorted_activities
-    actividades.order(:fecha, :inicio)
+    actividades.order(:inicio)
   end
 
 end

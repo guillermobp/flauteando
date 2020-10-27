@@ -12,7 +12,16 @@ require("channels")
 
 // require("bulma-calendar")
 
-// import BulmaCalendar from 'bulma-calendar/dist/js/bulma-calendar.js';
+import BulmaCalendar from 'bulma-calendar/dist/js/bulma-calendar.js';
+
+const calendarOpts = {
+  dateFormat: 'YYYY-MM-DD',
+  cancelLabel: 'Cancelar',
+  clearLabel: 'Limpiar',
+  todayLabel: 'Hoy',
+  nowLabel: 'Ahora',
+  validateLabel: 'Aceptar',
+};
 
 document.addEventListener("turbolinks:load", async () => {
 
@@ -93,6 +102,8 @@ document.addEventListener("turbolinks:load", async () => {
     });
   }
 
+  BulmaCalendar.attach('[type="datetime-local"]', calendarOpts);
+
   // document
   //   .getElementById('dates-events')
   //   .querySelectorAll('input')
@@ -121,9 +132,9 @@ document.addEventListener("turbolinks:load", async () => {
             .querySelectorAll('table.actividades tr')
             .forEach(row => {
               if (row.dataset.tags) {
-                row.style.visibility = row.dataset.tags.split(',').some(x => checkedValues.includes(x))
-                  ? 'visible'
-                  : 'collapse';
+                row.style.visibility = row.dataset.tags.split(',').some(x => checkedValues.includes(x)) ?
+                  'visible' :
+                  'collapse';
               }
             });
         });
@@ -140,9 +151,9 @@ document.addEventListener("turbolinks:load", async () => {
             .querySelectorAll('table.participantes tr[data-events]')
             .forEach(row => {
               if (row.dataset.events) {
-                row.style.visibility = row.dataset.events.split(',').some(x => checkedValues.includes(x))
-                  ? 'visible'
-                  : 'collapse';
+                row.style.visibility = row.dataset.events.split(',').some(x => checkedValues.includes(x)) ?
+                  'visible' :
+                  'collapse';
               }
             });
         });
