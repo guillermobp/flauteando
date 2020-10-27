@@ -3,6 +3,6 @@ class FechaActividad < ApplicationRecord
   has_many :actividades, dependent: :destroy
 
   def fecha_ddmmyyyy
-    fecha.nil? ? '' : fecha.strftime('%d/%m/%Y')
+    inicio.nil? ? '' : inicio.strftime('%d/%m/%Y')
   end
 end

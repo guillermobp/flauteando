@@ -36,7 +36,7 @@ class Encuentro < ApplicationRecord
   end
 
   def fechas
-    actividades.distinct.order(:inicio).pluck(:inicio)
+    actividades.map{ |a| a.inicio.beginning_of_day }.uniq
   end
 
   def fechas_actividades_short

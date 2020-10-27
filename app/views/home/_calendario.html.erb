@@ -30,7 +30,7 @@
               <% end %>
             </li>
             <% @encuentro.fechas.each do |fecha| %>
-              <% actividad = actividades.select{ |x| x.fecha == fecha }.first %>
+              <% actividad = actividades.select{ |x| x.inicio.beginning_of_day == fecha }.first %>
                 <li class="actividad <%= actividad&.details? ? 'has-details' : '' %>">
                   <% unless actividad.nil? %>
                     <span class="details">

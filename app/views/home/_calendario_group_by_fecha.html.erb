@@ -18,7 +18,8 @@
             <li><%= "#{horas[0]} - #{horas[1]}" %></li>
           <% end %>
         </ul>
-        <% etiqueta.actividades.group_by(&:fecha).each do |fecha, actividades| %>
+        <%# etiqueta.actividades.group_by(&:fecha).each do |fecha, actividades| %>
+        <%= etiqueta.activities_by_start_date.each do |fecha, actividades| %>
           <ul class="calendar-day">
             <li><%= fecha %></li>
             <% actividades.each do |actividad| %>
