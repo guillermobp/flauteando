@@ -1,7 +1,7 @@
 <%= render 'layouts/admin/tabs' %>
 
-<div>
-  <% if false %>
+<% if false %>
+  <div>
     <div class="card">
       <div class="card-content">
         <h3 class="title is-4">Fecha</h3>
@@ -17,9 +17,7 @@
         </ul>
       </div>
     </div>
-  <% end %>
 
-  <% if false %>
     <div class="card">
       <div class="card-content">
         <h3 class="title is-4">Etiquetas</h3>
@@ -53,15 +51,14 @@
     </ul>
   </div>
 </div>
-</div>
 
 <div class="card">
   <div class="card-content">
-    <h3 class="title is-3">Actividades</h3>
+    <h3 class="title is-3">Actividades Ordenadas</h3>
 
     <%= link_to 'Crear Actividad', new_admin_encuentro_actividad_path(@encuentro), class: 'button is-link' %>
 
-    <% if @encuentro.actividades.any? %>
+    <% if @encuentro.activities_by_start_time.any? %>
       <table class="actividades table is-fullwidth">
         <thead>
           <tr>

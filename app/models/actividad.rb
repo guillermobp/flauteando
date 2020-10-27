@@ -11,15 +11,15 @@ class Actividad < ApplicationRecord
   has_many :participantes, through: :actividades_participantes
 
   def fecha_day_name
-    fecha.strftime('%A')
+    inicio.strftime('%A')
   end
 
   def fecha_day_of_month_long
-    fecha.strftime('%d de %B')
+    inicio.strftime('%d de %B')
   end
 
   def fecha_day_name_day_number
-    I18n.l(fecha, format: :day_name_day_number)
+    I18n.l(inicio, format: :day_name_day_number)
   end
 
   def inicio_hhmm

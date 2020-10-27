@@ -14,6 +14,10 @@ es:
       long: '%A %-d de %B de %Y'
       day_name_day_number_month_name: '%A %-d de %B'
       day_name_day_number: '%A %-d'
+  time:
+    formats:
+      day_name_day_number_month_name: '%A %-d de %B'
+      day_name_day_number: '%A %-d'
   helpers:
     submit:
       create: 'Crear'
