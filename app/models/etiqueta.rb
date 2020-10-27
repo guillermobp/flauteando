@@ -5,4 +5,8 @@ class Etiqueta < ApplicationRecord
   def Etiqueta.for_select
     all.map { |x| [x.nombre, x.id] }
   end
+
+  def activities_by_start_date
+    etiqueta.actividades.group_by{ |a| a.inicio.beginning_of_day }
+  end
 end

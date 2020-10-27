@@ -72,7 +72,6 @@ class Admin::ActividadesController < AdminController
     params
     .require(:actividad)
     .permit(
-      :fecha,
       :inicio,
       :termino,
       :titulo,
