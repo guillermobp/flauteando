@@ -10,6 +10,10 @@ class Actividad < ApplicationRecord
   has_many :actividades_participantes, dependent: :destroy
   has_many :participantes, through: :actividades_participantes
 
+  def date
+    inicio.beginning_of_day
+  end
+
   def fecha_day_name
     inicio.strftime('%A')
   end
