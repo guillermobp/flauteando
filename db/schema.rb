@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_18_222553) do
+ActiveRecord::Schema.define(version: 2020_10_27_151301) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,7 +43,6 @@ ActiveRecord::Schema.define(version: 2020_10_18_222553) do
     t.string "titulo"
     t.string "descripcion"
     t.string "lugar"
-    t.date "fecha"
     t.boolean "titulo_en_calendario", default: true, null: false
     t.boolean "participantes_en_calendario", default: true, null: false
     t.text "texto_calendario"

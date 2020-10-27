@@ -73,7 +73,7 @@
         </thead>
         <tbody>
           <% @encuentro.sorted_activities.each do |actividad| %>
-            <tr data-date="<%= actividad.fecha %>" data-tags="<%= actividad.etiquetas.pluck(:id).join(',') %>">
+            <tr data-date="<%= actividad.date %>" data-tags="<%= actividad.etiquetas.pluck(:id).join(',') %>">
               <td><%= actividad.fecha_day_name_day_number %></td>
               <td>
                 <%= actividad.inicio_hhmm %>

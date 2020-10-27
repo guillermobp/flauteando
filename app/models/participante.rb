@@ -21,6 +21,10 @@ class Participante < ApplicationRecord
     foto
   end
 
+  def dates
+    actividades.map{ |a| a.date }.uniq
+  end
+
   # def fechas_day_name_day_number
   #   actividades.distinct.pluck(:fecha)
   # end
