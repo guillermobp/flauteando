@@ -3362,9 +3362,9 @@ ini@^1.3.4, ini@^1.3.5, ini@~1.3.0:
   integrity sha512-RZY5huIKCMRWDUqZlEi72f/lmXKMvuszcMBduliQ3nnWbx9X/ZBQO7DijMEYS9EhHBb2qacRUMtC7svLwe0lcw==
 
 instafeed.js@^2.0.0-rc2:
-  version "2.0.0-rc2"
-  resolved "https://registry.yarnpkg.com/instafeed.js/-/instafeed.js-2.0.0-rc2.tgz#8da0aa4008fa3288ee4d6f99c9bf31326d03cffd"
-  integrity sha512-HWTURCrIicdk040sLzphP0w9Dqk2JsnNeD9J0SbuKOL7gOiixmIDzTi0ps8BZQcXzppGoWU976N6jBub99P9lw==
+  version "2.0.0-rc3"
+  resolved "https://registry.yarnpkg.com/instafeed.js/-/instafeed.js-2.0.0-rc3.tgz#78ac95788c56939c3b49c6d09aff592615e466d6"
+  integrity sha512-1o0186m5u2NLozIznLsVuoqcSHYnT1AInC12VyWB5MytOrN5H03VLjjYSrUCSxBFe+OHb2mXZ7bv60ASsSENfQ==
 
 internal-ip@^4.3.0:
   version "4.3.0"
